@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+// import React from "react";
+// import { Link } from 'react-router-dom';
 
 
 
@@ -10,11 +10,11 @@ const LandingPage = () => {
               
                 <span>Bienvenido a Brainly</span>
 
-               <div>
+               {/* <div>
                     <Link to = '/home'>
                         <button>INGRESAR</button>
                     </Link>
-                </div>
+                </div> */}
 
             </div>
 
