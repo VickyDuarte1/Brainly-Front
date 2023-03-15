@@ -1,0 +1,22 @@
+.container {
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.about{
+    height: 10rem;
+    margin-top: 9rem;
+    text-decoration: none;
+    border-radius: 10rem;
+    margin-right: 9rem;
+    
+}
+.btn{
+    height: 2rem;
+    border-radius: 3rem;
+}
