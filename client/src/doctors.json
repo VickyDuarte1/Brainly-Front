@@ -5,6 +5,7 @@
     "name": "Leanne Graham",
     "speciality":"neurologist",
     "username": "Bret",
+    "password": "135789",
     "email": "Sincere@april.biz",
     "address": {
       "street": "Kulas Light",
@@ -20,6 +21,7 @@
     "name": "Ervin Howell",
     "speciality":"clinic",
     "username": "Antonette",
+    "password": "135789",
     "email": "Shanna@melissa.tv",
     "address": {
       "street": "Victor Plains",
@@ -34,6 +36,7 @@
     "name": "Clementine Bauch",
   "speciality":"neurosurgeon",
     "username": "Samantha",
+    "password": "135789",
     "email": "Nathan@yesenia.net",
     "address": {
       "street": "Douglas Extension",
@@ -48,6 +51,7 @@
     "name": "Patricia Lebsack",
   "speciality":"neurosurgeon",
     "username": "Karianne",
+    "password": "135789",
     "email": "Julianne.OConner@kory.org",
     "address": {
       "street": "Hoeger Mall",
@@ -62,6 +66,7 @@
     "name": "Chelsey Dietrich",
   "speciality":"neurologist",
     "username": "Kamren",
+    "password": "135789",
     "email": "Lucio_Hettinger@annie.ca",
     "address": {
       "street": "Skiles Walks",
@@ -76,6 +81,7 @@
     "name": "Mrs. Dennis Schulist",
   "speciality":"clinic",
     "username": "Leopoldo_Corkery",
+    "password": "135789",
     "email": "Karley_Dach@jasper.info",
     "address": {
       "street": "Norberto Crossing",
@@ -91,6 +97,7 @@
     "name": "Kurtis Weissnat",
   "speciality":"clinic",
     "username": "Elwyn.Skiles",
+    "password": "135789",
     "email": "Telly.Hoeger@billy.biz",
     "address": {
       "street": "Rex Trail",
@@ -106,6 +113,7 @@
     "name": "Nicholas Runolfsdottir V",
   "speciality":"neurologist",
     "username": "Maxime_Nienow",
+    "password": "135789",
     "email": "Sherwood@rosamond.me",
     "address": {
       "street": "Ellsworth Summit",
@@ -121,6 +129,7 @@
     "name": "Glenna Reichert",
   "speciality":"neurosurgeon",
     "username": "Delphine",
+    "password": "135789",
     "email": "Chaim_McDermott@dana.io",
     "address": {
       "street": "Dayna Park",
@@ -136,6 +145,7 @@
     "name": "Clementina DuBuque",
   "speciality":"clinic",
     "username": "Moriah.Stanton",
+    "password": "135789",
     "email": "Rey.Padberg@karina.biz",
     "address": {
       "street": "Kattie Turnpike",
@@ -151,6 +161,7 @@
     "name": "Lucas Adams",
   "speciality":"clinic",
     "username": "Lucas.Adams",
+    "password": "135789",
     "email": "Lucas.Adams@adams.com",
     "address": {
       "street": "Noble Lane",
@@ -167,6 +178,7 @@
     "name": "Marilyn Monroe",
   "speciality":"neurosurgeon",
     "username": "Marilyn.Monroe",
+    "password": "135789",
     "email": "Marilyn.Monroe@hollywood.com",
     "address": {
       "street": "Hollywood Boulevard",
@@ -182,6 +194,7 @@
     "name": "John Doe",
   "speciality":"neurologist",
     "username": "John.Doe",
+    "password": "135789",
     "email": "John.Doe@example.com",
     "address": {
       "street": "Main Street",
@@ -197,6 +210,7 @@
     "name": "Jane Doe",
   "speciality":"clinic",
     "username": "Jane.Doe",
+    "password": "135789",
     "email": "Jane.Doe@example.com",
     "address": {
       "street": "Broadway",
@@ -212,6 +226,7 @@
     "name": "Albert Einstein",
   "speciality":"neurologist",
     "username": "Albert.Einstein",
+    "password": "135789",
     "email": "Albert.Einstein@physics.com",
     "address": {
       "street": "Science Avenue",
@@ -227,6 +242,7 @@
   "name": "Lucas Black",
   "speciality":"neurosurgeon",
   "username": "lucasblack",
+  "password": "135789",
   "email": "lucasblack@example.com",
   "address": {
   "street": "Maple Avenue",
@@ -243,6 +259,7 @@
   "name": "Oliver Stone",
   "speciality":"clinic",
   "username": "oliverstone",
+  "password": "135789",
   "email": "oliverstone@example.com",
   "address": {
   "street": "Oak Street",
@@ -259,6 +276,7 @@
   "name": "Lila Patel",
   "speciality":"neurologist",
   "username": "lilapatel",
+  "password": "135789",
   "email": "lilapatel@example.com",
   "address": {
   "street": "High Street",
@@ -275,6 +293,7 @@
   "name": "Miles Davis",
   "speciality":"clinic",
   "username": "milesdavis",
+  "password": "135789",
   "email": "milesdavis@example.com",
   "address": {
   "street": "Fifth Avenue",
@@ -291,6 +310,7 @@
   "name": "Emily Johnson",
   "speciality":"clinic",
   "username": "emilyjohnson",
+  "password": "135789",
   "email": "emilyjohnson@example.com",
   "address": {
   "street": "Elm Street",
@@ -307,6 +327,7 @@
   "name": "Jacob Lee",
   "speciality":"neurosurgeon",
   "username": "jacoblee",
+  "password": "135789",
   "email": "jacoblee@example.com",
   "address": {
   "street": "Cedar Lane",
@@ -322,6 +343,7 @@
   "name": "Nora Kim",
   "speciality":"neurologist",
   "username": "norakim",
+  "password": "135789",
   "email": "norakim@example.com",
   "address": {
   "street": "Pine Street",
@@ -336,6 +358,7 @@
   "name": "Sophie Martin",
   "speciality":"clinic",
   "username": "sophmartin",
+  "password": "135789",
   "email": "sophmartin@example.com",
   "address": {
   "street": "Main Street",
@@ -351,6 +374,7 @@
   "name": "Liam Garcia",
   "username": "liamgarcia",
   "email": "liamgarcia@example.com",
+  "password": "135789",
   "address": {
   "street": "Oak Street",
   "suite": "Apt 101",
@@ -364,6 +388,7 @@
   "name": "Avery Mitchell",
   "username": "averymitchell",
   "email": "averymitchell@example.com",
+  "password": "135789",
   "address": {
   "street": "Main Street",
   "suite": "Apt 203",
@@ -378,6 +403,7 @@
   "name": "Logan Wright",
   "username": "loganwright",
   "email": "loganwright@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Avenue",
   "suite": "Suite 305",
@@ -392,6 +418,7 @@
   "name": "Lila Foster",
   "username": "lilafoster",
   "email": "lilafoster@example.com",
+  "password": "135789",
   "address": {
   "street": "High Street",
   "suite": "Apt 407",
@@ -406,6 +433,7 @@
   "name": "Elijah Wood",
   "username": "elijahwood",
   "email": "elijahwood@example.com",
+  "password": "135789",
   "address": {
   "street": "Fifth Avenue",
   "suite": "Suite 509",
@@ -420,6 +448,7 @@
   "name": "Hazel Adams",
   "username": "hazeladams",
   "email": "hazeladams@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Apt 611",
@@ -434,6 +463,7 @@
   "name": "Noah Evans",
   "username": "noahevans",
   "email": "noahevans@example.com",
+  "password": "135789",
   "address": {
   "street": "Cedar Lane",
   "suite": "Apt 713",
@@ -447,6 +477,7 @@
   "name": "Emma Thompson",
   "username": "emmthompson",
   "email": "emma@example.com",
+  "password": "135789",
   "address": {
   "street": "Park Avenue",
   "suite": "Suite 917",
@@ -463,6 +494,7 @@
   "name": "Lucas Cooper",
   "username": "lucascooper",
   "email": "lucas@example.com",
+  "password": "135789",
   "address": {
   "street": "Madison Avenue",
   "suite": "Apt 1010",
@@ -478,6 +510,7 @@
   "name": "Aria Davis",
   "username": "ariadavis",
   "email": "aria@example.com",
+  "password": "135789",
   "address": {
   "street": "Broadway",
   "suite": "Suite 1113",
@@ -493,6 +526,7 @@
   "name": "Oliver Edwards",
   "username": "oliveredwards",
   "email": "oliver@example.com",
+  "password": "135789",
   "address": {
   "street": "Lexington Avenue",
   "suite": "Apt 1216",
@@ -508,6 +542,7 @@
   "name": "Sophia Green",
   "username": "sophiagreen",
   "email": "sophia@example.com",
+  "password": "135789",
   "address": {
   "street": "Fifth Avenue",
   "suite": "Suite 1319",
@@ -523,6 +558,7 @@
   "name": "Jacob Hernandez",
   "username": "jacohernandez",
   "email": "jacob@example.com",
+  "password": "135789",
   "address": {
   "street": "Central Park West",
   "suite": "Apt 1422",
@@ -538,6 +574,7 @@
   "name": "Mia Johnson",
   "username": "miajohnson",
   "email": "mia@example.com",
+  "password": "135789",
   "address": {
   "street": "Wall Street",
   "suite": "Suite 1525",
@@ -553,6 +590,7 @@
   "name": "John Smith",
   "username": "johnsmith",
   "email": "john@example.com",
+  "password": "135789",
   "address": {
   "street": "Main Street",
   "suite": "Suite 500",
@@ -568,6 +606,7 @@
   "name": "Sarah Lee",
   "username": "sarahlee",
   "email": "sarah@example.com",
+  "password": "135789",
   "address": {
   "street": "Broadway",
   "suite": "Suite 100",
@@ -583,6 +622,7 @@
   "name": "David Kim",
   "username": "davidkim",
   "email": "david@example.com",
+  "password": "135789",
   "address": {
   "street": "Park Avenue",
   "suite": "Suite 200",
@@ -598,6 +638,7 @@
   "name": "Emily Chen",
   "username": "emilychen",
   "email": "emily@example.com",
+  "password": "135789",
   "address": {
   "street": "Oak Street",
   "suite": "Suite 300",
@@ -613,6 +654,7 @@
   "name": "Daniel Lee",
   "username": "daniellee",
   "email": "daniel@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Suite 400",
@@ -628,6 +670,7 @@
   "name": "Jessica Brown",
   "username": "jessicabrown",
   "email": "jessica@example.com",
+  "password": "135789",
   "address": {
   "street": "Pine Street",
   "suite": "Suite 700",
@@ -643,6 +686,7 @@
   "name": "Michael Nguyen",
   "username": "michaelnguyen",
   "email": "michael@example.com",
+  "password": "135789",
   "address": {
   "street": "Cedar Street",
   "suite": "Suite 600",
@@ -658,6 +702,7 @@
   "name": "Avery Wilson",
   "username": "averywilson",
   "email": "avery@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Street",
   "suite": "Suite 800",
@@ -673,6 +718,7 @@
   "name": "Jason Lee",
   "username": "jasonlee",
   "email": "jason@example.com",
+  "password": "135789",
   "address": {
   "street": "Chestnut Street",
   "suite": "Suite 1500",
@@ -688,6 +734,7 @@
   "name": "Sophie Davis",
   "username": "sophiedavis",
   "email": "sophie@example.com",
+  "password": "135789",
   "address": {
   "street": "Spruce Street",
   "suite": "Suite 1600",
@@ -703,6 +750,7 @@
   "name": "Ethan Johnson",
   "username": "ethanjohnson",
   "email": "ethan@example.com",
+  "password": "135789",
   "address": {
   "street": "Pine Street",
   "suite": "Suite 1700",
@@ -718,6 +766,7 @@
   "name": "Olivia Chen",
   "username": "oliviachen",
   "email": "olivia@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Street",
   "suite": "Suite 1800",
@@ -733,6 +782,7 @@
   "name": "Noah Kim",
   "username": "noahkim",
   "email": "noah@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Suite 1900",
@@ -748,6 +798,7 @@
   "name": "Ava Brown",
   "username": "avabrown",
   "email": "ava@example.com",
+  "password": "135789",
   "address": {
   "street": "Cedar Street",
   "suite": "Suite 2000",
@@ -763,6 +814,7 @@
   "name": "William Lee",
   "username": "williamlee",
   "email": "william@example.com",
+  "password": "135789",
   "address": {
   "street": "Oak Street",
   "suite": "Suite 2100",
@@ -778,6 +830,7 @@
   "name": "Mia Johnson",
   "username": "miajohnson",
   "email": "mia@example.com",
+  "password": "135789",
   "address": {
   "street": "Wall Street",
   "suite": "Suite 2200",
@@ -793,6 +846,7 @@
   "name": "Ella Nguyen",
   "username": "ellanguyen",
   "email": "ella@example.com",
+  "password": "135789",
   "address": {
   "street": "Main Street",
   "suite": "Suite 2300",
@@ -808,6 +862,7 @@
   "name": "Daniel Kim",
   "username": "danielkim",
   "email": "daniel@example.com",
+  "password": "135789",
   "address": {
   "street": "Broadway",
   "suite": "Suite 2400",
@@ -823,6 +878,7 @@
   "name": "Avery Wilson",
   "username": "averywilson",
   "email": "avery@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Suite 2500",
@@ -838,6 +894,7 @@
   "name": "Emma Chen",
   "username": "emmachen",
   "email": "emma@example.com",
+  "password": "135789",
   "address": {
   "street": "Spruce Street",
   "suite": "Suite 2600",
@@ -853,6 +910,7 @@
   "name": "Liam Brown",
   "username": "liambrown",
   "email": "liam@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Street",
   "suite": "Suite 2700",
@@ -868,6 +926,7 @@
   "name": "Sophia Lee",
   "username": "sophialee",
   "email": "sophia@example.com",
+  "password": "135789",
   "address": {
   "street": "Chestnut Street",
   "suite": "Suite 2800",
@@ -883,6 +942,7 @@
   "name": "Logan Davis",
   "username": "logandavis",
   "email": "logan@example.com",
+  "password": "135789",
   "address": {
   "street": "Pine Street",
   "suite": "Suite 2900",
@@ -898,6 +958,7 @@
   "name": "Isabella Nguyen",
   "username": "isabellanguyen",
   "email": "isabella@example.com",
+  "password": "135789",
   "address": {
   "street": "Wall Street",
   "suite": "Suite 3000",
@@ -912,6 +973,7 @@
   "name": "Lila Hernandez",
   "username": "lilahernandez",
   "email": "lila@example.com",
+  "password": "135789",
   "address": {
   "street": "Oak Street",
   "suite": "Suite 3100",
@@ -927,6 +989,7 @@
   "name": "Ethan Ramirez",
   "username": "ethanramirez",
   "email": "ethan@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Suite 3200",
@@ -942,6 +1005,7 @@
   "name": "Chloe Taylor",
   "username": "chloetaylor",
   "email": "chloe@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Street",
   "suite": "Suite 3300",
@@ -957,6 +1021,7 @@
   "name": "William Garcia",
   "username": "williamgarcia",
   "email": "william@example.com",
+  "password": "135789",
   "address": {
   "street": "Chestnut Street",
   "suite": "Suite 3400",
@@ -972,6 +1037,7 @@
   "name": "Harper Rodriguez",
   "username": "harperrodriguez",
   "email": "harper@example.com",
+  "password": "135789",
   "address": {
   "street": "Pine Street",
   "suite": "Suite 3500",
@@ -987,6 +1053,7 @@
   "name": "Elijah Martinez",
   "username": "elijahmartinez",
   "email": "elijah@example.com",
+  "password": "135789",
   "address": {
   "street": "Wall Street",
   "suite": "Suite 3600",
@@ -1002,6 +1069,7 @@
   "name": "Scarlett Hernandez",
   "username": "scarletthernandez",
   "email": "scarlett@example.com",
+  "password": "135789",
   "address": {
   "street": "Broadway",
   "suite": "Suite 3700",
@@ -1017,6 +1085,7 @@
   "name": "Mason Brown",
   "username": "masonbrown",
   "email": "mason@example.com",
+  "password": "135789",
   "address": {
   "street": "Main Street",
   "suite": "Suite 3800",
@@ -1031,6 +1100,7 @@
   "name": "Avery Davis",
   "username": "averydavis",
   "email": "avery@example.com",
+  "password": "135789",
   "address": {
   "street": "Church Street",
   "suite": "Suite 3900",
@@ -1046,6 +1116,7 @@
   "name": "Liam Wilson",
   "username": "liamwilson",
   "email": "liam@example.com",
+  "password": "135789",
   "address": {
   "street": "Park Street",
   "suite": "Suite 4000",
@@ -1061,6 +1132,7 @@
   "name": "Sophia Perez",
   "username": "sophiaperez",
   "email": "sophia@example.com",
+  "password": "135789",
   "address": {
   "street": "Lake Street",
   "suite": "Suite 4100",
@@ -1076,6 +1148,7 @@
   "name": "Logan Carter",
   "username": "logancarter",
   "email": "logan@example.com",
+  "password": "135789",
   "address": {
   "street": "Green Street",
   "suite": "Suite 4200",
@@ -1091,6 +1164,7 @@
   "name": "Isabella Mitchell",
   "username": "isabellamitchell",
   "email": "isabella@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Suite 4300",
@@ -1106,6 +1180,7 @@
   "name": "Jackson Perez",
   "username": "jacksonperez",
   "email": "jackson@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Street",
   "suite": "Suite 4400",
@@ -1121,6 +1196,7 @@
   "name": "Aria Parker",
   "username": "ariaparker",
   "email": "aria@example.com",
+  "password": "135789",
   "address": {
   "street": "Chestnut Street",
   "suite": "Suite 4500",
@@ -1136,6 +1212,7 @@
   "name": "Carter Ramirez",
   "username": "carterramirez",
   "email": "carter@example.com",
+  "password": "135789",
   "address": {
   "street": "Pine Street",
   "suite": "Suite 4600",
@@ -1150,6 +1227,7 @@
   "name": "Ethan Foster",
   "username": "ethanfoster",
   "email": "ethan@example.com",
+  "password": "135789",
   "address": {
   "street": "Main Street",
   "suite": "Suite 4700",
@@ -1165,6 +1243,7 @@
   "name": "Emma Flores",
   "username": "emmaflores",
   "email": "emma@example.com",
+  "password": "135789",
   "address": {
   "street": "Broadway",
   "suite": "Suite 4800",
@@ -1180,6 +1259,7 @@
   "name": "Mason Simmons",
   "username": "masonsimmons",
   "email": "mason@example.com",
+  "password": "135789",
   "address": {
   "street": "State Street",
   "suite": "Suite 4900",
@@ -1195,6 +1275,7 @@
   "name": "Olivia Nelson",
   "username": "olivianelson",
   "email": "olivia@example.com",
+  "password": "135789",
   "address": {
   "street": "Washington Street",
   "suite": "Suite 5000",
@@ -1210,6 +1291,7 @@
   "name": "Lucas Cook",
   "username": "lucascook",
   "email": "lucas@example.com",
+  "password": "135789",
   "address": {
   "street": "Hill Street",
   "suite": "Suite 5100",
@@ -1225,6 +1307,7 @@
   "name": "Amelia Lee",
   "username": "amelialee",
   "email": "amelia@example.com",
+  "password": "135789",
   "address": {
   "street": "Grove Street",
   "suite": "Suite 5200",
@@ -1240,6 +1323,7 @@
   "name": "Landon King",
   "username": "landonking",
   "email": "landon@example.com",
+  "password": "135789",
   "address": {
   "street": "Market Street",
   "suite": "Suite 5300",
@@ -1255,6 +1339,7 @@
   "name": "Harper Bell",
   "username": "harperbell",
   "email": "harper@example.com",
+  "password": "135789",
   "address": {
   "street": "Oak Street",
   "suite": "Suite 5400",
@@ -1269,6 +1354,7 @@
   "name": "Aiden Peterson",
   "username": "aidenpeterson",
   "email": "aiden@example.com",
+  "password": "135789",
   "address": {
   "street": "Pine Street",
   "suite": "Suite 5500",
@@ -1284,6 +1370,7 @@
   "name": "Avery Morris",
   "username": "averymorris",
   "email": "avery@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Street",
   "suite": "Suite 5600",
@@ -1299,6 +1386,7 @@
   "name": "Evelyn Ortiz",
   "username": "evelynortiz",
   "email": "evelyn@example.com",
+  "password": "135789",
   "address": {
   "street": "Cedar Street",
   "suite": "Suite 5700",
@@ -1314,6 +1402,7 @@
   "name": "Carter Powell",
   "username": "carterpowell",
   "email": "carter@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Suite 5800",
@@ -1329,6 +1418,7 @@
   "name": "Addison Cruz",
   "username": "addisoncruz",
   "email": "addison@example.com",
+  "password": "135789",
   "address": {
   "street": "Spruce Street",
   "suite": "Suite 5900",
@@ -1344,6 +1434,7 @@
   "name": "Wyatt Ramirez",
   "username": "wyattramirez",
   "email": "wyatt@example.com",
+  "password": "135789",
   "address": {
   "street": "Birch Street",
   "suite": "Suite 6000",
@@ -1359,6 +1450,7 @@
   "name": "Chloe Collins",
   "username": "chloecollins",
   "email": "chloe@example.com",
+  "password": "135789",
   "address": {
   "street": "Chestnut Street",
   "suite": "Suite 6100",
@@ -1373,6 +1465,7 @@
   "name": "Grayson Reed",
   "username": "graysonreed",
   "email": "grayson@example.com",
+  "password": "135789",
   "address": {
   "street": "Poplar Street",
   "suite": "Suite 6200",
@@ -1388,6 +1481,7 @@
   "name": "Liam Sanders",
   "username": "liamsanders",
   "email": "liam@example.com",
+  "password": "135789",
   "address": {
   "street": "Oak Street",
   "suite": "Suite 6300",
@@ -1403,6 +1497,7 @@
   "name": "Leah Brooks",
   "username": "leahbrooks",
   "email": "leah@example.com",
+  "password": "135789",
   "address": {
   "street": "Maple Street",
   "suite": "Suite 6400",
@@ -1418,6 +1513,7 @@
   "name": "Mason Hayes",
   "username": "masonhayes",
   "email": "mason@example.com",
+  "password": "135789",
   "address": {
   "street": "Birch Street",
   "suite": "Suite 6500",
@@ -1433,6 +1529,7 @@
   "name": "Aubrey Coleman",
   "username": "aubreycoleman",
   "email": "aubrey@example.com",
+  "password": "135789",
   "address": {
   "street": "Cedar Street",
   "suite": "Suite 6600",
@@ -1448,6 +1545,7 @@
   "name": "Ethan Barnes",
   "username": "ethanbarnes",
   "email": "ethan@example.com",
+  "password": "135789",
   "address": {
   "street": "Pine Street",
   "suite": "Suite 6700",
@@ -1463,6 +1561,7 @@
   "name": "Lila Garcia",
   "username": "lilagarcia",
   "email": "lila@example.com",
+  "password": "135789",
   "address": {
   "street": "Elm Street",
   "suite": "Suite 6800",
@@ -1478,6 +1577,7 @@
   "name": "Connor Rivera",
   "username": "connorrivera",
   "email": "connor@example.com",
+  "password": "135789",
   "address": {
   "street": "Spruce Street",
   "suite": "Suite 6900",
@@ -1493,6 +1593,7 @@
   "name": "Sofia Diaz",
   "username": "sofiadiaz",
   "email": "sofia@example.com",
+  "password": "135789",
   "address": {
   "street": "Juniper Street",
   "suite": "Suite 7000",
@@ -1508,6 +1609,7 @@
   "name": "Nora Perez",
   "username": "noraperez",
   "email": "nora@example.com",
+  "password": "135789",
   "address": {
   "street": "Chestnut Street",
   "suite": "Suite 7100",
@@ -1523,6 +1625,7 @@
   "name": "Eliana Kim",
   "username": "elianakim",
   "email": "eliana@example.com",
+  "password": "135789",
   "address": {
   "street": "Fir Street",
   "suite": "Suite 7200",
@@ -1538,6 +1641,7 @@
   "name": "Henry Ross",
   "username": "henryross",
   "email": "henry@example.com",
+  "password": "135789",
   "address": {
   "street": "Magnolia Street",
   "suite": "Suite 7300",
@@ -1553,6 +1657,7 @@
   "name": "Zoe Cook",
   "username": "zoecook",
   "email": "zoe@example.com",
+  "password": "135789",
   "address": {
   "street": "Cypress Street",
   "suite": "Suite 7400",
@@ -1568,6 +1673,7 @@
   "name": "Adam Evans",
   "username": "adamevans",
   "email": "adam@example.com",
+  "password": "135789",
   "address": {
   "street": "Acacia Street",
   "suite": "Suite 7500",
