@@ -69,7 +69,11 @@ const filteredDoctors = doctors.filter(doctor =>
   </select>
 </label>
 
-      <button onClick={handleClearFilters}>Limpiar filtros</button>
+<Link to={`/home`}>
+     <button> Back Home</button>
+</Link>     
+
+      <button onClick={handleClearFilters}>Clean filters</button>
       
       {doctors.length === 0 ? (
       <div>No hay doctores disponibles</div>

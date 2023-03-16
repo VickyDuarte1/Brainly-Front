@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import UsersDetails from './Components/UsersDetails';
 import Users from './Components/Users';
 import Doctors from './Components/Doctors'
+import DoctorsDetails from './Components/DoctorsDetails';
 
 export default function App() {
   return (
@@ -17,11 +18,7 @@ export default function App() {
           <Route path="/users/:id" element={<UsersDetails/>} />
           <Route path="/users" element={<Users/>}/>
           <Route path="/doctors" element={<Doctors/>}/>
-{/*          
-          <Route path="/home/:id" render={(props) => (
-          props.match.params.id ? <UsersDetails {...props} /> : null
-        )} /> */}
-
+          <Route path="/doctors/:id" element={<DoctorsDetails/>}/>
         </Routes>
       </div>
     </BrowserRouter>

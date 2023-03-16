@@ -48,6 +48,12 @@ export default function Users() {
         </select>
       </label>
       <button onClick={handleClearFilters}>Limpiar filtros</button>
+      <Link to={`/home`}>
+     <button> Back Home</button>
+      </Link>  
+
+
+
       <div>Users List:</div>
       {sortedUsers.map((user) => (
         <Link key={user.id} to={`/users/${user.id}`}>

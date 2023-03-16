@@ -3,9 +3,6 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-
-import { v4 as uuidv4 } from 'uuid';
-
 const DetailUser = () => {
     const navigate = useNavigate();
 
@@ -48,11 +45,7 @@ const user = users.find((user) => user.id === id);
     </div>
   );
 };
-/**
 
-- Fecha de Nacimiento
-- Dirección
-- Detección */
 
 export default DetailUser;
 
