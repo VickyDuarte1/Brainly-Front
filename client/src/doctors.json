@@ -372,6 +372,7 @@
   {
   "id": 24,
   "name": "Liam Garcia",
+  "speciality":"clinic",
   "username": "liamgarcia",
   "email": "liamgarcia@example.com",
   "password": "135789",
@@ -386,6 +387,7 @@
   {
   "id": 25,
   "name": "Avery Mitchell",
+  "speciality": "neurologist",
   "username": "averymitchell",
   "email": "averymitchell@example.com",
   "password": "135789",
@@ -396,11 +398,13 @@
   },
   "phone": 5555678,
   "registration": "EF5678GH"
+
   },
   
   {
   "id": 26,
   "name": "Logan Wright",
+  "speciality":"neurologist",
   "username": "loganwright",
   "email": "loganwright@example.com",
   "password": "135789",
@@ -416,6 +420,7 @@
   {
   "id": 27,
   "name": "Lila Foster",
+  "speciality":"neurosurgeon",
   "username": "lilafoster",
   "email": "lilafoster@example.com",
   "password": "135789",
@@ -431,6 +436,7 @@
   {
   "id": 28,
   "name": "Elijah Wood",
+  "speciality":"clinic",
   "username": "elijahwood",
   "email": "elijahwood@example.com",
   "password": "135789",
@@ -446,6 +452,7 @@
   {
   "id": 29,
   "name": "Hazel Adams",
+  "speciality":"clinic",
   "username": "hazeladams",
   "email": "hazeladams@example.com",
   "password": "135789",
@@ -461,6 +468,7 @@
   {
   "id": 30,
   "name": "Noah Evans",
+  "speciality":"neurosurgeon",
   "username": "noahevans",
   "email": "noahevans@example.com",
   "password": "135789",

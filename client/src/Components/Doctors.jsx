@@ -91,8 +91,8 @@ const filteredDoctors = doctors.filter(doctor =>
 
         <div className="doctors-list"> 
         {sortedDoctors.map((doctor) => (
-          <div className="row">
-          <Link key={doctor.id} to={`/doctors/${doctor.id}`}>
+         
+          <Link key={doctor.id} className='doctor-item' to={`/doctors/${doctor.id}`}>
             <Doctor 
             name={doctor.name}
             email={doctor.email}
@@ -102,7 +102,7 @@ const filteredDoctors = doctors.filter(doctor =>
             
             />
           </Link>
-          </div>
+         
         ))}
 
       </div>
