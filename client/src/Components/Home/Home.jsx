@@ -16,18 +16,21 @@ export default function Home() {
         <h1>BRAINLY</h1>
         <Card
         title="Como paciente..."
-        text="Sube tus imágenes de tomografías y obtén un diagnóstico preciso avalado por un médico gracias a nuestro algoritmo de inteligencia artificial altamente preciso."
+        text="¿Qué puedes hacer como paciente?"
         imageSrc= {imagen2}
+        fullText="Sube tus imágenes de tomografías y obtén un diagnóstico preciso avalado por un médico gracias a nuestro algoritmo de inteligencia artificial altamente preciso."
       />
       <Card
         title="Como Doctor..."
-        text="Obtén los resultados de diagnóstico de tus pacientes en tiempo real para que puedas tomar decisiones informadas sobre su tratamiento."
+        text="¿Qué puedes hacer como Doctor?"
         imageSrc={imagen1}
+        fullText="Obtén los resultados de diagnóstico de tus pacientes en tiempo real para que puedas tomar decisiones informadas sobre su tratamiento."
       />
       <Card
         title="Seguridad y privacidad de los datos"
-        text="Garantizamos la seguridad y privacidad de los datos de tus pacientes mediante la protección de datos."
+        text="¿Cómo garantizamos tu privacidad?"
         imageSrc={imagen3}
+        fullText="Garantizamos la seguridad y privacidad de los datos de tus pacientes mediante la protección de datos"
       />
      </div>
       );
