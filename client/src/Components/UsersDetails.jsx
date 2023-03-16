@@ -16,8 +16,6 @@ const user = users.find((user) => user.id === id);
     navigate('/users');
   }
 
-
-
   function formatDate(dateString) {
     const date = new Date(dateString);
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -30,13 +28,13 @@ const user = users.find((user) => user.id === id);
       <div className='userDetail'>
         <button className='closeDetail' onClick={handleBackClick}>x</button>
       <ul>
-        <p>Name: {user.name}</p>
+        <p>Nombre: {user.name}</p>
         <p>E-mail:{user.email}</p>
-        <p>Phone: {user.cell}</p>
-        <p>Age: {user.age}</p>
-        <p>Birthdate: {formatDate(user.date)}</p>
-        <p>Gender: {user.gender}</p>
-        <p>Adress: {user.city}</p>
+        <p>Teléfono: {user.cell}</p>
+        <p>Edad: {user.age}</p>
+        <p>Nacimiento: {formatDate(user.date)}</p>
+        <p> {user.gender}</p>
+        <p>Dirección: {user.city}</p>
         <p>
           <img src={user.image} alt={user.name} width="230" height="230" />
         </p>

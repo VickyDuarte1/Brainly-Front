@@ -16,9 +16,9 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Welcome to home </h1>
-      <button onClick={handleShowUsers}>Show users</button>
-      <button onClick={handleShowDoctors}>Show doctors</button>
+      <h1>Bienvenido al home </h1>
+      <button onClick={handleShowUsers}>Usuarios</button>
+      <button onClick={handleShowDoctors}>Doctores</button>
     </div>
   );
 }

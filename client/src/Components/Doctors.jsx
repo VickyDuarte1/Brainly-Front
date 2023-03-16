@@ -69,9 +69,9 @@ const filteredDoctors = doctors.filter(doctor =>
   Especialidad:
   <select value={selectedSpeciality} onChange={handleSpecialityChange}>
     <option value="">Todas</option>
-    <option value="clinic">clinic</option>
-    <option value="neurologist">neurologist</option>
-    <option value="neurosurgeon">neurosurgeon</option> 
+    <option value="clinic">clinico</option>
+    <option value="neurologist">neurologo</option>
+    <option value="neurosurgeon">neurocirujano</option> 
   </select>
 </label>
 
@@ -79,13 +79,13 @@ const filteredDoctors = doctors.filter(doctor =>
      <button> Back Home</button>
 </Link>     
 
-      <button onClick={handleClearFilters}>Clean filters</button>
+      <button onClick={handleClearFilters}>Limpiar filtros</button>
       
       {doctors.length === 0 ? (
       <div>No hay doctores disponibles</div>
     ) : (
       <>
-        <div>Doctors List:</div>
+        <div>Nuestros profesionales:</div>
         {sortedDoctors.map((doctor) => (
           <Link key={doctor.id} to={`/doctors/${doctor.id}`}>
             <Doctor 

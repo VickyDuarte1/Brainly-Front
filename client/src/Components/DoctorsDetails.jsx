@@ -21,7 +21,7 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
 
   return (
     <div>
-      <h2>Detail doctor</h2>
+      <h2>Doctor:</h2>
 
       <div className='doctorDetail'>
         <button className='closeDetail' onClick={handleBackClick}>x</button>
