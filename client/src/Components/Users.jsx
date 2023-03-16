@@ -4,6 +4,8 @@ import { getUsers } from "../Redux/actions";
 import User from './User';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
+import Paged from "./Paged";
+
 
 export default function Users() {
 
@@ -21,8 +23,15 @@ export default function Users() {
     setSelectedOption("asc");
     setSearchTerm("");
   }
+
+  const [toShow, setToShow] = useState(10); 
+  
+  const handleLoadMore = () => {
+      setToShow(toShow + 10);
+    };
+
   const filteredUsers = users.filter(user => user.name.includes(searchTerm));
-  const sortedUsers = filteredUsers.length > 0 ? filteredUsers.sort((a, b) => {
+  const sortedUsers = filteredUsers.length > 0 ? filteredUsers.slice(0, toShow).sort((a, b) => {
     
     if (selectedOption === "asc") {
       return a.name.localeCompare(b.name);
@@ -67,6 +76,9 @@ export default function Users() {
           />
         </Link>
       ))}
+
+        <Paged onClick={handleLoadMore} total={filteredUsers.length} shown={toShow} />
+
     </div>
   );
 }

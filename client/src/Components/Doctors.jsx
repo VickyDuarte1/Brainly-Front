@@ -4,6 +4,8 @@ import { getDoctors } from "../Redux/actions";
 import Doctor from './Doctor';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
+import Paged from "./Paged";
+
 
 export default function Doctors() {
 
@@ -26,13 +28,19 @@ export default function Doctors() {
     setSelectedSpeciality(event.target.value);
   }
 
+  const [toShow, setToShow] = useState(10); 
+  
+  const handleLoadMore = () => {
+      setToShow(toShow + 10);
+    };
+
   
 const filteredDoctors = doctors.filter(doctor =>
     doctor.name.includes(searchTerm) &&
     (selectedSpeciality === "" || doctor.speciality === selectedSpeciality)
   );
   
-  const sortedDoctors = filteredDoctors.length > 0 ? filteredDoctors.sort((a, b) => {
+  const sortedDoctors = filteredDoctors.length > 0 ? filteredDoctors.slice(0, toShow).sort((a, b) => {
     
     if (selectedOption === "asc") {
       return a.name.localeCompare(b.name);
@@ -47,8 +55,7 @@ const filteredDoctors = doctors.filter(doctor =>
 
   return (
 
-    <div>
-        
+    <div>      
       <SearchBar onSearch={handleSearch}/>
       <label>
         Ordenar por nombre:
@@ -64,8 +71,7 @@ const filteredDoctors = doctors.filter(doctor =>
     <option value="">Todas</option>
     <option value="clinic">clinic</option>
     <option value="neurologist">neurologist</option>
-    <option value="neurosurgeon">neurosurgeon</option>
-    
+    <option value="neurosurgeon">neurosurgeon</option> 
   </select>
 </label>
 
@@ -94,6 +100,9 @@ const filteredDoctors = doctors.filter(doctor =>
         ))}
       </>
     )}
+
+          <Paged onClick={handleLoadMore} total={filteredDoctors.length} shown={toShow} />
+
     </div>
   );
 }
