@@ -6,7 +6,7 @@ import { createUser } from "../Redux/actions";
 ///VALIDACIONES :)
 const validate = (form) => {
     let errors = {};
-
+    
    
     if (!form.name) {
         errors.name = 'Por favor ingresa un nombre';
@@ -22,20 +22,22 @@ const validate = (form) => {
     else if (!form.email) {
         errors.email = 'Por favor ingresa un email';
     }
-    else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
+    else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) {
         errors.email = "Ingresa un email válido"
     }
 
     else if (!form.password) {
         errors.password = 'Por favor ingresa una contraseña';
     }
-    else if (!form.role) {
-        errors.password = 'Por favor selecciona un rol';
+    else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(form.password)) {
+        errors.password = "La contraseña debe de tener mínimo 8 caracteres, al menos un número, una letra minúscula, una letra mayúscula y un carácter especial."
+    }
+    else if (form.password !== form.passwordconfirm) {
+        errors.passwordconfirm = "Las contraseñas no coinciden"
     }
    
     return errors;
 }
-
 
 
 ///FORMULARIO :)
@@ -52,6 +54,7 @@ const Form = () => {
         user:"",
         email:"",
         password:"",
+        passwordconfirm:"",
         image:"",
         age:"",
         birthday:"",
@@ -101,7 +104,7 @@ const Form = () => {
     return (
      <div>
         <div>
-            <h2>Ingresa tus datos</h2>
+            <h3>Ingresa tus datos</h3>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Rol: </label>
@@ -143,8 +146,15 @@ const Form = () => {
                 <div>
                     <label>Contraseña: </label>
                     <p>
-                    <input type="text" name="password" value={form.password} onChange={(e) => handleChange(e)} placeholder="Contraseña"/>
+                    <input type="password" name="password" value={form.password} onChange={(e) => handleChange(e)} placeholder="Contraseña"/>
                     <p>{errors.password}</p>
+                    </p>
+                </div>
+                <div>
+                    <label>Confirma tu contraseña: </label>
+                    <p>
+                    <input type="password" name="passwordconfirm" placeholder="Contraseña"/>
+                    <p>{errors.passwordconfirm}</p>
                     </p>
                 </div>
                 <div>
@@ -186,7 +196,7 @@ const Form = () => {
                 <div>
                     <label>Teléfono: </label>
                     <p>
-                    <input type="number" name="phone" value={form.phone} onChange={(e) => handleChange(e)} placeholder="Teléfono"/>
+                    <input type="text" name="phone" value={form.phone} onChange={(e) => handleChange(e)} placeholder="Teléfono"/>
                     <p>{errors.phone}</p>
                     </p>
                 </div>
