@@ -1,0 +1,19 @@
+.container{
+    width: 30%; /* o cualquier otro valor que desees */
+    display: inline-block;
+    margin: 0 1%;
+    
+}
+
+
+.image{
+    height: 300px;
+    width: 300px;
+    display: flex;
+  
+}
+
+.text{
+    justify-content: left;
+}
+

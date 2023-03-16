@@ -1,6 +1,9 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import Card from "../Card/Card";
+import imagen1 from '../../Assets/imagen1.jpg';
+import imagen2 from '../../Assets/imagen2.jpg';
+import imagen3 from '../../Assets/imagen3.jpg';
 
 
 export default function Home() {
@@ -12,19 +15,19 @@ export default function Home() {
 
         <h1>BRAINLY</h1>
         <Card
-        title="Diagnóstico preciso de tumores"
-        text="Sube tus imágenes de tomografías y obtén un diagnóstico preciso de tumores en cuestión de minutos gracias a nuestro algoritmo de inteligencia artificial altamente preciso."
-        imageSrc="https://via.placeholder.com/150"
+        title="Como paciente..."
+        text="Sube tus imágenes de tomografías y obtén un diagnóstico preciso avalado por un médico gracias a nuestro algoritmo de inteligencia artificial altamente preciso."
+        imageSrc= {imagen2}
       />
       <Card
-        title="Resultados en tiempo real"
+        title="Como Doctor..."
         text="Obtén los resultados de diagnóstico de tus pacientes en tiempo real para que puedas tomar decisiones informadas sobre su tratamiento."
-        imageSrc="https://via.placeholder.com/150"
+        imageSrc={imagen1}
       />
       <Card
         title="Seguridad y privacidad de los datos"
-        text="Garantizamos la seguridad y privacidad de los datos de tus pacientes mediante el uso de las últimas tecnologías en encriptación y protección de datos."
-        imageSrc="https://via.placeholder.com/150"
+        text="Garantizamos la seguridad y privacidad de los datos de tus pacientes mediante la protección de datos."
+        imageSrc={imagen3}
       />
      </div>
       );
