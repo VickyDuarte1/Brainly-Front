@@ -49,6 +49,8 @@ const Form = () => {
 
     const [form, setForm] = useState({
         role:"",
+        speciality:"",
+        credentials:"",
         name:"",
         lastname:"",
         user:"",
@@ -78,12 +80,23 @@ const Form = () => {
         );
       }
 
+      function handleDoctor(e) {
+        var optionSelected = document.getElementById("optionSelected").value;
+        if(optionSelected === "medico") {
+            document.getElementById("medicalInputs").style.display = "block"
+      } else {
+        document.getElementById("medicalInputs").style.display = "none"
+      }
+      }
+
       function handleSubmit(e) {
         e.preventDefault();
         dispatch(createUser(form));
         alert("¡Tu usuario ha sido creado!");
         setForm({
             role:"",
+            speciality:"",
+            credentials:"",
             name:"",
             lastname:"",
             user:"",
@@ -108,13 +121,31 @@ const Form = () => {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Rol: </label>
-                    <select>
+                    <select id="optionSelected" onChange={(e) => handleDoctor(e)}>
                         <option disabled="">Selecciona una opción</option>
                         <option value="medico">Médico</option>
                         <option value="paciente">Paciente</option>
                     </select>
                     <p>{errors.role}</p>
                 </div>
+                    <div id="medicalInputs">
+                        <div>
+                            <label>Especialidad: </label>
+                            <p>
+                            <input type="text" name="speciality" value={form.speciality} onChange={(e) => handleChange(e)} placeholder="Especialidad"/>
+                            <p>{errors.speciality}</p>
+                            </p>
+                        </div>
+                        <div>
+                            <label>Credenciales: </label>
+                            <p>
+                            <input type="text" name="credentials" value={form.credentials} onChange={(e) => handleChange(e)} placeholder="Crdenciales"/>
+                            <p>{errors.credentials}</p>
+                            </p>
+                        </div>
+                    </div>
+               
+
                 <div>
                     <label>Nombre: </label>
                     <p>
