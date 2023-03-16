@@ -5,6 +5,7 @@ import Doctor from './Doctor';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
 import Paged from "./Paged";
+import './doctors.css';
 
 
 export default function Doctors() {
@@ -76,7 +77,7 @@ const filteredDoctors = doctors.filter(doctor =>
 </label>
 
 <Link to={`/home`}>
-     <button> Back Home</button>
+     <button> Volver </button>
 </Link>     
 
       <button onClick={handleClearFilters}>Limpiar filtros</button>
@@ -85,8 +86,12 @@ const filteredDoctors = doctors.filter(doctor =>
       <div>No hay doctores disponibles</div>
     ) : (
       <>
+
         <div>Nuestros profesionales:</div>
+
+        <div className="doctors-list"> 
         {sortedDoctors.map((doctor) => (
+          <div className="row">
           <Link key={doctor.id} to={`/doctors/${doctor.id}`}>
             <Doctor 
             name={doctor.name}
@@ -97,7 +102,10 @@ const filteredDoctors = doctors.filter(doctor =>
             
             />
           </Link>
+          </div>
         ))}
+
+      </div>
       </>
     )}
 

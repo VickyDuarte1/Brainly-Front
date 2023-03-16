@@ -15,7 +15,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div className='home'>
       <h1>Bienvenido al home </h1>
       <button onClick={handleShowUsers}>Usuarios</button>
       <button onClick={handleShowDoctors}>Doctores</button>

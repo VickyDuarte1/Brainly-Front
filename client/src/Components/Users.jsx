@@ -5,6 +5,7 @@ import User from './User';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
 import Paged from "./Paged";
+import './users.css';
 
 
 export default function Users() {
@@ -46,7 +47,7 @@ export default function Users() {
 
   return (
 
-    <div>
+    <div className="Users-main">
         
       <SearchBar onSearch={handleSearch}/>
       <label>
@@ -60,8 +61,10 @@ export default function Users() {
       <Link to={`/home`}>
      <button> Volver </button>
       </Link>  
+      <div className="Users-title" >Usuarios:</div>
 
-      <div>Usuarios:</div>
+    <div className="users">
+     
       {sortedUsers.map((user) => (
         <Link key={user.id} to={`/users/${user.id}`}>
           <User 
@@ -74,6 +77,8 @@ export default function Users() {
           />
         </Link>
       ))}
+
+</div>
 
         <Paged onClick={handleLoadMore} total={filteredUsers.length} shown={toShow} />
 
