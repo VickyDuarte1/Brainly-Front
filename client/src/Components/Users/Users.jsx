@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../Redux/actions";
+import { getUsers } from "../../Redux/actions";
 import User from './User';
-import SearchBar from './SearchBar';
+import SearchBar from '../NavBar/SearchBar';
 import { Link } from 'react-router-dom';
-import Paged from "./Paged";
+import Paged from "../Paged";
 import './users.css';
 
 
