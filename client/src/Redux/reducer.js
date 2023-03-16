@@ -1,4 +1,4 @@
-import { GET_USERS } from "./action-types"
+import { GET_USERS, CREATE_USER } from "./action-types"
 
 
 const initialState = {
@@ -14,6 +14,10 @@ const reducer = (state = initialState, action) =>{
                 ...state,
                 users: action.payload
 
+            }
+        case CREATE_USER:
+            return {
+                ...state
             }
         default:
             return {...state}

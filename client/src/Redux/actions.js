@@ -1,4 +1,5 @@
 import { GET_USERS } from "./action-types";
+import axios from "axios"
 
 export const getUsers = () => {
     return function(dispatch) {
@@ -10,4 +11,10 @@ export const getUsers = () => {
     }
     )
 }};
+
+export const createUser = () => {
+    return {
+        
+    }
+}
 
