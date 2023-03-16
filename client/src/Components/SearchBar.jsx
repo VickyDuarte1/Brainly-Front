@@ -17,10 +17,10 @@ export default function SearchBar(props) {
     return (
       <form onSubmit={handleFormSubmit}>
         <label>
-          Buscar usuario por login:
+          Search by name:
           <input type="text" value={searchTerm} onChange={handleInputChange} />
         </label>
-        <button type="submit">Buscar</button>
+        <button type="submit">Search</button>
       </form>
     );
   }
