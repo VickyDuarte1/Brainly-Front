@@ -56,7 +56,8 @@ const filteredDoctors = doctors.filter(doctor =>
 
   return (
 
-    <div>      
+    <div> 
+      <div className="search-nav">     
       <SearchBar onSearch={handleSearch}/>
       <label>
         Ordenar por nombre:
@@ -82,12 +83,14 @@ const filteredDoctors = doctors.filter(doctor =>
 
       <button onClick={handleClearFilters}>Limpiar filtros</button>
       
+      </div>
+
       {doctors.length === 0 ? (
       <div>No hay doctores disponibles</div>
     ) : (
       <>
 
-        <div>Nuestros profesionales:</div>
+        <div className="profesionals">Nuestros profesionales</div>
 
         <div className="doctors-list"> 
         {sortedDoctors.map((doctor) => (

@@ -3,8 +3,6 @@
     font-size: 15px;
     display: grid;
     grid-gap: 1px;
-
-
 }
 
 .doctor{
@@ -29,4 +27,17 @@
     border: 1px solid #ccc;
     width: 100%;
     grid-template-columns: repeat(5,20%);
+  }
+
+  .profesionals{
+    margin: 30px;
+    font-size: 30px;
+  }
+
+  .search-nav{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    
   }

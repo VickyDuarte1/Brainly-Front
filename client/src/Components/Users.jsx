@@ -48,7 +48,9 @@ export default function Users() {
   return (
 
     <div className="Users-main">
-        
+
+      <div className="search-nav">  
+
       <SearchBar onSearch={handleSearch}/>
       <label>
         Ordenar por nombre:
@@ -61,7 +63,10 @@ export default function Users() {
       <Link to={`/home`}>
      <button> Volver </button>
       </Link>  
-      <div className="Users-title" >Usuarios:</div>
+
+      </div>
+
+      <div className="Users-title" >Usuarios </div>
 
     <div className="users">
      
