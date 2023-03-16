@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import Card from "../Card/Card";
+import Footer from "../Footer/Footer"
 import imagen1 from '../../Assets/imagen1.jpg';
 import imagen2 from '../../Assets/imagen2.jpg';
 import imagen3 from '../../Assets/imagen3.jpg';
@@ -32,6 +33,9 @@ export default function Home() {
         imageSrc={imagen3}
         fullText="Garantizamos la seguridad y privacidad de los datos de tus pacientes mediante la protección de datos"
       />
+      <Footer/>
+
+
      </div>
       );
 }
