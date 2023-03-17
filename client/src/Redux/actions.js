@@ -1,4 +1,4 @@
-import { GET_USERS } from "./action-types";
+import { GET_USERS, CREATE_USER } from "./action-types";
 import axios from "axios"
 
 export const getUsers = () => {
@@ -12,9 +12,11 @@ export const getUsers = () => {
     )
 }};
 
-export const createUser = () => {
-    return {
-        
+export const createUser = (payload) => {
+    return function(dispatch) {
+        const response = axios.post("http://localhost:5000/create", payload)
+        return (response)
     }
 }
+
 
