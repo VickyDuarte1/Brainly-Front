@@ -1,5 +1,23 @@
-import { GET_USERS, CREATE_USER } from "./action-types";
+import { GET_USERS, CREATE_USER, GET_DOCTORS } from "./action-types";
 import axios from "axios"
+import usersData from '../users.json';
+import doctorsData from "../doctors.json"
+
+export const getDoctors = () =>{
+  return function(dispatch){
+    const doctors= doctorsData.map((doctor)=>({
+      id:doctor.id,
+      name: doctor.name,
+      email: doctor.email,
+      address: doctor.address.city,
+      phone: doctor.phone,
+      speciality:doctor.speciality,
+      registration: doctor.registration 
+
+    }));
+    dispatch({type: GET_DOCTORS, payload: doctors})
+  }
+}
 
 export const getUsers = () => {
   
@@ -17,7 +35,12 @@ export const getUsers = () => {
       date: user.dob.date,
       cell: user.cell,
     }));
-}}
+
+    dispatch({ type: GET_USERS, payload: users });
+  };
+}
+
+
 
 export const createUser = (payload) => {
     return function(dispatch) {

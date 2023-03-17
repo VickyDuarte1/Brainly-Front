@@ -9,7 +9,9 @@ const NavBar = () =>{
         <nav className={style.navbar}>
             <div className={style.container}>
                 <Link to = "/about" className={style.about}>About</Link>
-                <button className={style.btn}>LOG IN</button>
+                <Link to = "/form" className={style.btn}>
+                <button>LOG IN</button>  
+                </Link>
            
 
             </div>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getDoctors } from "../Redux/actions";
+import { getDoctors } from "../../Redux/actions";
 import Doctor from './Doctor';
-import SearchBar from '../Components/NavBar/SearchBar';
+import SearchBar from '../NavBar/SearchBar';
 import { Link } from 'react-router-dom';
-import Paged from "../Components/Paged";
+import Paged from "../Paged";
 import './doctors.css';
 
 

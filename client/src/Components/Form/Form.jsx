@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { useHistory } from "react-router-dom";
-import { createUser } from "../Redux/actions";
+import { createUser } from "../../Redux/actions";
+import { Link } from "react-router-dom";
 
 ///VALIDACIONES :)
 const validate = (form) => {
@@ -116,6 +117,9 @@ const Form = () => {
 
     return (
      <div>
+        <Link to={`/home`}>
+            <button> Volver </button>
+        </Link>  
         <div>
             <h3>Ingresa tus datos</h3>
             <form onSubmit={(e) => handleSubmit(e)}>
