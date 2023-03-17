@@ -17,6 +17,7 @@ export const getUsers = () => {
       date: user.dob.date,
       cell: user.cell,
     }));
+}}
 
 export const createUser = (payload) => {
     return function(dispatch) {
