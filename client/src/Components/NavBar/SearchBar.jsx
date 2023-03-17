@@ -10,12 +10,6 @@ export default function SearchBar(props) {
       props.onSearch(term);
     };
   
-    // const handleFormSubmit = (event) => {
-    //   event.preventDefault();
-    //   props.onSearch(searchTerm);
-    //   setSearchTerm('');
-    // };
-  
     return (
       <form >
         <label>
