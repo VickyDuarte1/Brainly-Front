@@ -30,8 +30,15 @@ export default function Users() {
   const handleLoadMore = () => {
       setToShow(toShow + 10);
     };
-
-  const filteredUsers = users.filter(user => user.name.includes(searchTerm));
+/**
+ const filteredDoctors = doctors.filter(doctor =>
+    doctor.name.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
+    (selectedSpeciality === "" || doctor.speciality === selectedSpeciality)
+  );
+  */
+  
+  const filteredUsers = users.filter(user => user.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
+  
   const sortedUsers = filteredUsers.length > 0 ? filteredUsers.slice(0, toShow).sort((a, b) => {
     
     if (selectedOption === "asc") {

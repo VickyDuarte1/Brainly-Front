@@ -23,9 +23,12 @@ export default function Doctors() {
   const handleClearFilters = () => {
     setSelectedOption("asc");
     setSearchTerm("");
+    setSelectedSpeciality("");
+
   }
   const handleSpecialityChange = (event) => {
     setSelectedSpeciality(event.target.value);
+
   }
 
   const [toShow, setToShow] = useState(10); 
@@ -34,9 +37,8 @@ export default function Doctors() {
       setToShow(toShow + 10);
     };
 
-  
-const filteredDoctors = doctors.filter(doctor =>
-    doctor.name.includes(searchTerm) &&
+ const filteredDoctors = doctors.filter(doctor =>
+    doctor.name.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
     (selectedSpeciality === "" || doctor.speciality === selectedSpeciality)
   );
   
