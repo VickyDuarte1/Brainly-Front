@@ -22,7 +22,7 @@ export default function SearchBar(props) {
           Buscar por nombre:
           <input type="text" value={searchTerm} onChange={handleInputChange} />
         </label>
-        <button type="submit">Buscar</button>
+       
       </form>
     );
   }
