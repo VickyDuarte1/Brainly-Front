@@ -1,11 +1,9 @@
-import { GET_USERS, GET_DOCTORS} from "./action-types"
+import { GET_USERS } from "./action-types"
 
 
 const initialState = {
-    users : [],
-    doctors:[],
-    searched:'',
-    userDetails: {}
+    users : []
+
 }
 
 
@@ -15,18 +13,11 @@ const reducer = (state = initialState, action) =>{
             return {
                 ...state,
                 users: action.payload
-            }
 
-        case GET_DOCTORS:
-            return{
-                ...state,
-                doctors:action.payload
             }
-
         default:
             return {...state}
-    
-        }
+    }
 }
 
 export default reducer;
