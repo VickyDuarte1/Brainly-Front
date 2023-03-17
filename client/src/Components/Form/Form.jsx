@@ -244,7 +244,7 @@ const Form = () => {
                 </div>
                
                 <div>
-                    <button type="submit">CREAR USUARIO</button>
+                    <button type="submit" disabled={ !form.role || !form.name || !form.user || !form.email || !form.password }>CREAR USUARIO</button>
                 </div>
             </form>
         </div>
