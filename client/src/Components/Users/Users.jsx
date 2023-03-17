@@ -8,6 +8,8 @@ import Paged from "../Paged";
 import './users.css';
 
 
+
+
 export default function Users() {
 
   const dispatch = useDispatch();
@@ -30,12 +32,6 @@ export default function Users() {
   const handleLoadMore = () => {
       setToShow(toShow + 10);
     };
-/**
- const filteredDoctors = doctors.filter(doctor =>
-    doctor.name.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
-    (selectedSpeciality === "" || doctor.speciality === selectedSpeciality)
-  );
-  */
   
   const filteredUsers = users.filter(user => user.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
   

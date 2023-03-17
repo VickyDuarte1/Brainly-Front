@@ -5,17 +5,19 @@ export default function SearchBar(props) {
     const [searchTerm, setSearchTerm] = useState('');
   
     const handleInputChange = (event) => {
-      setSearchTerm(event.target.value);
+      const term = event.target.value;
+      setSearchTerm(term);
+      props.onSearch(term);
     };
   
-    const handleFormSubmit = (event) => {
-      event.preventDefault();
-      props.onSearch(searchTerm);
-      setSearchTerm('');
-    };
+    // const handleFormSubmit = (event) => {
+    //   event.preventDefault();
+    //   props.onSearch(searchTerm);
+    //   setSearchTerm('');
+    // };
   
     return (
-      <form onSubmit={handleFormSubmit}>
+      <form >
         <label>
           Buscar por nombre:
           <input type="text" value={searchTerm} onChange={handleInputChange} />
