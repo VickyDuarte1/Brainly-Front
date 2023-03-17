@@ -2,8 +2,10 @@ import { GET_USERS, CREATE_USER } from "./action-types"
 
 
 const initialState = {
-    users : []
-
+    users : [],
+    doctors:[],
+    searched:'',
+    userDetails: {}
 }
 
 
@@ -13,7 +15,6 @@ const reducer = (state = initialState, action) =>{
             return {
                 ...state,
                 users: action.payload
-
             }
         case CREATE_USER:
             return {
@@ -21,7 +22,8 @@ const reducer = (state = initialState, action) =>{
             }
         default:
             return {...state}
-    }
+    
+        }
 }
 
 export default reducer;
