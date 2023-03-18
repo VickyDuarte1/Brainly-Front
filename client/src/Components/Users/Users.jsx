@@ -13,23 +13,25 @@ export default function Users() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const [selectedOption, setSelectedOption] = useState("");
-
   const [selectedAge, setSelectedAge]= useState('');
   const [selectedGender, setSelectedGender]= useState('')
   const [searchTerm, setSearchTerm] = useState('');
+  
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
   }
 
-
   const handleSearch = (term) => {
     setSearchTerm(term);
   }
+
   const handleClearFilters = () => {
+    document.getElementById("campo_de_entrada").value = "";
     setSelectedOption("");
     setSearchTerm("");
     setSelectedAge("");
     setSelectedGender("");
+    console.log('searchterm:'+ searchTerm);
   }
 
   const [toShow, setToShow] = useState(10); 
@@ -38,9 +40,11 @@ export default function Users() {
       setToShow(toShow + 10);
     };
   
-    const filteredUsers = users
-    .filter(user => user.name.toLowerCase().startsWith(searchTerm.toLowerCase()))
-    .filter(user => {
+    const filteredUsers = users.filter(user => {
+      const fullName = user.name.toLowerCase();
+      const term = searchTerm.toLowerCase();
+      return fullName.startsWith(term) || fullName.endsWith(term) || fullName.includes(` ${term}`)})
+      .filter(user => {
       if (!selectedAge) {
         return true; // no se ha seleccionado un rango de edad, mostrar todos los usuarios
       } else if (selectedAge === "0-25") {
@@ -115,7 +119,8 @@ Filtrar por genero:
     <option value='male'>Hombre</option>
 </select>
 </label>
-      <button onClick={handleClearFilters}>Limpiar filtros</button>
+      <button onClick={handleClearFilters} >Limpiar filtros</button>
+      
       <Link to={`/home`}>
      <button> Volver </button>
       </Link>  

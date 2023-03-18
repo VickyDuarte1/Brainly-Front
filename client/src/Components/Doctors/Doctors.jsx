@@ -25,13 +25,18 @@ export default function Doctors() {
   }
 
   const handleCity = (city) =>{
-    setSearchCity(city)
+    setSearchCity(city);
   }
 
   const handleClearFilters = () => {
+    document.getElementById("campo_de_entrada").value = "";
+    document.getElementById("campo_de_ciudad").value = "";
+
     setSelectedOption("");
     setSearchTerm("");
     setSelectedSpeciality("");
+    setSearchCity('');
+    console.log('searchCity:'+searchCity);
 
   }
   const handleSpecialityChange = (event) => {

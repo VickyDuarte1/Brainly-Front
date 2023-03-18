@@ -8,13 +8,14 @@ export default function CitySearch(props) {
       const city = event.target.value;
       setSearchCity(city);
       props.onSearch(city);
+      console.log('city:'+city);
     };
   
     return (
       <form >
         <label>
           Buscar por ciudad:
-          <input type="text" value={searchCity} onChange={handleInputCity} />
+          <input type="text" id="campo_de_ciudad" onChange={handleInputCity} />
         </label>  
       </form>
     );
