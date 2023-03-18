@@ -82,6 +82,16 @@ a:link{ text-decoration: none; }
     width: fit-content;
     justify-items: end;
     /* align-self:baseline; */
-    margin-left: 30%;
+    margin-left: 33%;
     border-radius: 25px;
+    grid-template-columns: repeat(2,50%);
+}
+
+.image-user{
+    display: flex;
+    padding: 50px;
+}
+
+.detailss{
+    margin-top: 35px;
 }
