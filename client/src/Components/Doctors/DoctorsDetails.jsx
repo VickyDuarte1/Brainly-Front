@@ -4,8 +4,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import doctor1 from '../../Assets/doctor1.jpg'
 import doctor2 from '../../Assets/doctor2.png'
-import doctor3 from '../../Assets/doctor3.png'
-import doctor4 from '../../Assets/doctor4.avif'
+import doctor3 from '../../Assets/doctor3.jpg'
+import doctor4 from '../../Assets/doctor4.webp'
+import doctor5 from '../../Assets/doctor5.jpeg'
+import doctor6 from '../../Assets/doctor6.jpeg'
+import doctor7 from '../../Assets/doctor7.jpeg'
+import doctor8 from '../../Assets/doctor8.jpeg'
 
 
 const DetailDoctor = () => {
@@ -35,10 +39,18 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
         <button className='closeDetail' onClick={handleBackClick}>x</button>
       <ul>
      <div className='tarjeta1'>
-      {numVowels >= 3 && <img src={doctor1} alt="Imagen con 3 vocales" width="250" height="250"/>}
-      {numVowels === 2 && <img src={doctor2} alt="Imagen con 2 vocales" width="250" height="250"/>}
-      {numVowels === 1 && <img src={doctor3} alt="Imagen con 1 vocal" width="250" height="250"/>}
-      {numVowels === 0 && <img src={doctor4} alt="Imagen sin vocales" width="250" height="250"/>}
+      {numVowels >= 3 && doctor.id % 2 === 0 && <img src={doctor1} alt="Imagen con 3 vocales" width="250" height="250"/>}
+      {numVowels >= 3 && doctor.id % 2 === 1 && <img src={doctor2} alt="Imagen con 3 vocales" width="250" height="250"/>}
+      
+      {numVowels === 2 && doctor.id % 2 === 0 && <img src={doctor3} alt="Imagen con 2 vocales" width="250" height="250"/>}
+      {numVowels ===2 && doctor.id % 2 === 1 && <img src={doctor4} alt="Imagen con 3 vocales" width="250" height="250"/>}
+
+      {numVowels === 1 && doctor.id % 2 === 1 && <img src={doctor5} alt="Imagen con 3 vocales" width="250" height="250"/>}
+      {numVowels === 1 && doctor.id % 2 === 0 && <img src={doctor6} alt="Imagen con 3 vocales" width="250" height="250"/>}
+
+      {numVowels === 0 && doctor.id % 2 === 1 && <img src={doctor7} alt="Imagen con 3 vocales" width="250" height="250"/>}
+      {numVowels === 0 && doctor.id % 2 === 0 && <img src={doctor8} alt="Imagen con 3 vocales" width="250" height="250"/>}
+
       <div className='columna2'>
         <p className='name'>Nombre: {doctor.name}</p>
         <p className='username'>Usuario: {doctor.username}</p>
