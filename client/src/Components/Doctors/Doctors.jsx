@@ -6,6 +6,7 @@ import SearchBar from '../NavBar/SearchBar';
 import { Link } from 'react-router-dom';
 import Paged from "../Paged";
 import './doctors.css';
+import CitySearch from "../NavBar/CitySearch";
 
 export default function Doctors() {
 
@@ -14,14 +15,21 @@ export default function Doctors() {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSpeciality, setSelectedSpeciality] = useState("");
+  const [searchCity, setSearchCity] = useState('');
+
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
   }
   const handleSearch = (term) => {
     setSearchTerm(term);
   }
+
+  const handleCity = (city) =>{
+    setSearchCity(city)
+  }
+
   const handleClearFilters = () => {
-    setSelectedOption("asc");
+    setSelectedOption("");
     setSearchTerm("");
     setSelectedSpeciality("");
 
@@ -38,8 +46,11 @@ export default function Doctors() {
   };
 
   const filteredDoctors = doctors.filter(doctor =>
-    doctor.name.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
-    (selectedSpeciality === "" || doctor.speciality === selectedSpeciality)
+    doctor.name.split(' ').some(namePart =>
+      namePart.toLowerCase().startsWith(searchTerm.toLowerCase())
+    ) &&
+    (selectedSpeciality === "" || doctor.speciality === selectedSpeciality) &&
+    (searchCity === '' || (doctor.address && doctor.address.toLowerCase().startsWith(searchCity.toLowerCase())))
   );
 
   const sortedDoctors = filteredDoctors.length > 0 ? filteredDoctors.slice(0, toShow).sort((a, b) => {
@@ -62,6 +73,7 @@ export default function Doctors() {
     <div>
       <div className="search-nav">
         <SearchBar onSearch={handleSearch} />
+        <CitySearch onSearch={handleCity}/>
         <label>
           Ordenar alfabéticamente:
           <select value={selectedOption} onChange={handleSelectChange}>
