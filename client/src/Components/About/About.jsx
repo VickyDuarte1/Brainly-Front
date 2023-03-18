@@ -1,4 +1,6 @@
 import style from './About.module.css'
+import { Link } from 'react-router-dom';
+
 
 const About = () => {
     return (
@@ -14,6 +16,11 @@ const About = () => {
           <li className={style.li}>Se utilizan modelos de aprendizaje automático y aprendizaje profundo de bajo peso.</li>
           <li className={style.li}>Proporciona soporte multiplataforma.</li>
         </ul>
+
+        <Link to={`/home`}>
+     <button> Volver </button>
+      </Link> 
+
       </div>
     );
 }
