@@ -8,6 +8,7 @@ import DoctorsDetails from './Components/Doctors/DoctorsDetails';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
+
 import Form from "./Components/Form/Form"
 
 
@@ -18,13 +19,18 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
+
           <Route path="/users/:id" element={<UsersDetails/>} />
           <Route path="/users" element={<Users/>}/>
           <Route path="/doctors" element={<Doctors/>}/>
           <Route path="/doctors/:id" element={<DoctorsDetails/>}/>
+
+
           <Route  path = "/about"  element={<About/>}/>
           <Route  path = "/form"  element={<Form/>}/>
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
+
+
         </Routes>
       </div>
     </BrowserRouter>

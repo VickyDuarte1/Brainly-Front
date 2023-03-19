@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TeamBrainly = () => {
     return (
         <div>
@@ -10,6 +12,11 @@ const TeamBrainly = () => {
                     <li>Agustín Ojeda</li>
                     <li>Alexis Sanz</li>
                   </ul>
+                  
+        <Link to={`/home`}>
+     <button> Volver </button>
+      </Link> 
+
         </div>
     )
 }

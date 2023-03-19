@@ -6,21 +6,26 @@ import SearchBar from '../NavBar/SearchBar';
 import { Link } from 'react-router-dom';
 import Paged from "../Paged";
 import './doctors.css';
+import CitySearch from "../NavBar/CitySearch";
 
 
 export default function Doctors() {
 
   const dispatch = useDispatch();
   const doctors = useSelector((state) => state.doctors);
-  const [selectedOption, setSelectedOption] = useState("asc");
+  const [selectedOption, setSelectedOption] = useState("");
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSpeciality, setSelectedSpeciality] = useState("");
+  const [searchCity, setSearchCity] = useState('');
+
+
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
   }
   const handleSearch = (term) => {
     setSearchTerm(term);
   }
+  
   const handleClearFilters = () => {
     setSelectedOption("asc");
     setSearchTerm("");
@@ -47,6 +52,52 @@ const filteredDoctors = doctors.filter(doctor =>
       return a.name.localeCompare(b.name);
     } else {
       return b.name.localeCompare(a.name);
+
+
+  const handleCity = (city) =>{
+    setSearchCity(city);
+  }
+
+  const handleClearFilters = () => {
+    document.getElementById("campo_de_entrada").value = "";
+    document.getElementById("campo_de_ciudad").value = "";
+
+    setSelectedOption("");
+    setSearchTerm("");
+    setSelectedSpeciality("");
+    setSearchCity('');
+    console.log('searchCity:'+searchCity);
+
+  }
+  const handleSpecialityChange = (event) => {
+    setSelectedSpeciality(event.target.value);
+
+  }
+
+  const [toShow, setToShow] = useState(10);
+
+  const handleLoadMore = () => {
+    setToShow(toShow + 10);
+  };
+
+  const filteredDoctors = doctors.filter(doctor =>
+    doctor.name.split(' ').some(namePart =>
+      namePart.toLowerCase().startsWith(searchTerm.toLowerCase())
+    ) &&
+    (selectedSpeciality === "" || doctor.speciality === selectedSpeciality) &&
+    (searchCity === '' || (doctor.address && doctor.address.toLowerCase().startsWith(searchCity.toLowerCase())))
+  );
+
+  const sortedDoctors = filteredDoctors.length > 0 ? filteredDoctors.slice(0, toShow).sort((a, b) => {
+
+    if (selectedOption === "asc") {
+      return a.name.localeCompare(b.name);
+    } else if (selectedOption === "desc") {
+      return b.name.localeCompare(a.name);
+    } else {
+      return 0;
+
+
     }
   }) : filteredDoctors;
 
@@ -55,6 +106,7 @@ const filteredDoctors = doctors.filter(doctor =>
   }, [dispatch]);
 
   return (
+
 
     <div> 
       <div className="search-nav">     
@@ -112,7 +164,10 @@ const filteredDoctors = doctors.filter(doctor =>
       </>
     )}
 
+
+
           <Paged onClick={handleLoadMore} total={filteredDoctors.length} shown={toShow} />
+
 
     </div>
   );

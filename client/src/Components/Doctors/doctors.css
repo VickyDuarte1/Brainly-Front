@@ -1,29 +1,57 @@
-.doctors-list{
+
+.doctors-list {
+
     flex-direction: row;
     font-size: 15px;
     display: grid;
     grid-gap: 1px;
 }
 
+
 .doctor{
     display:grid;
     background-color: rgba(255, 255, 255, 0.498);
+
+.cartilla{
+  
+  font-size: 30px;
+  justify-content: start;
+  border: 1px solid #ffffff;
+  grid-gap: 1px;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.columnas{
+  display: flex;
+}
+
+.doctor, .cartilla{
+    display:grid;
+    background-color: rgba(135, 181, 169, 0.406);
+
     /* border-bottom: 1px solid black; */
     color: rgb(28, 17, 96); 
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
     grid-template-columns: repeat(5, 20%);
+
   
    
 }
 
-.doctor-item {
+
+
+.doctor-item{
+
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     /* padding: 10px; */
+
     background-color: #f5f5f5;
+
     border: 1px solid #ccc;
     width: 100%;
     grid-template-columns: repeat(5,20%);
@@ -40,4 +68,63 @@
     flex-direction: row;
     justify-content:space-evenly;
     
+
   }
+
+  }
+
+  .doctorDetail{
+    background-color: rgba(135, 181, 169, 0.406);
+    display: grid;
+    width: fit-content;
+    justify-items: end;
+    align-self: center;
+    margin-left: 30%;
+    border-radius: 25px;
+    
+  }
+
+  .tarjeta1{
+    display: flex;
+    padding: 40px;
+    
+    
+  }
+
+  .columna2{
+    display: grid;
+    height: fit-content;
+    margin-top: 60px;
+    justify-items: start;
+    margin-left: 30px;
+   
+    
+  }
+
+  .card-footer{
+    display: grid;
+    flex-direction: row; 
+    width: fit-content;
+    
+}
+
+.spec{
+  display: grid;
+  width: fit-content;
+  margin: 25px;
+}
+
+.dir{
+  display: flex;
+  align-items: start;
+  margin: 25px;
+}
+
+.closeDetail{
+  display: flex;
+  position:absolute;
+  width: fit-content;
+  margin: 15px;
+
+}
+

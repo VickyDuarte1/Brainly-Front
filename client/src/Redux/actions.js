@@ -42,11 +42,30 @@ export const getUsers = () => {
 
 
 
+
 export const createUser = (payload) => {
     return function(dispatch) {
         const response = axios.post("http://localhost:5000/create", payload)
         return (response)
     }
+
+export const getDoctors = () =>{
+  return function(dispatch){
+    const doctors= doctorsData.map((doctor)=>({
+      id:doctor.id,
+      username:doctor.username,
+      name: doctor.name,
+      email: doctor.email,
+      address: doctor.address.city,
+      street:doctor.address.street,
+      suite: doctor.address.suite,
+      phone: doctor.phone,
+      speciality:doctor.speciality,
+      registration: doctor.registration 
+    }));
+    dispatch({type: GET_DOCTORS, payload: doctors})
+  }
+
 }
 
 
