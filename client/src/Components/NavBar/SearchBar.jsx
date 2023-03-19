@@ -8,13 +8,14 @@ export default function SearchBar(props) {
       const term = event.target.value;
       setSearchTerm(term);
       props.onSearch(term);
+      console.log('term:'+term);
     };
   
     return (
       <form >
         <label>
           Buscar por nombre:
-          <input type="text" value={searchTerm} onChange={handleInputChange} />
+          <input type="text" id="campo_de_entrada" onChange={handleInputChange} />
         </label>
        
       </form>

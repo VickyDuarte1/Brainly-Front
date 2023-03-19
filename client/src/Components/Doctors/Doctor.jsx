@@ -1,7 +1,7 @@
 import React from 'react';
 import './doctors.css';
 
-export default function Doctor( { id, name, email, address, phone, speciality } ) {
+export default function Doctor( {name, email, address, phone, speciality } ) {
 
   return (
     <div className='doctor'>

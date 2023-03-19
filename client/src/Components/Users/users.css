@@ -1,7 +1,7 @@
 
 .user {    
     display: flex;
-    background-color: rgba(124, 216, 234, 0.498);
+    background-color: rgba(135, 181, 169, 0.406);
     border-style:solid;
     border-width: 1px;
     color: rgb(28, 17, 96); 
@@ -75,3 +75,23 @@ a:link{ text-decoration: none; }
 .Users-title{
   margin: 30px;
   font-size: 30px;}
+
+  .userDetail{
+    background-color: rgba(135, 181, 169, 0.406);
+    display: grid;
+    width: fit-content;
+    justify-items: end;
+    /* align-self:baseline; */
+    margin-left: 33%;
+    border-radius: 25px;
+    grid-template-columns: repeat(2,50%);
+}
+
+.image-user{
+    display: flex;
+    padding: 50px;
+}
+
+.detailss{
+    margin-top: 35px;
+}
