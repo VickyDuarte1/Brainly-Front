@@ -1,7 +1,23 @@
-import { GET_USERS, GET_DOCTORS } from "./action-types";
-
+import { GET_USERS, CREATE_USER, GET_DOCTORS } from "./action-types";
+import axios from "axios"
 import usersData from '../users.json';
-import doctorsData from '../doctors.json';
+import doctorsData from "../doctors.json"
+
+export const getDoctors = () =>{
+  return function(dispatch){
+    const doctors= doctorsData.map((doctor)=>({
+      id:doctor.id,
+      name: doctor.name,
+      email: doctor.email,
+      address: doctor.address.city,
+      phone: doctor.phone,
+      speciality:doctor.speciality,
+      registration: doctor.registration 
+
+    }));
+    dispatch({type: GET_DOCTORS, payload: doctors})
+  }
+}
 
 export const getUsers = () => {
   
@@ -22,7 +38,16 @@ export const getUsers = () => {
 
     dispatch({ type: GET_USERS, payload: users });
   };
-};
+}
+
+
+
+
+export const createUser = (payload) => {
+    return function(dispatch) {
+        const response = axios.post("http://localhost:5000/create", payload)
+        return (response)
+    }
 
 export const getDoctors = () =>{
   return function(dispatch){
@@ -40,12 +65,7 @@ export const getDoctors = () =>{
     }));
     dispatch({type: GET_DOCTORS, payload: doctors})
   }
+
 }
 
-// export const getUserDetails = (id) => {
-//   return function (dispatch, getState) {
-//     const { users } = getState().GET_USER_DETAILS;
-//     const userDetails = users.find((user) => user.id === parseInt(id));
-//     dispatch({ type: GET_USER_DETAILS, payload: userDetails });
-//   };
-// };
+

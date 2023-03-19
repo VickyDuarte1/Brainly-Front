@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import doctor1 from '../../Assets/doctor1.jpg'
 import doctor2 from '../../Assets/doctor2.png'
 import doctor3 from '../../Assets/doctor3.jpg'
@@ -28,8 +29,10 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
     navigate('/doctors');
   }
 
+
   const numVowels = (doctor.name.match(/a/gi) || []).length;
   ;
+
 
   return (
     <div>
@@ -38,6 +41,15 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
       <div className='doctorDetail'>
         <button className='closeDetail' onClick={handleBackClick}>x</button>
       <ul>
+
+
+        <p>Nombre: {doctor.name}</p>
+        <p>E-mail:{doctor.email}</p>
+        <p>Teléfono: {doctor.phone}</p>
+        <p>Dirección: {doctor.address.city}</p>
+        <p>Especialidad: {doctor.speciality}</p>
+        <p>N° de matrícula: {doctor.registration}</p>
+
      <div className='tarjeta1'>
       {numVowels >= 3 && doctor.id % 2 === 0 && <img src={doctor1} alt="Imagen con 3 vocales" width="250" height="250"/>}
       {numVowels >= 3 && doctor.id % 2 === 1 && <img src={doctor2} alt="Imagen con 3 vocales" width="250" height="250"/>}
@@ -66,26 +78,13 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
         
         </div>
        
+
       </ul>
       </div>
     </div>
   );
 };
-/**
-{
-    "id": 1,
-    "name": "Leanne Graham",
-    "speciality":"neurologist",
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "address": {
-      "street": "Kulas Light",
-      "suite": "Apt. 556",
-      "city": "Gwenborough"
-    },
-    "phone": 1770736803156442,
-    "registration": "A234DD27"
-  },
+
   
   */
 
