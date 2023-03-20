@@ -8,7 +8,8 @@ import DoctorsDetails from './Components/Doctors/DoctorsDetails';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
-import Form from "./Components/Form/Form"
+import Form from "./Components/Form/Form";
+import Premium from './Components/Premium/Premium.jsx'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route  path = "/about"  element={<About/>}/>
           <Route  path = "/form"  element={<Form/>}/>
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
+          <Route path = "/subs" element={<Premium/>}/>
         </Routes>
       </div>
     </BrowserRouter>

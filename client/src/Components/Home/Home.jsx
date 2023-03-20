@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer"
 import imagen1 from '../../Assets/imagen1.jpg';
 import imagen2 from '../../Assets/imagen2.jpg';
 import imagen3 from '../../Assets/imagen3.jpg';
+import style from './Home.module.css';
 
 export default function Home() {
   

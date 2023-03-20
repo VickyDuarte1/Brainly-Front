@@ -55,9 +55,9 @@ const NavBar = () => {
           
           </Link>
        
-      
+      <Link to='/subs'>
        <button className={style.premium} >Se Premium⭐</button>
-      
+       </Link>
       </div>
 
       
