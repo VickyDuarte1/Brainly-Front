@@ -63,6 +63,12 @@ display: flex;
   
 }
 
+.colorsito{
+  display: grid;
+  background-color: rgb(215, 250, 239);
+  padding-bottom: 30px;
+}
+
 .tarjeta1{
   display: flex;
   padding: 40px;

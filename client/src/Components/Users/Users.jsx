@@ -92,6 +92,7 @@ export default function Users() {
 
 <NavBar/>
 
+<div className='colorsito'>
       <div className="search-nav-u">  
 
       <SearchBar onSearch={handleSearch}/>
@@ -129,6 +130,8 @@ Filtrar por genero:
       </Link>  
 
       </div>
+      </div>
+
 
       <div className="Users-title" >Pacientes </div>
 

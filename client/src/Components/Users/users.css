@@ -71,8 +71,13 @@ a:link{ text-decoration: none; }
     display: flex;
     flex-direction: row;
     justify-content:space-evenly;
-    
   }
+
+.colorsito{
+    display: grid;
+    background-color: rgb(215, 250, 239);
+    padding-bottom: 30px;    
+}
 
 .Users-title{
   margin: 30px;

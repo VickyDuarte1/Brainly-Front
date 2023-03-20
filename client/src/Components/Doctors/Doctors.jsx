@@ -78,6 +78,7 @@ export default function Doctors() {
 
     <div>
       <NavBar/>
+      <div className="colorsito">
       <div className="search-nav">
         <SearchBar onSearch={handleSearch} />
         <CitySearch onSearch={handleCity}/>
@@ -105,7 +106,7 @@ export default function Doctors() {
         </Link>
 
         <button onClick={handleClearFilters}>Limpiar filtros</button>
-
+        </div>
       </div>
 
       {doctors.length === 0 ? (
