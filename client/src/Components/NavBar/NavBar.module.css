@@ -1,5 +1,7 @@
 .container {
     display: flex;
+    position: fixed;
+    top: 0;
     align-items: center;
     justify-content: space-evenly;
     height: 60px;
