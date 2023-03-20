@@ -1,7 +1,22 @@
-import { GET_USERS, GET_DOCTORS } from "./action-types";
-
+import { GET_USERS, GET_DOCTORS,ADD_USER, ADD_DOCTOR } from "./action-types";
 import usersData from '../users.json';
-import doctorsData from '../doctors.json';
+import doctorsData from "../doctors.json"
+
+export const getDoctors = () =>{
+  return function(dispatch){
+    const doctors= doctorsData.map((doctor)=>({
+      id:doctor.id,
+      name: doctor.name,
+      email: doctor.email,
+      address: doctor.address.city,
+      phone: doctor.phone,
+      speciality:doctor.speciality,
+      registration: doctor.registration 
+
+    }));
+    dispatch({type: GET_DOCTORS, payload: doctors})
+  }
+}
 
 export const getUsers = () => {
   
@@ -22,30 +37,19 @@ export const getUsers = () => {
 
     dispatch({ type: GET_USERS, payload: users });
   };
-};
+}
 
-export const getDoctors = () =>{
-  return function(dispatch){
-    const doctors= doctorsData.map((doctor)=>({
-      id:doctor.id,
-      username:doctor.username,
-      name: doctor.name,
-      email: doctor.email,
-      address: doctor.address.city,
-      street:doctor.address.street,
-      suite: doctor.address.suite,
-      phone: doctor.phone,
-      speciality:doctor.speciality,
-      registration: doctor.registration 
-    }));
-    dispatch({type: GET_DOCTORS, payload: doctors})
+
+export const createUser = (payload) => {
+  return function(dispatch) {
+    const  form  = payload; // asumiendo que userType es un campo en tu objeto de payload que indica si el usuario es paciente o médico
+    
+    // Agregar usuario al array correspondiente en el estado del store
+    if (form.role !== 'medico') {
+      dispatch({ type: ADD_USER, payload: payload });
+    } else if (form.role === 'medico') {
+      dispatch({ type: ADD_DOCTOR, payload: payload });
+    }
   }
 }
 
-// export const getUserDetails = (id) => {
-//   return function (dispatch, getState) {
-//     const { users } = getState().GET_USER_DETAILS;
-//     const userDetails = users.find((user) => user.id === parseInt(id));
-//     dispatch({ type: GET_USER_DETAILS, payload: userDetails });
-//   };
-// };

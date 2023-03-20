@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import NavBar from '../NavBar/NavBar';
 
 const DetailUser = () => {
     const navigate = useNavigate();
@@ -23,7 +24,8 @@ const user = users.find((user) => user.id === id);
 
   return (
     <div>
-      <h2>Detail User</h2>
+      <NavBar/>
+      <h2>Datos Paciente</h2>
 
       <div className='userDetail'>
         <button className='closeDetail' onClick={handleBackClick}>x</button>

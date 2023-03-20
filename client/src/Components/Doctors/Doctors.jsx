@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Paged from "../Paged";
 import './doctors.css';
 import CitySearch from "../NavBar/CitySearch";
+import NavBar from "../NavBar/NavBar";
 
 export default function Doctors() {
 
@@ -76,6 +77,8 @@ export default function Doctors() {
   return (
 
     <div>
+      <NavBar/>
+      <div className="colorsito">
       <div className="search-nav">
         <SearchBar onSearch={handleSearch} />
         <CitySearch onSearch={handleCity}/>
@@ -103,7 +106,7 @@ export default function Doctors() {
         </Link>
 
         <button onClick={handleClearFilters}>Limpiar filtros</button>
-
+        </div>
       </div>
 
       {doctors.length === 0 ? (

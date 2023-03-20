@@ -6,6 +6,7 @@ import SearchBar from '../NavBar/SearchBar';
 import { Link } from 'react-router-dom';
 import Paged from "../Paged";
 import './users.css';
+import NavBar from "../NavBar/NavBar";
 
 
 export default function Users() {
@@ -89,7 +90,10 @@ export default function Users() {
 
     <div className="Users-main">
 
-      <div className="search-nav">  
+<NavBar/>
+
+<div className='colorsito'>
+      <div className="search-nav-u">  
 
       <SearchBar onSearch={handleSearch}/>
       <label>
@@ -126,8 +130,10 @@ Filtrar por genero:
       </Link>  
 
       </div>
+      </div>
 
-      <div className="Users-title" >Usuarios </div>
+
+      <div className="Users-title" >Pacientes </div>
 
     <div className="users">
      

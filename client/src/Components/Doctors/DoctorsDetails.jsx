@@ -10,7 +10,7 @@ import doctor5 from '../../Assets/doctor5.jpeg'
 import doctor6 from '../../Assets/doctor6.jpeg'
 import doctor7 from '../../Assets/doctor7.jpeg'
 import doctor8 from '../../Assets/doctor8.jpeg'
-
+import NavBar from '../NavBar/NavBar';
 
 const DetailDoctor = () => {
     const navigate = useNavigate();
@@ -33,6 +33,7 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
 
   return (
     <div>
+      <NavBar/>
       <h2>Doctor:</h2>
 
       <div className='doctorDetail'>
@@ -71,23 +72,7 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
     </div>
   );
 };
-/**
-{
-    "id": 1,
-    "name": "Leanne Graham",
-    "speciality":"neurologist",
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "address": {
-      "street": "Kulas Light",
-      "suite": "Apt. 556",
-      "city": "Gwenborough"
-    },
-    "phone": 1770736803156442,
-    "registration": "A234DD27"
-  },
-  
-  */
+
 
 export default DetailDoctor;
 
