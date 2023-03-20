@@ -2,7 +2,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import doctor1 from '../../Assets/doctor1.jpg'
 import doctor2 from '../../Assets/doctor2.png'
 import doctor3 from '../../Assets/doctor3.jpg'
@@ -11,7 +10,7 @@ import doctor5 from '../../Assets/doctor5.jpeg'
 import doctor6 from '../../Assets/doctor6.jpeg'
 import doctor7 from '../../Assets/doctor7.jpeg'
 import doctor8 from '../../Assets/doctor8.jpeg'
-
+import NavBar from '../NavBar/NavBar';
 
 const DetailDoctor = () => {
     const navigate = useNavigate();
@@ -29,27 +28,17 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
     navigate('/doctors');
   }
 
-
   const numVowels = (doctor.name.match(/a/gi) || []).length;
   ;
 
-
   return (
     <div>
+      <NavBar/>
       <h2>Doctor:</h2>
 
       <div className='doctorDetail'>
         <button className='closeDetail' onClick={handleBackClick}>x</button>
       <ul>
-
-
-        <p>Nombre: {doctor.name}</p>
-        <p>E-mail:{doctor.email}</p>
-        <p>Teléfono: {doctor.phone}</p>
-        <p>Dirección: {doctor.address.city}</p>
-        <p>Especialidad: {doctor.speciality}</p>
-        <p>N° de matrícula: {doctor.registration}</p>
-
      <div className='tarjeta1'>
       {numVowels >= 3 && doctor.id % 2 === 0 && <img src={doctor1} alt="Imagen con 3 vocales" width="250" height="250"/>}
       {numVowels >= 3 && doctor.id % 2 === 1 && <img src={doctor2} alt="Imagen con 3 vocales" width="250" height="250"/>}
@@ -78,15 +67,12 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
         
         </div>
        
-
       </ul>
       </div>
     </div>
   );
 };
 
-  
-  */
 
 export default DetailDoctor;
 

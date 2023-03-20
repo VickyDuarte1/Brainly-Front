@@ -1,5 +1,4 @@
-import { GET_USERS, CREATE_USER, GET_DOCTORS } from "./action-types";
-import axios from "axios"
+import { GET_USERS, GET_DOCTORS,ADD_USER, ADD_DOCTOR } from "./action-types";
 import usersData from '../users.json';
 import doctorsData from "../doctors.json"
 
@@ -41,31 +40,16 @@ export const getUsers = () => {
 }
 
 
-
-
 export const createUser = (payload) => {
-    return function(dispatch) {
-        const response = axios.post("http://localhost:5000/create", payload)
-        return (response)
+  return function(dispatch) {
+    const  form  = payload; // asumiendo que userType es un campo en tu objeto de payload que indica si el usuario es paciente o médico
+    
+    // Agregar usuario al array correspondiente en el estado del store
+    if (form.role !== 'medico') {
+      dispatch({ type: ADD_USER, payload: payload });
+    } else if (form.role === 'medico') {
+      dispatch({ type: ADD_DOCTOR, payload: payload });
     }
-
-export const getDoctors = () =>{
-  return function(dispatch){
-    const doctors= doctorsData.map((doctor)=>({
-      id:doctor.id,
-      username:doctor.username,
-      name: doctor.name,
-      email: doctor.email,
-      address: doctor.address.city,
-      street:doctor.address.street,
-      suite: doctor.address.suite,
-      phone: doctor.phone,
-      speciality:doctor.speciality,
-      registration: doctor.registration 
-    }));
-    dispatch({type: GET_DOCTORS, payload: doctors})
   }
-
 }
-
 

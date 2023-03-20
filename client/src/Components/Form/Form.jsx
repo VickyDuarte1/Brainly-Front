@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { createUser } from "../../Redux/actions";
-import { Link } from "react-router-dom";
+import FormNavBar from './FormNavBar'
 
 ///VALIDACIONES :)
 const validate = (form) => {
     let errors = {};
     
-   
     if (!form.name) {
         errors.name = 'Por favor ingresa un nombre';
     }
@@ -45,7 +44,7 @@ const validate = (form) => {
 const Form = () => {
 
     const dispatch = useDispatch();
-    // const history = useHistory;
+    const navigate = useNavigate();
     const [errors, setErrors] = useState({})
 
     const [form, setForm] = useState({
@@ -82,12 +81,16 @@ const Form = () => {
       }
 
       function handleDoctor(e) {
-        var optionSelected = document.getElementById("optionSelected").value;
-        if(optionSelected === "medico") {
-            document.getElementById("medicalInputs").style.display = "block"
-      } else {
-        document.getElementById("medicalInputs").style.display = "none"
-      }
+        const optionSelected = e.target.value;
+        if (optionSelected === "medico") {
+          document.getElementById("medicalInputs").style.display = "block";
+        } else {
+          document.getElementById("medicalInputs").style.display = "none";
+        }
+        setForm({
+          ...form,
+          role: optionSelected,
+        });
       }
 
       function handleSubmit(e) {
@@ -111,15 +114,15 @@ const Form = () => {
             phone:"",
             detection:""
         });
-        // history.push("/home");
+        navigate('/home');
       }
 
 
     return (
      <div>
-        <Link to={`/home`}>
-            <button> Volver </button>
-        </Link>  
+
+        <FormNavBar/>
+ 
         <div>
             <h3>Ingresa tus datos</h3>
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -188,8 +191,8 @@ const Form = () => {
                 <div>
                     <label>Confirma tu contraseña: </label>
                     <p>
-                    <input type="password" name="passwordconfirm" placeholder="Contraseña"/>
-                    <p>{errors.passwordconfirm}</p>
+                    <input type="password" name="passwordconfirm" value={form.passwordconfirm} onChange={(e) => handleChange(e)}  placeholder="Contraseña"/>
+                    <p>{errors.passwordconfirm} </p>
                     </p>
                 </div>
                 <div>

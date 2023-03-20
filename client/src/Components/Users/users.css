@@ -1,7 +1,7 @@
 
 .user {    
     display: flex;
-    background-color: rgba(135, 181, 169, 0.406);
+    background-color: rgba(12, 222, 82, 0.452);
     border-style:solid;
     border-width: 1px;
     color: rgb(28, 17, 96); 
@@ -64,8 +64,8 @@ a:link{ text-decoration: none; }
     text-decoration: none;
 }
 
-.search-nav{
-    margin-top: 20px;
+.search-nav-u{
+    margin-top: 60px;
     display: flex;
     flex-direction: row;
     justify-content:space-evenly;
@@ -77,7 +77,7 @@ a:link{ text-decoration: none; }
   font-size: 30px;}
 
   .userDetail{
-    background-color: rgba(135, 181, 169, 0.406);
+    background-color: rgba(12, 222, 82, 0.452);
     display: grid;
     width: fit-content;
     justify-items: end;

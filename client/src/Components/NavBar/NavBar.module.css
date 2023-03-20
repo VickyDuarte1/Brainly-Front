@@ -1,22 +1,80 @@
 .container {
+    display: flex;
     align-items: center;
-    height: 100px;
+    justify-content: space-evenly;
+    height: 60px;
     width: 100%;
-    display: inline-flex;
-    justify-content: center;
     align-content: center;
+    background-color:aquamarine;    
+}
+
+
+.btn{
+    border-radius: 3rem; 
+}
+
+
+.dropdownContainer{
+ position: relative;
+}
+
+.dropdownMenu{
+    position: absolute;
     
 }
 
-.about{
-    height: 10rem;
-    margin-top: 9rem;
-    text-decoration: none;
-    border-radius: 10rem;
-    margin-right: 9rem;
+
+.dropdownContainer,
+.dropdownMenu,
+.login,
+.premium:hover{
+    cursor: pointer;
     
 }
-.btn{
-    height: 2rem;
-    border-radius: 3rem;
+
+.menu,
+.premium:hover{
+background-color: rgba(40, 143, 79, 0.628); 
+color: aliceblue;
 }
+
+
+
+ul {
+    list-style: none;
+    
+  }
+
+  .premium{
+    background-color: rgba(0, 255, 85, 0.646);
+    border-style: solid;
+    border-color: rgb(175, 247, 236);
+    padding: 20px;
+  }
+
+.usersmenu, .doctorsmenu{
+    background-color: rgb(1, 235, 137);
+    border-style: solid;
+    border-color: rgb(175, 247, 236);
+    padding: 21px;
+    margin-top: -18px;
+}
+
+.usersmenu{
+    margin-bottom: 20px;
+}
+
+.doctorsmenu{
+    margin-top: -23px;
+}
+
+
+  .brain{
+    display: flex;
+    margin-top: 50px;
+    border-radius: 50px;
+    align-self: flex-start;
+    margin-left: -150px;
+    border-style: solid;
+    border-color: rgb(34, 186, 176);
+  }

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import style from "./NavBar.module.css"
+import style from "../NavBar/NavBar.module.css"
 import { useNavigate } from 'react-router-dom';
-import brainly4 from '../../Assets/brainly4.jpg'
+import brainly4 from '../../Assets/brainly4.jpg';
 
-
-const NavBar = () => {
+const FormNavBar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -27,15 +26,15 @@ const NavBar = () => {
 
       <div className={style.container}>
 
-    <Link to='/home'>
-          <img src={brainly4} className={style.brain}  width='100px' height='100px'/>
-    </Link>
-
-        <Link to="/about" >
+     <Link to='/home'>
+      <img src={brainly4} className={style.brain}  width='100px' height='100px'/>
+      </Link>
+    
+      <Link to="/about" >
             <button className={style.premium}>About
             </button></Link>
 
-        <div className={style.dropdownContainer}>
+    <div className={style.dropdownContainer}>
         <button type='button' className={style.premium} onClick={(e) => {toggleMenu(); e.stopPropagation()}}>
          Nuestros usuarios
         </button>
@@ -47,15 +46,13 @@ const NavBar = () => {
             </ul>
           )}
         </div>
-
-        
-          <Link to='/form'>
-          <button className={style.premium}>LOG IN
-          </button>
-          
-          </Link>
        
-      
+            <Link to={'/home'} > 
+            <button className={style.premium}>
+            Volver 
+            </button></Link>
+       
+
        <button className={style.premium} >Se Premium⭐</button>
       
       </div>
@@ -66,4 +63,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar;
+export default FormNavBar;
