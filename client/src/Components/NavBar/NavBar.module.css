@@ -5,24 +5,16 @@
     height: 60px;
     width: 100%;
     align-content: center;
-    background-color:aquamarine;    
-}
-
-
-.btn{
-    border-radius: 3rem; 
-}
-
+    background-color:rgba(127, 255, 212, 0.909);  
+    border-bottom: 3px solid rgb(50, 203, 173);}
 
 .dropdownContainer{
  position: relative;
 }
 
 .dropdownMenu{
-    position: absolute;
-    
+    position: absolute;  
 }
-
 
 .dropdownContainer,
 .dropdownMenu,
@@ -34,30 +26,28 @@
 
 .menu,
 .premium:hover{
-background-color: rgba(40, 143, 79, 0.628); 
-color: aliceblue;
+background-color: rgba(40, 143, 112, 0.628); 
 }
 
 
 
 ul {
     list-style: none;
-    
   }
 
   .premium{
-    background-color: rgba(0, 255, 85, 0.646);
+    background-color: rgba(0, 255, 157, 0.014);
     border-style: solid;
-    border-color: rgb(175, 247, 236);
+    border-color: rgba(175, 247, 236, 0);
     padding: 20px;
   }
 
 .usersmenu, .doctorsmenu{
-    background-color: rgb(1, 235, 137);
+    background-color:rgb(113, 230, 191);
     border-style: solid;
-    border-color: rgb(175, 247, 236);
+    border-color:rgb(50, 203, 173);
     padding: 21px;
-    margin-top: -18px;
+    margin-top: -15px;
 }
 
 .usersmenu{
