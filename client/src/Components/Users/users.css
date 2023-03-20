@@ -13,8 +13,15 @@
     flex-direction: column;
     flex-wrap: wrap;
     text-decoration: none;
+    border-radius: 5px;
 
 }
+
+.user:hover{
+    background-color: rgba(158, 255, 226, 0.822); 
+    box-shadow: 2px 2px 3px 3px  rgba(7, 147, 136, 0.776);
+}
+
 a:link{ text-decoration: none; }
 
 

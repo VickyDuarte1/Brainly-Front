@@ -32,9 +32,12 @@ display: flex;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  /* padding: 10px; */
   width: 100%;
   grid-template-columns: repeat(5,20%);
+}
+
+.doctor-item:hover{
+  background-color: rgba(31, 72, 60, 0.934); 
 }
 
 .profesionals{
@@ -110,5 +113,16 @@ display: flex;
 position:absolute;
 width: fit-content;
 margin: 15px;
+background-color: red;
+color: aliceblue;
+font-weight: 600;
+border-radius: 5px;
+}
 
+.closeDetail:hover{
+  cursor: pointer;
+}
+
+.closeDetail:active{
+  background-color: brown;
 }
