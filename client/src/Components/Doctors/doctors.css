@@ -2,14 +2,12 @@
   flex-direction: row;
   font-size: 15px;
   display: grid;
-  grid-gap: 1px;
 }
 
 .cartilla{
-
+border-top: 3px solid rgb(50, 203, 173);
 font-size: 30px;
 justify-content: start;
-border: 1px solid #ffffff;
 grid-gap: 1px;
 padding: 10px;
 font-weight: 500;
@@ -21,8 +19,8 @@ display: flex;
 
 .doctor, .cartilla{
   display:grid;
-  background-color: rgba(135, 181, 169, 0.406);
-  /* border-bottom: 1px solid black; */
+  background-color:rgba(127, 255, 212, 0.909);  
+  border-bottom: 3px solid rgb(50, 203, 173);
   color: rgb(28, 17, 96); 
   flex-direction: row;
   width: 100%;
@@ -35,7 +33,6 @@ display: flex;
   align-items: center;
   justify-content: space-evenly;
   /* padding: 10px; */
-  border: 1px solid #ccc;
   width: 100%;
   grid-template-columns: repeat(5,20%);
 }
@@ -54,13 +51,15 @@ display: flex;
 }
 
 .doctorDetail{
-  background-color: rgba(0, 255, 85, 0.646);
+  background-color:rgba(127, 255, 212, 0.909);  
   display: grid;
   width: fit-content;
   justify-items: end;
   align-self: center;
   margin-left: 30%;
   border-radius: 25px;
+  border-style: solid;
+  border-color: rgb(50, 203, 173);
   
 }
 
