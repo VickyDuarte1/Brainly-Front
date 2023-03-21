@@ -8,18 +8,15 @@ const DetailUser = () => {
     const navigate = useNavigate();
 
   const { id } = useParams();
-  const users = useSelector((state) => state.users);
-const user = users.find((user) => user.id === id);
+
+  const pacientes = useSelector((state) => state.pacientes);
+const user = pacientes.find((pacientes) => pacientes.id === Number(id));
   if (!user) {
+
     return <div>No se encontró el usuario</div>;
   }
  function handleBackClick() {
     navigate('/users');
-  }
-
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
 
   return (
@@ -29,21 +26,20 @@ const user = users.find((user) => user.id === id);
 
       <div className='userDetail'>
         <button className='closeDetail' onClick={handleBackClick}>x</button>
-      
 
         <div className='detailss'>
 
-        <p>Nombre: {user.name}</p>
-        <p>E-mail:{user.email}</p>
-        <p>Teléfono: {user.cell}</p>
-        <p>Edad: {user.age}</p>
-        <p>Nacimiento: {formatDate(user.date)}</p>
-        <p> {user.gender}</p>
-        <p>Dirección: {user.city}</p>
+        <p>Nombre: {user.nombre}</p>
+        <p>E-mail:{user.correo}</p>
+        <p>Teléfono: {user.telefono}</p>
+        <p>Edad: {user.edad}</p>
+        <p>Nacimiento: {user.fecha_nacimiento}</p>
+        <p> {user.genero}</p>
+        <p>Dirección: {user.direccion}</p>
         </div>
 
        
-          <img className='image-user' src={user.image} alt={user.name} width="230" height="230" />
+          <img className='image-user' src={user.imagen} alt={user.nombre} width="230" height="230" />
         </div>
 
       

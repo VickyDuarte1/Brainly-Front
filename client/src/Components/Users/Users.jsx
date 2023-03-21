@@ -12,7 +12,7 @@ import NavBar from "../NavBar/NavBar";
 export default function Users() {
 
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const pacientes = useSelector((state) => state.pacientes);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedAge, setSelectedAge]= useState('');
   const [selectedGender, setSelectedGender]= useState('')
@@ -41,19 +41,19 @@ export default function Users() {
       setToShow(toShow + 10);
     };
   
-    const filteredUsers = users.filter(user => {
-      const fullName = user.name.toLowerCase();
+    const filteredUsers = pacientes.filter(user => {
+      const fullName = user.nombre.toLowerCase();
       const term = searchTerm.toLowerCase();
       return fullName.startsWith(term) || fullName.endsWith(term) || fullName.includes(` ${term}`)})
       .filter(user => {
       if (!selectedAge) {
         return true; // no se ha seleccionado un rango de edad, mostrar todos los usuarios
       } else if (selectedAge === "0-25") {
-        return user.age < 25;
+        return user.edad < 25;
       } else if (selectedAge === "25-50") {
-        return user.age >= 25 && user.age <= 50;
+        return user.edad >= 25 && user.edad <= 50;
       } else if (selectedAge === "50+") {
-        return user.age > 50;
+        return user.edad > 50;
       } else{
         return 0;
       }
@@ -61,10 +61,10 @@ export default function Users() {
     .filter(user=>{
       if(!selectedGender){
         return true;
-      } else if(selectedGender ==='female'){
-        return user.gender === 'female'
-      } else if (selectedGender=== 'male'){
-        return user.gender === 'male';
+      } else if(selectedGender ==='femenino'){
+        return user.genero === 'femenino'
+      } else if (selectedGender=== 'masculino'){
+        return user.genero === 'masculino';
       }else{
         return 0;
       }
@@ -73,9 +73,9 @@ export default function Users() {
   const sortedUsers = filteredUsers.length > 0 ? filteredUsers.slice(0, toShow).sort((a, b) => {
     
     if (selectedOption === "asc") {
-      return a.name.localeCompare(b.name);
+      return a.nombre.localeCompare(b.nombre);
     } else if (selectedOption === "desc"){
-      return b.name.localeCompare(a.name);
+      return b.nombre.localeCompare(a.nombre);
     } else {
       return 0;
     }
@@ -119,8 +119,8 @@ export default function Users() {
 Filtrar por genero:
 <select value={selectedGender} onChange={(event)=> setSelectedGender(event.target.value)}>
     <option value=''> </option>
-    <option value='female'>Mujer</option>
-    <option value='male'>Hombre</option>
+    <option value='femenino'>Mujer</option>
+    <option value='masculino'>Hombre</option>
 </select>
 </label>
       <button onClick={handleClearFilters} >Limpiar filtros</button>
@@ -141,11 +141,11 @@ Filtrar por genero:
         <Link key={user.id} to={`/users/${user.id}`}>
           <User 
             // id={user.id}
-            gender={user.gender} 
-            name={user.name} 
-            age={user.age} 
-            image={user.image} 
-            city={user.city} 
+            genero={user.genero} 
+            nombre={user.nombre} 
+            edad={user.edad} 
+            imagen={user.imagen} 
+            direccion={user.direccion} 
           />
         </Link>
       ))}

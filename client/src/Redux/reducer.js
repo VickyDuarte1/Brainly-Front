@@ -2,8 +2,8 @@ import { GET_USERS, CREATE_USER, GET_DOCTORS, ADD_USER, ADD_DOCTOR } from "./act
 
 
 const initialState = {
-    users : [],
-    doctors:[],
+    pacientes : [],
+    doctores:[],
     searched:'',
     userDetails: {}
 }
@@ -12,19 +12,23 @@ const initialState = {
 const reducer = (state = initialState, action) =>{
     switch(action.type){
         case GET_USERS:
-            return {
+         return {
                 ...state,
-                users: action.payload
-            }
+                pacientes: action.payload.pacientes
+              }
         case CREATE_USER:
             return {
                 ...state
             }
+
+            
         case GET_DOCTORS:
             return{
                 ...state,
-                doctors:action.payload
+                doctores:action.payload.doctores
             }
+
+
         case ADD_DOCTOR:
             return{
                 ...state,
