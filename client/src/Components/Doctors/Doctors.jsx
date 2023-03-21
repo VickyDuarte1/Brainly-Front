@@ -45,10 +45,10 @@ export default function Doctors() {
 
   }
 
-  const [toShow, setToShow] = useState(10);
+  const [toShow, setToShow] = useState(6);
 
   const handleLoadMore = () => {
-    setToShow(toShow + 10);
+    setToShow(toShow + 6);
   };
   console.log(typeof doctores); 
   const filteredDoctors = doctores.filter(doctor =>
