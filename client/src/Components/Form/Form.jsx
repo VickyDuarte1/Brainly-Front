@@ -130,7 +130,7 @@ const Form = () => {
                     <label>Rol: </label>
                     <select id="optionSelected" onChange={(e) => handleDoctor(e)}>
                         <option disabled="">Selecciona una opción</option>
-                        <option value="medico">Médico</option>
+                        <option value="doctor">Médico</option>
                         <option value="paciente">Paciente</option>
                     </select>
                     <p>{errors.role}</p>
