@@ -2,26 +2,26 @@ import React from 'react';
 import './users.css'
 
 
-export default function User( { id, name, gender, age, image, city} ) {
+export default function User( { id, nombre, genero, edad, imagen, direccion} ) {
     
   return (
     <div className='user'>
        <h2>{id}</h2>
        <div className='name'> 
-      <h2>{name}</h2>
+      <h2>{nombre}</h2>
       </div>
       
       <div className='detailsUser'>
       <div className='img'>
-      <img src={image}/>
+      <img src={imagen}/>
       </div>
       <div className='info'>
-      <h4> Edad:{age} </h4>
-      <h4>Género:{gender}</h4>
+      <h4> Edad:{edad} </h4>
+      <h4>Género:{genero}</h4>
       </div>
       </div>
-      <div className='city'>
-      <h4>Ciudad:{city}</h4>
+      <div className='direccion'>
+      <h4>Ciudad:{direccion}</h4>
       </div>
     </div>
   );

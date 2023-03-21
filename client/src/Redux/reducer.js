@@ -1,9 +1,9 @@
-import { GET_USERS, GET_DOCTORS} from "./action-types"
+import { GET_USERS, CREATE_USER, GET_DOCTORS, ADD_USER, ADD_DOCTOR } from "./action-types"
 
 
 const initialState = {
-    users : [],
-    doctors:[],
+    pacientes : [],
+    doctores:[],
     searched:'',
     userDetails: {}
 }
@@ -12,17 +12,35 @@ const initialState = {
 const reducer = (state = initialState, action) =>{
     switch(action.type){
         case GET_USERS:
-            return {
+         return {
                 ...state,
-                users: action.payload
+                pacientes: action.payload.pacientes
+              }
+        case CREATE_USER:
+            return {
+                ...state
             }
 
+            
         case GET_DOCTORS:
             return{
                 ...state,
-                doctors:action.payload
+                doctores:action.payload.doctores
             }
 
+
+        case ADD_DOCTOR:
+            return{
+                ...state,
+                doctors: [...state.doctors, action.payload]
+              
+            }
+        case ADD_USER:
+            return{
+                ...state,
+                users: [...state.users, action.payload]
+               
+            }
         default:
             return {...state}
     

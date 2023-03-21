@@ -1,4 +1,3 @@
-
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage';
@@ -9,6 +8,8 @@ import DoctorsDetails from './Components/Doctors/DoctorsDetails';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
+import Form from "./Components/Form/Form";
+import Premium from './Components/Premium/Premium.jsx'
 
 export default function App() {
   return (
@@ -17,15 +18,14 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
-
           <Route path="/users/:id" element={<UsersDetails/>} />
           <Route path="/users" element={<Users/>}/>
           <Route path="/doctors" element={<Doctors/>}/>
           <Route path="/doctors/:id" element={<DoctorsDetails/>}/>
-
           <Route  path = "/about"  element={<About/>}/>
+          <Route  path = "/form"  element={<Form/>}/>
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
-
+          <Route path = "/subs" element={<Premium/>}/>
         </Routes>
       </div>
     </BrowserRouter>

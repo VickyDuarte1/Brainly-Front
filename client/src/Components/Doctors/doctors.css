@@ -1,43 +1,128 @@
-.doctors-list{
-    flex-direction: row;
-    font-size: 15px;
-    display: grid;
-    grid-gap: 1px;
+.doctors-list {
+  flex-direction: row;
+  font-size: 15px;
+  display: grid;
 }
 
-.doctor{
-    display:grid;
-    background-color: rgba(255, 255, 255, 0.498);
-    /* border-bottom: 1px solid black; */
-    color: rgb(28, 17, 96); 
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
-    grid-template-columns: repeat(5, 20%);
+.cartilla{
+border-top: 3px solid rgb(50, 203, 173);
+font-size: 30px;
+justify-content: start;
+grid-gap: 1px;
+padding: 10px;
+font-weight: 500;
+}
+
+.columnas{
+display: flex;
+}
+
+.doctor, .cartilla{
+  display:grid;
+  background-color:rgba(127, 255, 212, 0.909);  
+  border-bottom: 3px solid rgb(50, 203, 173);
+  color: rgb(28, 17, 96); 
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  grid-template-columns: repeat(5, 20%);
+}
+
+.doctor-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  grid-template-columns: repeat(5,20%);
+}
+
+.doctor-item:hover{
+  background-color: rgba(31, 72, 60, 0.934); 
+}
+
+.profesionals{
+  margin: 30px;
+  font-size: 30px;
+}
+
+.search-nav{
+  margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
   
-   
 }
 
-.doctor-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    /* padding: 10px; */
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    width: 100%;
-    grid-template-columns: repeat(5,20%);
-  }
+.doctorDetail{
+  background-color:rgba(127, 255, 212, 0.909);  
+  display: grid;
+  width: fit-content;
+  justify-items: end;
+  align-self: center;
+  margin-left: 30%;
+  border-radius: 25px;
+  border-style: solid;
+  border-color: rgb(50, 203, 173);
+  
+}
 
-  .profesionals{
-    margin: 30px;
-    font-size: 30px;
-  }
+.colorsito{
+  display: grid;
+  background-color: rgb(215, 250, 239);
+  padding-bottom: 30px;
+}
 
-  .search-nav{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-evenly;
-    
-  }
+.tarjeta1{
+  display: flex;
+  padding: 40px;
+  
+  
+}
+
+.columna2{
+  display: grid;
+  height: fit-content;
+  margin-top: 60px;
+  justify-items: start;
+  margin-left: 30px;
+ 
+  
+}
+
+.card-footer{
+  display: grid;
+  flex-direction: row; 
+  width: fit-content;
+  
+}
+
+.spec{
+display: grid;
+width: fit-content;
+margin: 25px;
+}
+
+.dir{
+display: flex;
+align-items: start;
+margin: 25px;
+}
+
+.closeDetail{
+display: flex;
+position:absolute;
+width: fit-content;
+margin: 15px;
+background-color: red;
+color: aliceblue;
+font-weight: 600;
+border-radius: 5px;
+}
+
+.closeDetail:hover{
+  cursor: pointer;
+}
+
+.closeDetail:active{
+  background-color: brown;
+}
