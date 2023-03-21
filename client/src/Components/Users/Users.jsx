@@ -35,10 +35,10 @@ export default function Users() {
     console.log('searchterm:'+ searchTerm);
   }
 
-  const [toShow, setToShow] = useState(10); 
+  const [toShow, setToShow] = useState(5); 
   
   const handleLoadMore = () => {
-      setToShow(toShow + 10);
+      setToShow(toShow + 5);
     };
   
     const filteredUsers = pacientes.filter(user => {
