@@ -48,15 +48,16 @@ const NavBar = () => {
           )}
         </div>
 
-        
+        <div>
           <Link to='/form'>
-          <button className={style.premium}>LOG IN
-          </button>
-          
+          <button className={style.premium}>Registrarse</button>
           </Link>
-       
+
+          <button className={style.premium}>Ingresar</button>
+          </div>
+
       <Link to='/subs'>
-       <button className={style.premium} >Se Premium⭐</button>
+       <button className={style.premium}>Se Premium⭐</button>
        </Link>
       </div>
 
