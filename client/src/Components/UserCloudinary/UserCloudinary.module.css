@@ -1,0 +1,10 @@
+.logo{
+    display: flex;
+    width: 100px;
+    margin-top: 0px;
+    border-radius: 50px;
+    align-self: flex-start;
+    margin-left: 150px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+  }
