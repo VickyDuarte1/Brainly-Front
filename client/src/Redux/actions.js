@@ -24,17 +24,17 @@ export function getUsers() {
   }
   )
 }};
-
 export const createUser = (payload) => {
-  return function(dispatch) {
-    const  form  = payload; // asumiendo que userType es un campo en tu objeto de payload que indica si el usuario es paciente o médico
-    
+  return function(dispatch) {    
     // Agregar usuario al array correspondiente en el estado del store
-    if (form.role !== 'medico') {
-      dispatch({ type: ADD_USER, payload: payload });
-    } else if (form.role === 'medico') {
-      dispatch({ type: ADD_DOCTOR, payload: payload });
+
+        axios.post(`http://localhost:5000/registro`, payload)   
+    .then((response) => {
+        return dispatch({type: ADD_USER, payload: response.data})
+    }).catch((error) => {
+        console.log(error)})
+   
     }
   }
-}
+
 
