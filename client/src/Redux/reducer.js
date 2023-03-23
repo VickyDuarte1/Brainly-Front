@@ -35,12 +35,14 @@ const reducer = (state = initialState, action) =>{
                 doctors: [...state.doctors, action.payload]
               
             }
-        case ADD_USER:
-            return{
-                ...state,
-                users: [...state.users, action.payload]
-               
-            }
+            case ADD_USER:
+            const { tipo_usuario } = action.payload;
+
+            const updatedState = { ...state };
+
+            updatedState[tipo_usuario] = [...updatedState[tipo_usuario], action.payload];
+            return updatedState;
+            
         default:
             return {...state}
     
