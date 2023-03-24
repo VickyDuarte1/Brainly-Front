@@ -17,7 +17,7 @@ const DetailDoctor = () => {
 
   const { id } = useParams();
 
-  const doctors = useSelector((state) => state.doctors);
+  const doctors = useSelector((state) => state.doctores);
 const doctor = doctors.find((doctor) => doctor.id === Number(id));
 
   if (!doctor) {
@@ -28,7 +28,7 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
     navigate('/doctors');
   }
 
-  const numVowels = (doctor.name.match(/a/gi) || []).length;
+  const numVowels = (doctor.nombre.match(/a/gi) || []).length;
   ;
 
   return (
@@ -53,17 +53,17 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
       {numVowels === 0 && doctor.id % 2 === 0 && <img src={doctor8} alt="Imagen con 3 vocales" width="250" height="250"/>}
 
       <div className='columna2'>
-        <p className='name'>Nombre: {doctor.name}</p>
-        <p className='username'>Usuario: {doctor.username}</p>
-        <p className='email'>E-mail:{doctor.email}</p>
-        <p className='tel'>Teléfono: {doctor.phone}</p>
+        <p className='nombre'>Nombre: {doctor.nombre}</p>
+        <p className='usuario'>Usuario: {doctor.usuario}</p>
+        <p className='correo'>E-mail:{doctor.correo}</p>
+        <p className='telefono'>Teléfono: {doctor.telefono}</p>
        
         </div>
         </div>
-        <div classname='card-footer'>
-        <div className='dir'>Dirección: {doctor.suite} {doctor.street}, {doctor.address}</div>
+        <div className='card-footer'>
+        <div className='dir'>Dirección: {doctor.direccion} </div>
         
-        <div className='spec'>Especialidad: {doctor.speciality} || N° de matrícula: {doctor.registration}</div>
+        <div className='spec'>Especialidad: {doctor.especialidad} || N° de matrícula: {doctor.credenciales}</div>
         
         </div>
        
