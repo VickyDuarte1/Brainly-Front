@@ -1,3 +1,64 @@
 .signin,.top{
     margin-top: 80px;
+   
 }
+
+.back-form{
+    background-color: rgba(105, 190, 163, 0.199);
+    padding: 35px;
+    width: fit-content;
+    margin-left: 40%;
+    margin-top:7%;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgba(135, 222, 216, 0.82);
+}
+
+.brain{
+    display: flex;
+    border-radius: 100px;
+    align-self: center;
+    border-style: solid;
+    border-color: rgb(34, 186, 176);
+    margin-top: -20%;
+    margin-left: 20%;
+    opacity: 0.5;
+    margin-bottom: 30px; 
+       
+}
+
+.align{
+    background-color: rgba(253, 255, 255, 0.697);
+    border-radius: 10px;
+    padding-top: 1px;
+    padding-bottom: 10%;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-style: solid;
+    border-color: rgba(48, 153, 172, 0.37);
+
+}
+
+/* .cerrar{
+
+    background-color: aliceblue;
+
+} */
+
+.signin{
+    margin-top: 25px;
+padding-bottom: 10%;
+}
+
+.password{
+    padding-bottom: 10%;
+}
+
+
+
+/* .submit{
+    background-color: rgba(0, 255, 157, 0.014);
+    border-style: solid;
+    border-color: rgba(175, 247, 236, 0);
+    padding: 20px;
+} */

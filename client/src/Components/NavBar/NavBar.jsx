@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import style from "./NavBar.module.css"
 import { useNavigate } from 'react-router-dom';
@@ -10,13 +10,19 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser"));
+  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser") );
   const [ user, setUser ] = useState([]);
   const [ profile, setProfile ] = useState([]);
 
+  useEffect(() => {
+    setActiveUser(localStorage.getItem("activeUser"));
+  }, [localStorage.getItem("activeUser")]);
+
+
+
   const handleLogOut = () => {
     localStorage.removeItem("activeUser");
-    setActiveUser('');
+    setActiveUser(null);
   }
 
 
@@ -62,12 +68,13 @@ const NavBar = () => {
   }}
 />
 
+{console.log('activeUser2:'+activeUser)}
 
 {activeUser ? (
-  <button onClick={handleLogOut}>Cerrar sesión</button>
+  <button className={style.premium} onClick={handleLogOut}>Cerrar sesión</button>
 ) : (
   <Link to='/signin'>
-    <button>Iniciar sesión</button>
+    <button className={style.premium} >Iniciar sesión</button>
   </Link>
 )}
 
@@ -87,10 +94,12 @@ const NavBar = () => {
        
         </div>
         
-          <Link to='/form'>
-          <button className={style.premium}>LOG IN
-          </button>
-          </Link>
+        
+{!activeUser && (
+  <Link to='/form'>
+    <button className={style.premium}>Log In</button>
+  </Link>
+)}
 
    
       <Link to='/subs'>

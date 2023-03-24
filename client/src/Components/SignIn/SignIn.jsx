@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { getDoctors, getUsers } from "../../Redux/actions";
+import brainly4 from '../../Assets/brainly4.jpg'
+
 import "./signin.css";
 
 export default function SignIn() {
-  const [activeUser, setActiveUser] = useState(null);
+  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser") || null);
 
   const pacientes = useSelector((state) => state.pacientes);
 
@@ -63,29 +65,42 @@ export default function SignIn() {
   }
 
   return (
-    <div>
+    
+    <div className="todo">
+  
       <div>
         <NavBar />
       </div>
+      <div className="back-form">
       <form onSubmit={handleSignIn}>
         <div className="top">
-          <label>Usuario:</label>
+        <img src={brainly4} className='brain'  width='170px' height='170px'/>
         </div>
+
+        <div className="align">
         <div className="signin">
+          Usuaio:
           <input type="text" name="usuario" placeholder="Usuario" />
         </div>
         <div>
+          <div className="password">
           <label>Contraseña:</label>
-          <div>
             <input type="password" name="contraseña" placeholder="Contraseña" />
           </div>
         </div>
-        <button type="submit">Iniciar sesión</button>
+        {activeUser && <p className="welcomeuser">Bienvenido {activeUser.nombre}</p>}
+
+        {!activeUser && <button type="submit">Iniciar sesión</button>}        
         {activeUser && (
           <button onClick={handleLogOut}>Cerrar sesión</button>
         )}
+        </div>
       </form>
-      {activeUser && <p>Bienvenido {activeUser.nombre}</p>}
+            
     </div>
+    
+    </div>
+    
   );
 }
+
