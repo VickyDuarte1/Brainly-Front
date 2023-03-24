@@ -123,10 +123,10 @@ Filtrar por genero:
     <option value='masculino'>Hombre</option>
 </select>
 </label>
-      <button onClick={handleClearFilters} >Limpiar filtros</button>
+      <div className="filtros-user" onClick={handleClearFilters} >Limpiar filtros</div>
       
-      <Link to={`/home`}>
-     <button> Volver </button>
+      <Link to={`/home`} className="filtros-user" >
+     Volver 
       </Link>  
 
       </div>
@@ -137,8 +137,11 @@ Filtrar por genero:
 
     <div className="users">
      
+     
       {sortedUsers.map((user) => (
+        
         <Link key={user.id} to={`/users/${user.id}`}>
+          
           <User 
             // id={user.id}
             genero={user.genero} 
@@ -147,10 +150,13 @@ Filtrar por genero:
             imagen={user.imagen} 
             direccion={user.direccion} 
           />
-        </Link>
-      ))}
 
+     
+        </Link>
+       
+     ))}
 </div>
+
 
         <Paged onClick={handleLoadMore} total={filteredUsers.length} shown={toShow} />
 

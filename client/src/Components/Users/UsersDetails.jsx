@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavBar from '../NavBar/NavBar';
+import './users.css'
 
 const DetailUser = () => {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const user = pacientes.find((pacientes) => pacientes.id === Number(id));
 
         <div className='detailss'>
 
-        <p>Nombre: {user.nombre}</p>
+        <div className='detailss2'>Nombre: {user.nombre}</div>
         <p>E-mail:{user.correo}</p>
         <p>Teléfono: {user.telefono}</p>
         <p>Edad: {user.edad}</p>

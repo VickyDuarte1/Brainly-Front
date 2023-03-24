@@ -6,14 +6,15 @@ export default function User( { id, nombre, genero, edad, imagen, direccion} ) {
     
   return (
     <div className='user'>
+      <div className='detailss2'>
        <h2>{id}</h2>
        <div className='name'> 
       <h2>{nombre}</h2>
       </div>
       
       <div className='detailsUser'>
-      <div className='img'>
-      <img src={imagen}/>
+      <div className='img' >
+      <img src={imagen} whidth='110px' height="110px"/>
       </div>
       <div className='info'>
       <h4> Edad:{edad} </h4>
@@ -22,6 +23,7 @@ export default function User( { id, nombre, genero, edad, imagen, direccion} ) {
       </div>
       <div className='direccion'>
       <h4>Ciudad:{direccion}</h4>
+      </div>
       </div>
     </div>
   );
