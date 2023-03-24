@@ -12,7 +12,7 @@ import NavBar from "../NavBar/NavBar";
 export default function Doctors() {
 
   const dispatch = useDispatch();
-  const doctors = useSelector((state) => state.doctors);
+  const doctores = useSelector((state) => state.doctores);
   const [selectedOption, setSelectedOption] = useState("");
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSpeciality, setSelectedSpeciality] = useState("");
@@ -45,26 +45,26 @@ export default function Doctors() {
 
   }
 
-  const [toShow, setToShow] = useState(10);
+  const [toShow, setToShow] = useState(6);
 
   const handleLoadMore = () => {
-    setToShow(toShow + 10);
+    setToShow(toShow + 6);
   };
-
-  const filteredDoctors = doctors.filter(doctor =>
-    doctor.name.split(' ').some(namePart =>
+  console.log(typeof doctores); 
+  const filteredDoctors = doctores.filter(doctor =>
+    doctor.nombre.split(' ').some(namePart =>
       namePart.toLowerCase().startsWith(searchTerm.toLowerCase())
     ) &&
-    (selectedSpeciality === "" || doctor.speciality === selectedSpeciality) &&
-    (searchCity === '' || (doctor.address && doctor.address.toLowerCase().startsWith(searchCity.toLowerCase())))
+    (selectedSpeciality === "" || doctor.especialidad === selectedSpeciality) &&
+    (searchCity === '' || (doctor.direccion && doctor.direccion.toLowerCase().startsWith(searchCity.toLowerCase())))
   );
 
   const sortedDoctors = filteredDoctors.length > 0 ? filteredDoctors.slice(0, toShow).sort((a, b) => {
 
     if (selectedOption === "asc") {
-      return a.name.localeCompare(b.name);
+      return a.nombre.localeCompare(b.nombre);
     } else if (selectedOption === "desc") {
-      return b.name.localeCompare(a.name);
+      return b.nombre.localeCompare(a.nombre);
     } else {
       return 0;
     }
@@ -95,9 +95,9 @@ export default function Doctors() {
           Especialidad:
           <select value={selectedSpeciality} onChange={handleSpecialityChange}>
             <option value=""></option>
-            <option value="clinic">clinico</option>
-            <option value="neurologist">neurologo</option>
-            <option value="neurosurgeon">neurocirujano</option>
+            <option value="Cirujano">Cirujano</option>
+            <option value="Neurólogo">neurologo</option>
+            <option value="neurocirujano">neurocirujano</option>
           </select>
         </label>
 
@@ -109,7 +109,7 @@ export default function Doctors() {
         </div>
       </div>
 
-      {doctors.length === 0 ? (
+      {doctores.length === 0 ? (
         <div>No hay doctores disponibles</div>
       ) : (
         <>
@@ -127,11 +127,11 @@ export default function Doctors() {
 
               <Link key={doctor.id} className='doctor-item' to={`/doctors/${doctor.id}`}>
                 <Doctor
-                  name={doctor.name}
-                  email={doctor.email}
-                  address={doctor.address}
-                  phone={doctor.phone}
-                  speciality={doctor.speciality}
+                  nombre={doctor.nombre}
+                  correo={doctor.correo}
+                  direccion={doctor.direccion}
+                  telefono={doctor.telefono}
+                  especialidad={doctor.especialidad}
                 />
               </Link>
             ))}
