@@ -1,0 +1,142 @@
+
+.user {    
+    display: flex;
+    background-color:rgba(170, 204, 206, 0.909);  
+    border-style:solid;
+    border-color: rgb(41, 150, 128);
+    border-width: 3px;
+    color: rgb(28, 17, 96); 
+    width: 250px;
+    height:300px;
+    padding: 25px;
+    margin:10px;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    text-decoration: none;
+    border-radius: 5px;
+
+}
+
+.user-1{
+    display: flex;
+   
+}
+
+.user:hover{
+    background-color: rgba(121, 203, 178, 0.407); 
+    box-shadow: 2px 2px 3px 3px  rgba(7, 147, 136, 0.776);
+    color: rgb(54, 130, 142);
+}
+
+a:link{ text-decoration: none; }
+
+
+.users{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    flex-wrap: wrap;  
+    font-size: 15px;
+    text-decoration: none;
+
+}
+
+.detailsUser{
+    
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    flex-direction: column;
+    justify-items: end;
+    text-decoration: none;
+    
+
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    text-decoration: none;
+
+
+}
+
+.img{
+    padding: 10px;
+    align-self: center;
+    width: 90%;
+    
+}
+/* 
+.name{
+    margin-top: -40px;
+   
+} */
+
+.city{
+    display: flex;
+    justify-content: end;
+    text-decoration: none;
+}
+
+.search-nav-u{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+  }
+
+.colorsito{
+    display: grid;
+    background-color: rgb(215, 250, 239);
+    padding-bottom: 30px;    
+    margin-top:50px;
+}
+
+.Users-title{
+  margin: 30px;
+  font-size: 30px;}
+
+  .userDetail{
+    background-color:rgba(127, 255, 212, 0.909);  
+    display: grid;
+    width: fit-content;
+    /* justify-items: end; */
+    /* align-self:baseline; */
+    margin-left: 33%;
+    border-radius: 25px;
+    grid-template-columns: repeat(2,50%);
+    border-style: solid;
+  border-color: rgb(50, 203, 173);
+}
+
+.image-user{
+    display: flex;
+    padding: 50px;
+}
+
+.detailss2{
+    margin-top: 1%;
+    background-color: rgba(235, 238, 240, 0.712);
+    height: 90%;
+    border-radius: 5px;
+   
+}
+
+.filtros-user{
+    padding: 1%;
+    border-radius: 15px;
+    background-color: rgba(154, 210, 179, 0.64);
+    border-style: solid;
+    border-color: aliceblue;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+
+.filtros-user:hover{
+    background-color: rgba(125, 173, 173, 0.786);
+    color: rgb(194, 252, 233);
+}
