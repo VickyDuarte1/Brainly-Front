@@ -9,12 +9,14 @@ import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
 import Form from "./Components/Form/Form"
+import PaymentForm from './Components/MpForm/PaymentForm';
 
 export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
+          <Route path="/payment" element={<PaymentForm/>} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/users/:id" element={<UsersDetails/>} />
