@@ -13,6 +13,7 @@ import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
 import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
 import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
+import PaymentForm from './Components/MpForm/PaymentForm';
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
+          <Route path="/payment" element={<PaymentForm/>} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/users/:id" element={<UsersDetails/>} />
