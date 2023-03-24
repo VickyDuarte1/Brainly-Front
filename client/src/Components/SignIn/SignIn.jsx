@@ -9,13 +9,18 @@ export default function SignIn() {
 
   const pacientes = useSelector((state) => state.pacientes);
 
-    const doctores = useSelector((state)=> state.doctores);
+  const doctores = useSelector((state)=> state.doctores);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getDoctors());
+
+    const userFromStorage = localStorage.getItem("activeUser");
+    if (userFromStorage) {
+      setActiveUser(JSON.parse(userFromStorage));
+    }
   }, [dispatch]);
 
   function findUser(username, password) {
@@ -24,9 +29,7 @@ export default function SignIn() {
     )
     if (user) {
       setActiveUser({ nombre: user.nombre, activeUser: true });
-      console.log(user);
-      console.log(pacientes);
-      console.log(doctores);
+      localStorage.setItem("activeUser", JSON.stringify({ nombre: user.nombre, activeUser: true }));
       return user;
     } else {
     const  doctor = doctores.find(
@@ -34,7 +37,7 @@ export default function SignIn() {
       )
       if (doctor) {
         setActiveUser({ nombre: doctor.nombre, activeUser: true });
-        console.log(doctor);
+        localStorage.setItem("activeUser", JSON.stringify({ nombre: doctor.nombre, activeUser: true }));
         return doctor;
       }
     }
@@ -45,15 +48,18 @@ export default function SignIn() {
     event.preventDefault();
     const usuario = event.target.usuario.value;
     const contraseña = event.target.contraseña.value;
-    const usuarioact = findUser(usuario, contraseña)
-    
+    const usuarioact = findUser(usuario, contraseña);
+    if(usuarioact) console.log(usuarioact);
 
     if (!usuarioact) {
       // Muestra mensaje de error si el usuario no existe
       alert("Usuario o contraseña incorrectos");
-
-    return usuarioact;
+    }
   }
+
+  const handleLogOut = () => {
+    localStorage.removeItem("activeUser");
+    setActiveUser(null);
   }
 
   return (
@@ -75,6 +81,9 @@ export default function SignIn() {
           </div>
         </div>
         <button type="submit">Iniciar sesión</button>
+        {activeUser && (
+          <button onClick={handleLogOut}>Cerrar sesión</button>
+        )}
       </form>
       {activeUser && <p>Bienvenido {activeUser.nombre}</p>}
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { createUser } from "../../Redux/actions";
@@ -7,7 +7,7 @@ import FormNavBar from './FormNavBar'
 ///VALIDACIONES :)
 const validate = (form) => {
     let errors = {};
-    
+
     if (!form.nombre) {
         errors.nombre = 'Por favor ingresa un nombre';
     }
@@ -42,6 +42,8 @@ const validate = (form) => {
 
 ///FORMULARIO :)
 const Form = () => {
+    const [activeUser, setActiveUser] = useState(null);
+   
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -79,6 +81,23 @@ const Form = () => {
         );
       }
 
+      useEffect(() => {
+        localStorage.setItem("activeUser", JSON.stringify(activeUser));
+    }, [activeUser]);
+
+    function handleChange(e) {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
+      
+        setErrors(
+          validate({
+            ...form,
+            [e.target.name]: e.target.value,
+          })
+        );
+    }
       function handleDoctor(e) {
         const optionSelected = e.target.value;
         if (optionSelected === "doctor") {
@@ -115,6 +134,7 @@ const Form = () => {
         telefono:"",
         resultado:""
         });
+        setActiveUser(form);
         navigate('/home');
       }
 
@@ -248,8 +268,7 @@ const Form = () => {
                 </div>
                
                 <div>
-                    <button type="submit" >CREAR USUARIO</button>
-                </div>
+                <button disabled={Object.keys(errors).length > 0 || form.nombre==="" }>Crear usuario</button>                </div>
             </form>
         </div>
      </div>   
