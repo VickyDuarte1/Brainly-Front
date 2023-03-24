@@ -10,6 +10,7 @@ import About from './Components/About/About';
 import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
 import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
+import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route  path = "/form"  element={<Form/>}/>
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
           <Route path = "/signin" element={<SignIn/>}/>
+          <Route path ="/images" element ={<UserCloudinary/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>
