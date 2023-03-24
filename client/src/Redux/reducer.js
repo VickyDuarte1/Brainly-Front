@@ -8,7 +8,6 @@ const initialState = {
     userDetails: {}
 }
 
-
 const reducer = (state = initialState, action) =>{
     switch(action.type){
         case GET_USERS:
@@ -32,7 +31,7 @@ const reducer = (state = initialState, action) =>{
         case ADD_DOCTOR:
             return{
                 ...state,
-                doctors: [...state.doctors, action.payload]
+                doctors: [...state.doctores, action.payload]
               
             }
             case ADD_USER:
