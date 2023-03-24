@@ -42,7 +42,7 @@ const validate = (form) => {
 
 ///FORMULARIO :)
 const Form = () => {
-    const [activeUser, setActiveUser] = useState(null);
+    const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser") );
    
 
     const dispatch = useDispatch();
@@ -82,7 +82,7 @@ const Form = () => {
       }
 
       useEffect(() => {
-        localStorage.setItem("activeUser", JSON.stringify(activeUser));
+        localStorage.getItem("activeUser", JSON.stringify(activeUser));
     }, [activeUser]);
 
     function handleChange(e) {
@@ -134,7 +134,7 @@ const Form = () => {
         telefono:"",
         resultado:""
         });
-        setActiveUser(form);
+        localStorage.setItem("activeUser", JSON.stringify(form));
         navigate('/home');
       }
 

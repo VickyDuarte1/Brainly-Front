@@ -10,18 +10,19 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser") || null);
+  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser") );
   const [ user, setUser ] = useState([]);
   const [ profile, setProfile ] = useState([]);
 
   useEffect(() => {
-    setActiveUser(localStorage.getItem("activeUser") || null);
+    setActiveUser(localStorage.getItem("activeUser"));
   }, [localStorage.getItem("activeUser")]);
+
 
 
   const handleLogOut = () => {
     localStorage.removeItem("activeUser");
-    setActiveUser('');
+    setActiveUser(null);
   }
 
 
@@ -67,6 +68,7 @@ const NavBar = () => {
   }}
 />
 
+{console.log('activeUser2:'+activeUser)}
 
 {activeUser ? (
   <button className={style.premium} onClick={handleLogOut}>Cerrar sesión</button>
@@ -92,10 +94,12 @@ const NavBar = () => {
        
         </div>
         
-          <Link to='/form'>
-          <button className={style.premium}>LOG IN
-          </button>
-          </Link>
+        
+{!activeUser && (
+  <Link to='/form'>
+    <button className={style.premium}>Log In</button>
+  </Link>
+)}
 
    
       <Link to='/subs'>
