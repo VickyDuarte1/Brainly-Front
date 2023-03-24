@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import style from "./NavBar.module.css"
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +10,14 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser"));
+  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser") || null);
   const [ user, setUser ] = useState([]);
   const [ profile, setProfile ] = useState([]);
+
+  useEffect(() => {
+    setActiveUser(localStorage.getItem("activeUser") || null);
+  }, [localStorage.getItem("activeUser")]);
+
 
   const handleLogOut = () => {
     localStorage.removeItem("activeUser");
@@ -64,10 +69,10 @@ const NavBar = () => {
 
 
 {activeUser ? (
-  <button onClick={handleLogOut}>Cerrar sesión</button>
+  <button className={style.premium} onClick={handleLogOut}>Cerrar sesión</button>
 ) : (
   <Link to='/signin'>
-    <button>Iniciar sesión</button>
+    <button className={style.premium} >Iniciar sesión</button>
   </Link>
 )}
 
