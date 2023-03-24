@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { createUser } from "../../Redux/actions";
 import FormNavBar from './FormNavBar'
+import styles from "../Form/Form.module.css";
 
 ///VALIDACIONES :)
 
@@ -228,7 +229,7 @@ const Form = () => {
                     <label className={styles.label}>Edad: </label>
                     <div>
                     <input className={styles.input} type="number" min="1" max="100" step="1" name="edad" value={form.edad} onChange={(e) => handleChange(e)} placeholder="Edad"/>
-                    <div className={style.errors}>{errors.edad}</div>
+                    <div className={styles.errors}>{errors.edad}</div>
                     </div>
                 </div>
                 <div className={styles.itemsContainer}>
@@ -236,35 +237,35 @@ const Form = () => {
                     <div>
                     <input className={styles.check} type='checkbox' name="genero" value={form.genero} onChange={(e) => handleChange(e)} /> Femenino
                     <input className={styles.check} type='checkbox' name="genero" value={form.genero} onChange={(e) => handleChange(e)} /> Masculino
-                    <div className={style.errors}>{errors.genero}</div>
+                    <div className={styles.errors}>{errors.genero}</div>
                     </div>
                 </div>
                 <div className={styles.itemsContainer}>
                     <label className={styles.label}>Fecha de nacimiento: </label>
                     <div>
                     <input className={styles.input} type="date" name="fecha_nacimiento" value={form.fecha_nacimiento} onChange={(e) => handleChange(e)}/>
-                    <div className={style.errors}>{errors.fecha_nacimiento}</div>
+                    <div className={styles.errors}>{errors.fecha_nacimiento}</div>
                     </div>
                 </div>
                 <div className={styles.itemsContainer}>
                     <label className={styles.label}>Dirección: </label>
                     <div>
                     <input className={styles.input} type="text" name="direccion" value={form.direccion} onChange={(e) => handleChange(e)} placeholder="Dirección"/>
-                    <div className={style.errors}>{errors.direccion}</div>
+                    <div className={styles.errors}>{errors.direccion}</div>
                     </div>
                 </div>
                 <div className={styles.itemsContainer}>
                     <label className={styles.label}>Teléfono: </label>
                     <div>
                     <input  className={styles.input} type="text" name="telefono" value={form.telefono} onChange={(e) => handleChange(e)} placeholder="Teléfono"/>
-                    <div className={style.errors}>{errors.telefono}</div>
+                    <div className={styles.errors}>{errors.telefono}</div>
                     </div>
                 </div>
                 <div className={styles.itemsContainer}>
                     <label className={styles.label}>Detección: </label>
                     <div>
                     <input className={styles.input} type="text" name="resultado" value={form.resultado} onChange={(e) => handleChange(e)} placeholder="Detección"/>
-                    <div className={style.errors}>{errors.resultado}</div>
+                    <div className={styles.errors}>{errors.resultado}</div>
                     </div>
                 </div>
                
