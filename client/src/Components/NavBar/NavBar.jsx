@@ -3,11 +3,22 @@ import { Link } from 'react-router-dom';
 import style from "./NavBar.module.css"
 import { useNavigate } from 'react-router-dom';
 import brainly4 from '../../Assets/brainly4.jpg'
+import { googleLogout, GoogleLogin } from '@react-oauth/google';
+import { useSelector } from 'react-redux';
 
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser"));
+  const [ user, setUser ] = useState([]);
+  const [ profile, setProfile ] = useState([]);
+
+  const handleLogOut = () => {
+    localStorage.removeItem("activeUser");
+    setActiveUser('');
+  }
+
 
   const handleShowUsers = () => {
     navigate('/users');
@@ -22,9 +33,16 @@ const NavBar = () => {
     setShowMenu(!showMenu);
   }
 
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
+};
+
+
   return (
     <nav className={style.navbar}>
-
+    
+      
       <div className={style.container}>
 
     <Link to='/home'>
@@ -34,6 +52,24 @@ const NavBar = () => {
         <Link to="/about" >
             <button className={style.premium}>About
             </button></Link>
+
+            <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
+
+
+{activeUser ? (
+  <button onClick={handleLogOut}>Cerrar sesión</button>
+) : (
+  <Link to='/signin'>
+    <button>Iniciar sesión</button>
+  </Link>
+)}
 
         <div className={style.dropdownContainer}>
         <button type='button' className={style.premium} onClick={(e) => {toggleMenu(); e.stopPropagation()}}>
@@ -47,14 +83,16 @@ const NavBar = () => {
             </ul>
           )}
         </div>
-
+            <div>
+       
+        </div>
         
           <Link to='/form'>
           <button className={style.premium}>LOG IN
           </button>
-          
           </Link>
-       
+
+   
       <Link to='/subs'>
        <button className={style.premium} >Se Premium⭐</button>
        </Link>

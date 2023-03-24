@@ -1,4 +1,4 @@
-import { GET_USERS, GET_DOCTORS,ADD_USER, ADD_DOCTOR } from "./action-types";
+import { GET_USERS, GET_DOCTORS,ADD_USER  } from "./action-types";
 import axios from 'axios';
 
 
@@ -24,10 +24,10 @@ export function getUsers() {
   }
   )
 }};
+
 export const createUser = (payload) => {
   return function(dispatch) {    
     // Agregar usuario al array correspondiente en el estado del store
-
         axios.post(`http://localhost:5000/registro`, payload)   
     .then((response) => {
         return dispatch({type: ADD_USER, payload: response.data})
@@ -37,4 +37,4 @@ export const createUser = (payload) => {
     }
   }
 
-
+  
