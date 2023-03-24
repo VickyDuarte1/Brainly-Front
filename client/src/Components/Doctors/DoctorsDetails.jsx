@@ -60,7 +60,7 @@ const doctor = doctors.find((doctor) => doctor.id === Number(id));
        
         </div>
         </div>
-        <div classname='card-footer'>
+        <div className='card-footer'>
         <div className='dir'>Dirección: {doctor.direccion} </div>
         
         <div className='spec'>Especialidad: {doctor.especialidad} || N° de matrícula: {doctor.credenciales}</div>

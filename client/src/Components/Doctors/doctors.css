@@ -66,6 +66,10 @@ display: flex;
   
 }
 
+h2{
+  margin-top: 5%;
+}
+
 .colorsito{
   display: grid;
   background-color: rgb(215, 250, 239);

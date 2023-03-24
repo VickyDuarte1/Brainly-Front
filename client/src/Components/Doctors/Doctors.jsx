@@ -125,7 +125,7 @@ export default function Doctors() {
           <div className="doctors-list">
             {sortedDoctors.map((doctor) => (
 
-              <Link key={doctor.id} className='doctor-item' to={`/doctors/${doctor.id}`}>
+              <Link key={doctor.id} className='doctor-item' to={`/doctors/${doctor.id}`} id={doctor.id} >
                 <Doctor
                   nombre={doctor.nombre}
                   correo={doctor.correo}

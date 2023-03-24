@@ -5,6 +5,7 @@ import { createUser } from "../../Redux/actions";
 import FormNavBar from './FormNavBar'
 
 ///VALIDACIONES :)
+
 const validate = (form) => {
     let errors = {};
 
