@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import Home from './Components/Home';
+
 import LandingPage from './Components/LandingPage/LandingPage';
 import UsersDetails from './Components/Users/UsersDetails';
 import Users from './Components/Users/Users';
@@ -11,12 +13,15 @@ import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
 import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
 import Comments from './Components/Comentarios/Coments';
+import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
+import PaymentForm from './Components/MpForm/PaymentForm';
 
 export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
+          <Route path="/payment" element={<PaymentForm/>} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/users/:id" element={<UsersDetails/>} />
@@ -28,8 +33,9 @@ export default function App() {
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
           <Route path = "/signin" element={<SignIn/>}/>
           <Route path = "/comments" element={<Comments/>}/>
+          <Route path ="/images" element ={<UserCloudinary/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>
-  );
-}
+  )
+  }

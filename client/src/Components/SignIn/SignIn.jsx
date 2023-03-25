@@ -9,6 +9,7 @@ import "./signin.css";
 export default function SignIn() {
   const [activeUser, setActiveUser] = useState(JSON.parse(localStorage.getItem("activeUser")) || null);
 
+
   const pacientes = useSelector((state) => state.pacientes);
 
   const doctores = useSelector((state)=> state.doctores);
@@ -19,6 +20,12 @@ export default function SignIn() {
     dispatch(getUsers());
     dispatch(getDoctors());
 
+
+    const userFromStorage = localStorage.getItem("activeUser");
+    if (userFromStorage) {
+      setActiveUser(JSON.parse(userFromStorage));
+    }
+
   }, [dispatch]);
 
   function findUser(username, password) {
@@ -26,20 +33,33 @@ export default function SignIn() {
       (user) => user.usuario === username && user.contraseña === password
     )
     if (user) {
+
      setActiveUser({ ...user, activeUser: true });
       localStorage.setItem("activeUser", JSON.stringify({ ...user, activeUser: true, tipo_user:'paciente', contraseña:'*****' }));
+
+      setActiveUser({ nombre: user.nombre, activeUser: true });
+      localStorage.setItem("activeUser", JSON.stringify({ nombre: user.nombre, activeUser: true }));
+
       return user;
     } else {
     const  doctor = doctores.find(
         (doctor) => doctor.usuario === username && doctor.contraseña === password
       )
       if (doctor) {
+
         setActiveUser({ ...doctor, activeUser: true });
         localStorage.setItem("activeUser", JSON.stringify({ ...doctor, activeUser: true, tipo_user:'doctor', contraseña:'*****' }));
         return doctor;
       }
     }
    
+
+        setActiveUser({ nombre: doctor.nombre, activeUser: true });
+        localStorage.setItem("activeUser", JSON.stringify({ nombre: doctor.nombre, activeUser: true }));
+        return doctor;
+      }
+    }
+
   }
 
   const handleSignIn = (event) => {
@@ -48,7 +68,10 @@ export default function SignIn() {
     const contraseña = event.target.contraseña.value;
     const usuarioact = findUser(usuario, contraseña);
 
+
   //EN USUARIOACT ESTA LA INFO DEL USUARIO COMPLETA DEL USUARIO
+
+    if(usuarioact) console.log(usuarioact);
 
     if (!usuarioact) {
       // Muestra mensaje de error si el usuario no existe
