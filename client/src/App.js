@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import Home from './Components/Home';
+
 import LandingPage from './Components/LandingPage/LandingPage';
 import UsersDetails from './Components/Users/UsersDetails';
 import Users from './Components/Users/Users';
@@ -12,6 +14,7 @@ import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
 import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
 import PaymentForm from './Components/MpForm/PaymentForm';
+
 
 export default function App() {
   return (
@@ -33,5 +36,5 @@ export default function App() {
         </Routes>
       </div>
     </BrowserRouter>
-  );
-}
+  )
+  }

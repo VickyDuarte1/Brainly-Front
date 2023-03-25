@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+import { GET_USERS } from "./action-types"
+
+
+const initialState = {
+    users : []
+
+=======
 import { GET_USERS,  GET_DOCTORS, ADD_USER, ACTIVE_USER } from "./action-types"
 
 
@@ -7,6 +15,7 @@ const initialState = {
     searched:'',
     userDetails: {},
     activeUser:[]
+>>>>>>> 231ab867989f39de916893ad4dcdd6bba44f9338
 }
 
 
@@ -15,6 +24,11 @@ const reducer = (state = initialState, action) =>{
         case GET_USERS:
          return {
                 ...state,
+<<<<<<< HEAD
+                users: action.payload
+
+            }
+=======
                 pacientes: action.payload.pacientes
               }
 
@@ -38,10 +52,10 @@ const reducer = (state = initialState, action) =>{
                 activeUser:action.payload
             }
                
+>>>>>>> 231ab867989f39de916893ad4dcdd6bba44f9338
         default:
             return {...state}
-    
-        }
+    }
 }
 
 export default reducer;
