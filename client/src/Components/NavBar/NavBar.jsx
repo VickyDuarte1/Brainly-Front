@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import style from "./NavBar.module.css"
 import { useNavigate } from 'react-router-dom';
 import brainly4 from '../../Assets/brainly4.jpg'
+import { googleLogout, GoogleLogin } from '@react-oauth/google';
+import { useSelector } from 'react-redux';
 
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const [activeUser, setActiveUser] = useState(localStorage.getItem("activeUser") );
+  const [ user, setUser ] = useState([]);
+  const [ profile, setProfile ] = useState([]);
+
+  useEffect(() => {
+    setActiveUser(localStorage.getItem("activeUser"));
+  }, [localStorage.getItem("activeUser")]);
+
+
+
+  const handleLogOut = () => {
+    localStorage.removeItem("activeUser");
+    setActiveUser(null);
+  }
+
 
   const handleShowUsers = () => {
     navigate('/users');
@@ -22,9 +39,16 @@ const NavBar = () => {
     setShowMenu(!showMenu);
   }
 
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
+};
+
+
   return (
     <nav className={style.navbar}>
-
+    
+      
       <div className={style.container}>
 
     <Link to='/home'>
@@ -34,6 +58,25 @@ const NavBar = () => {
         <Link to="/about" >
             <button className={style.premium}>About
             </button></Link>
+
+            <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
+
+{console.log('activeUser2:'+activeUser)}
+
+{activeUser ? (
+  <button className={style.premium} onClick={handleLogOut}>Cerrar sesión</button>
+) : (
+  <Link to='/signin'>
+    <button className={style.premium} >Iniciar sesión</button>
+  </Link>
+)}
 
         <div className={style.dropdownContainer}>
         <button type='button' className={style.premium} onClick={(e) => {toggleMenu(); e.stopPropagation()}}>
@@ -47,17 +90,20 @@ const NavBar = () => {
             </ul>
           )}
         </div>
+            <div>
+       
+        </div>
+        
+        
+{!activeUser && (
+  <Link to='/form'>
+    <button className={style.premium}>Log In</button>
+  </Link>
+)}
 
-        <div>
-          <Link to='/form'>
-          <button className={style.premium}>Registrarse</button>
-          </Link>
-
-          <button className={style.premium}>Ingresar</button>
-          </div>
-
+   
       <Link to='/subs'>
-       <button className={style.premium}>Se Premium⭐</button>
+       <button className={style.premium} >Se Premium⭐</button>
        </Link>
       </div>
 

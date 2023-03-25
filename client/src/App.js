@@ -9,7 +9,8 @@ import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
 import Form from "./Components/Form/Form";
-import Premium from './Components/Premium/Premium.jsx'
+import SignIn from './Components/SignIn/SignIn';
+import Comments from './Components/Comentarios/Coments';
 
 export default function App() {
   return (
@@ -25,7 +26,8 @@ export default function App() {
           <Route  path = "/about"  element={<About/>}/>
           <Route  path = "/form"  element={<Form/>}/>
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
-          <Route path = "/subs" element={<Premium/>}/>
+          <Route path = "/signin" element={<SignIn/>}/>
+          <Route path = "/comments" element={<Comments/>}/>
         </Routes>
       </div>
     </BrowserRouter>
