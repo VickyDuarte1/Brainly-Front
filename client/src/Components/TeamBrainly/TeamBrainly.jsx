@@ -6,6 +6,7 @@ import Odette from '../../Assets/Odette.jpg'
 import Vicky from '../../Assets/Vicky.jpeg'
 import Caro from '../../Assets/Caro.jpeg'
 import AgusOvalle from '../../Assets/AgusOvalle.jpeg'
+import style from './TeamBrainly.module.css'
 
 
 
@@ -48,7 +49,7 @@ const TeamBrainly = () => {
                   </div>
                   
         <Link to={`/home`}>
-     <button> Volver </button>
+     <button className={style.btnBack}> Volver </button>
       </Link> 
 
         </div>

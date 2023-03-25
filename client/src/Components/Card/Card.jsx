@@ -18,7 +18,7 @@ const Card = ({title, text, imageSrc, fullText}) =>{
         <div className={style.popupContent}>
           <h2>{title}</h2>
           <p>{fullText}</p>
-          <button onClick ={() => setShowPopUp(false)}>Cerrar</button>
+          <button className={style.btnClose} onClick ={() => setShowPopUp(false)}>Cerrar</button>
         </div>
       </div>
     )}

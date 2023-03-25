@@ -8,7 +8,7 @@
 }
 
 .title {
-  color: #005073;
+  color: #2fb28f;
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -31,7 +31,7 @@
 }
 
 .btn {
-  background-color: #005073;
+  background-color:#2fb28f;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -45,5 +45,5 @@
 }
 
 .btn:hover {
-  background-color: #00364A;
+  background-color: #a2e7d4;
 }
