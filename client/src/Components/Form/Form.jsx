@@ -156,10 +156,27 @@ const Form = () => {
                         <option value="doctor">Médico</option>
                         <option value="paciente">Paciente</option>
                     </select>
+
+                    <div>{errors.tipo_usuario}</div>
+
                     <div className={styles.errors}>{errors.tipo_usuario}</div>
+
                 </div>
                     <div id="medicalInputs" className={styles.itemsContainer}>
                         <div>
+
+                            <label>Especialidad: </label>
+                            <div>
+                            <input type="text" name="especialidad" value={form.especialidad} onChange={(e) => handleChange(e)} placeholder="Especialidad"/>
+                            <div>{errors.especialidad}</div>
+                            </div>
+                        </div>
+                        <div>
+                            <label>Credenciales: </label>
+                            <div>
+                            <input type="text" name="credenciales" value={form.credenciales} onChange={(e) => handleChange(e)} placeholder="Crdenciales"/>
+                            <div>{errors.credenciales}</div>
+
                             <label className={styles.label}>Especialidad: </label>
                             <div>
                             <input className={styles.input}type="text" name="especialidad" value={form.especialidad} onChange={(e) => handleChange(e)} placeholder="Especialidad"/>
@@ -171,11 +188,104 @@ const Form = () => {
                             <div>
                             <input  className={styles.input} type="text" name="credenciales" value={form.credenciales} onChange={(e) => handleChange(e)} placeholder="Crdenciales"/>
                             <div className={styles.errors}>{errors.credenciales}</div>
+
                             </div>
                         </div>
                     </div>
                
 
+
+                <div>
+                    <label>Nombre: </label>
+                    <div>
+                    <input type="text" name="nombre" value={form.nombre} onChange={(e) => handleChange(e)} placeholder="Nombre"/>
+                    <div>{errors.nombre}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Apellido: </label>
+                    <div>
+                    <input type="text" name="apellido" value={form.apellido} onChange={(e) => handleChange(e)} placeholder="Apellido"/>
+                    <div>{errors.apellido}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Usuario: </label>
+                    <div>
+                    <input type="text" name="usuario" value={form.usuario} onChange={(e) => handleChange(e)} placeholder="Usuario"/>
+                    <div>{errors.usuario}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Email: </label>
+                    <div>
+                    <input type="text" name="correo" value={form.correo} onChange={(e) => handleChange(e)} placeholder="Email"/>
+                    <div>{errors.correo}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Contraseña: </label>
+                    <div>
+                    <input type="password" name="contraseña" value={form.contraseña} onChange={(e) => handleChange(e)} placeholder="Contraseña"/>
+                    <div>{errors.contraseña}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Confirma tu contraseña: </label>
+                    <div>
+                    <input type="password" name="passwordconfirm" value={form.passwordconfirm} onChange={(e) => handleChange(e)}  placeholder="Contraseña"/>
+                    <div>{errors.passwordconfirm} </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Imagen: </label>
+                    <div>
+                    <input type="url" name="imagen" value={form.imagen} onChange={(e) => handleChange(e)} placeholder="Link a la imagen"/>
+                    <div>{errors.imagen}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Edad: </label>
+                    <div>
+                    <input type="number" min="1" max="100" step="1" name="edad" value={form.edad} onChange={(e) => handleChange(e)} placeholder="Edad"/>
+                    <div>{errors.edad}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Género: </label>
+                    <div>
+                    <input type='checkbox' name="genero" value={form.genero} onChange={(e) => handleChange(e)} /> Femenino
+                    <input type='checkbox' name="genero" value={form.genero} onChange={(e) => handleChange(e)} /> Masculino
+                    <div>{errors.genero}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Fecha de nacimiento: </label>
+                    <div>
+                    <input type="date" name="fecha_nacimiento" value={form.fecha_nacimiento} onChange={(e) => handleChange(e)}/>
+                    <div>{errors.fecha_nacimiento}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Dirección: </label>
+                    <div>
+                    <input type="text" name="direccion" value={form.direccion} onChange={(e) => handleChange(e)} placeholder="Dirección"/>
+                    <div>{errors.direccion}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Teléfono: </label>
+                    <div>
+                    <input type="text" name="telefono" value={form.telefono} onChange={(e) => handleChange(e)} placeholder="Teléfono"/>
+                    <div>{errors.telefono}</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Detección: </label>
+                    <div>
+                    <input type="text" name="resultado" value={form.resultado} onChange={(e) => handleChange(e)} placeholder="Detección"/>
+                    <div>{errors.resultado}</div>
+=======
                 <div className={styles.itemsContainer}>
                     <label className={styles.label}>Nombre: </label>
                     <div>
@@ -270,7 +380,12 @@ const Form = () => {
                 </div>
                
                 <div>
-                <button className={styles.button2} disabled={Object.keys(errors).length > 0 || form.nombre==="" }>Crear usuario</button>                </div>
+
+                <button disabled={Object.keys(errors).length > 0 || form.nombre==="" }>Crear usuario</button>                
+                </div>
+
+                <button className={styles.button2} disabled={Object.keys(errors).length > 0 || form.nombre==="" }>Crear usuario</button>                
+                </div>
             </form>
         </div>
      </div>   

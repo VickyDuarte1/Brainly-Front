@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-import { GET_USERS } from "./action-types"
 
-
-const initialState = {
-    users : []
-
-=======
-import { GET_USERS,  GET_DOCTORS, ADD_USER, ACTIVE_USER } from "./action-types"
+import { GET_USERS,  GET_DOCTORS, ADD_USER, ACTIVE_USER,GET_COMMENTS } from "./action-types"
 
 
 const initialState = {
@@ -14,8 +7,8 @@ const initialState = {
     doctores:[],
     searched:'',
     userDetails: {},
-    activeUser:[]
->>>>>>> 231ab867989f39de916893ad4dcdd6bba44f9338
+    activeUser:[],
+    coments:[]
 }
 
 
@@ -24,11 +17,8 @@ const reducer = (state = initialState, action) =>{
         case GET_USERS:
          return {
                 ...state,
-<<<<<<< HEAD
                 users: action.payload
-
             }
-=======
                 pacientes: action.payload.pacientes
               }
 
@@ -46,13 +36,19 @@ const reducer = (state = initialState, action) =>{
                 doctores:action.payload.doctores
             }
 
+            case GET_COMMENTS:
+                const newComments = action.payload;
+                return {
+                  ...state,
+                  comments: newComments
+                };
+
         case ACTIVE_USER:
             return{
                 ...state,
                 activeUser:action.payload
-            }
-               
->>>>>>> 231ab867989f39de916893ad4dcdd6bba44f9338
+            }            
+
         default:
             return {...state}
     }
