@@ -8,11 +8,9 @@ import DoctorsDetails from './Components/Doctors/DoctorsDetails';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
-import Form from "./Components/Form/Form"
-import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
-import Premium from './Components/Premium/Premium.jsx'
+import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
-
+import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
 
 export default function App() {
   return (
@@ -28,10 +26,8 @@ export default function App() {
           <Route  path = "/about"  element={<About/>}/>
           <Route  path = "/form"  element={<Form/>}/>
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
-          <Route path = "/imagenes" element ={<UserCloudinary/>}/>
-          <Route path = "/subs" element={<Premium/>}/>
           <Route path = "/signin" element={<SignIn/>}/>
-
+          <Route path ="/images" element ={<UserCloudinary/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>

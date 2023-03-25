@@ -8,6 +8,8 @@ const About = () => {
      
         <div className={style.aboutUs}>
            <NavBar/>
+       
+       
         <h2 className={style.title}>¿Qué es BRAINLY?</h2>
         <p className={style.text}>BRAINLY es una plataforma de diagnóstico asistido por computadora en la que las personas pueden diagnosticar sus enfermedades con un solo click.</p>
         <p className={style.text}>Utilizamos técnicas de aprendizaje profundo y aprendizaje automático para detectar el patrón de varias enfermedades con los registros electrónicos de salud del paciente y proporcionar información sobre diversas anomalías.</p>
@@ -21,7 +23,7 @@ const About = () => {
         </ul>
 
         <Link to={`/home`}>
-     <button> Volver </button>
+     <button className={style.btn}> Volver </button>
       </Link> 
 
       </div>
