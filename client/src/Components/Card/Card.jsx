@@ -12,7 +12,7 @@ const Card = ({title, text, imageSrc, fullText}) =>{
     </div>
     <h2 className={style.title}>{title}</h2>
     <p className={style.text}>{text}</p>
-    <button onClick={() => setShowPopUp(true)}>Leer más...</button>
+    <button className ={style.btnLeerMas}onClick={() => setShowPopUp(true)}>Leer más...</button>
     {showPopUp && (
       <div className={style.popup}>
         <div className={style.popupContent}>

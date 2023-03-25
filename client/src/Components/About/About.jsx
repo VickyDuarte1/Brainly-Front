@@ -23,7 +23,7 @@ const About = () => {
         </ul>
 
         <Link to={`/home`}>
-     <button> Volver </button>
+     <button className={style.btn}> Volver </button>
       </Link> 
 
       </div>
