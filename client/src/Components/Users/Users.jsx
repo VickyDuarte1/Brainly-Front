@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../../Redux/actions";
@@ -7,10 +6,7 @@ import SearchBar from '../NavBar/SearchBar';
 import { Link } from 'react-router-dom';
 import Paged from "../Paged";
 import './users.css';
-<<<<<<< HEAD
-=======
 import NavBar from "../NavBar/NavBar";
->>>>>>> 231ab867989f39de916893ad4dcdd6bba44f9338
 
 
 export default function Users() {
@@ -167,4 +163,3 @@ Filtrar por genero:
     </div>
   );
 }
-

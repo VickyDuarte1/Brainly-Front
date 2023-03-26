@@ -1,4 +1,3 @@
-
 import { GET_USERS,  GET_DOCTORS, ADD_USER, ACTIVE_USER,GET_COMMENTS } from "./action-types"
 
 
@@ -17,8 +16,6 @@ const reducer = (state = initialState, action) =>{
         case GET_USERS:
          return {
                 ...state,
-                users: action.payload
-            }
                 pacientes: action.payload.pacientes
               }
 
@@ -35,23 +32,22 @@ const reducer = (state = initialState, action) =>{
                 ...state,
                 doctores:action.payload.doctores
             }
-
             case GET_COMMENTS:
                 const newComments = action.payload;
                 return {
                   ...state,
                   comments: newComments
                 };
-
         case ACTIVE_USER:
             return{
                 ...state,
                 activeUser:action.payload
             }            
-
+               
         default:
             return {...state}
-    }
+    
+        }
 }
 
 export default reducer;

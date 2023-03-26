@@ -6,6 +6,7 @@
     "password": "135789",
     "email": "Sincere@april.biz",
     "tipo_usuario":"paciente",
+    "image":"https://randomuser.me/api/portraits/women/45.jpg",
     "comentario": ["La mejor atencion 10/10"],
     "phone": 1770736803156442
   },
@@ -17,6 +18,7 @@
     "password": "135789",
     "email": "Shanna@melissa.tv",
     "tipo_usuario":"medico",
+    "image":"https://randomuser.me/api/portraits/men/55.jpg",
     "comentario": ["La mejor atencion 10/10"],
     "phone": 173965909125
   },
@@ -27,6 +29,7 @@
     "username": "Samantha",
     "password": "135789",
     "email": "Nathan@yesenia.net",
+    "image":"https://randomuser.me/api/portraits/women/33.jpg",
   "tipo_usuario":"paciente",
   "comentario": ["La mejor atencion 10/10"],
   "phone": 14631234447
@@ -38,6 +41,7 @@
     "username": "Karianne",
     "password": "135789",
     "email": "Julianne.OConner@kory.org",
+    "image":"https://randomuser.me/api/portraits/men/71.jpg",
   "tipo_usuario":"medico",
   "comentario": ["La mejor atencion 10/10"],
   "phone": 4931709623156
@@ -49,6 +53,7 @@
     "username": "Kamren",
     "password": "135789",
     "email": "Lucio_Hettinger@annie.ca",
+    "image":"https://randomuser.me/api/portraits/women/37.jpg",
   "tipo_usuario":"paciente",
   "comentario": ["La mejor atencion 10/10"],
   "phone": 2549541289
@@ -60,6 +65,7 @@
     "username": "Leopoldo_Corkery",
     "password": "135789",
     "email": "Karley_Dach@jasper.info",
+    "image":"https://randomuser.me/api/portraits/men/62.jpg",
   "tipo_usuario":"medico",
   "comentario": ["La mejor atencion 10/10"],
   "phone": 147793584786430,

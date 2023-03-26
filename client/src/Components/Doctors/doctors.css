@@ -2,15 +2,18 @@
   flex-direction: row;
   font-size: 15px;
   display: grid;
+  border-bottom: solid;
+
 }
 
 .cartilla{
-border-top: 3px solid rgb(50, 203, 173);
+border-top: 3px solid rgb(44, 66, 104);
 font-size: 30px;
 justify-content: start;
 grid-gap: 1px;
 padding: 10px;
 font-weight: 500;
+
 }
 
 .columnas{
@@ -19,8 +22,8 @@ display: flex;
 
 .doctor, .cartilla{
   display:grid;
-  background-color:rgba(127, 255, 212, 0.909);  
-  border-bottom: 3px solid rgb(50, 203, 173);
+  background-color:rgba(116, 175, 183, 0.559);  
+  border-top: 3px solid rgb(44, 66, 104);
   color: rgb(28, 17, 96); 
   flex-direction: row;
   width: 100%;
@@ -34,6 +37,7 @@ display: flex;
   justify-content: space-evenly;
   width: 100%;
   grid-template-columns: repeat(5,20%);
+  
 }
 
 .doctor-item:hover{
