@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@300&family=Benne&family=Bona+Nova&family=Glass+Antiqua&family=Mea+Culpa&family=Old+Standard+TT&family=Rouge+Script&family=Sacramento&family=Send+Flowers&display=swap');
+
 .App {
   text-align: center;
+   font-family: 'Old Standard TT', serif;
+  
 }
 
 .App-logo {

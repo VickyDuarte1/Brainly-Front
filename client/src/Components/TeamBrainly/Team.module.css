@@ -1,0 +1,38 @@
+.fondoAb{
+    margin-top: 130px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    
+    
+}
+
+.itemsab{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+   
+    padding: 20px;
+   
+}
+.us{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+.listaa{
+    background-color: aliceblue;
+    margin: 10px;
+    padding: 10px;
+}
+
+.buttonbk{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
