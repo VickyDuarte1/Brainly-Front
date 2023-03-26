@@ -7,11 +7,15 @@
     margin: 0%;
     padding:0%;
     justify-content: center;
+    height: fit-content;
 }
 
+
 .image{
-    height: 300px;
-    width:300px;
+    
+  min-height: 350px;
+  height: 100%;
+    width:100%;
     display: inline-block;
  
 }
@@ -68,4 +72,8 @@
 
   button:active{
     background-color: rgb(35, 101, 79);
+  }
+
+  .container{
+    background-color: rgba(162, 179, 174, 0.148);
   }

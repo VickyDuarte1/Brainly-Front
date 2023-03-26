@@ -24,24 +24,26 @@ export default function Home() {
         
 
         <div className={style.carrousele}>
+
         <Card
         className={style.car1}
-        title="Como paciente..."
-        text="¿Qué puedes hacer como paciente?"
+        title="Como paciente"
+        text="¿Qué puedes hacer?"
         imageSrc= {imagen2}
         fullText="Sube tus imágenes de tomografías y obtén un diagnóstico preciso avalado por un médico gracias a nuestro algoritmo de inteligencia artificial altamente preciso."
       />
       <Card
         className={style.car2}
-        title="Como Doctor..."
-        text="¿Qué puedes hacer como Doctor?"
+        title="Como Doctor"
+        text="¿Qué puedes hacer ?"
         imageSrc={imagen1}
+        
         fullText="Obtén los resultados de diagnóstico de tus pacientes en tiempo real para que puedas tomar decisiones informadas sobre su tratamiento."
       />
       <Card
         className={style.car3}
         title="Seguridad y privacidad de los datos"
-        text="¿Cómo garantizamos tu privacidad?"
+        text="¿Cómo lo hacemos?"
         imageSrc={imagen3}
         fullText="Garantizamos la seguridad y privacidad de los datos de tus pacientes mediante la protección de datos"
       />
