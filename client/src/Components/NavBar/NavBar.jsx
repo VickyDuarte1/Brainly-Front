@@ -102,7 +102,7 @@ const NavBar = () => {
 )}
 
    
-      <Link to='/subs'>
+      <Link to='/payment'>
        <button className={style.premium} >Se Premium⭐</button>
        </Link>
       </div>

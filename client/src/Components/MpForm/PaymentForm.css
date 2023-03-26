@@ -1,7 +1,41 @@
-#form-checkout {
+#container{ 
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#form-text{
+    width: 50%;
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
+    margin-top: 110px;
+}
+#form-checkout {
+    margin: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     max-width: 600px;
+}
+#view-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#form-buttons{
+    display: flex;
+    flex-direction: reverse;
+    justify-content: space-around;
+}
+#form-buttons button{
+    width: 90px;
+    cursor: pointer;
+    background-color: rgba(127, 255, 212, 0.909);
+    border: 3px solid rgb(50, 203, 173);
+}
+.progress-bar{
+    width: inherit;
 }
 
 .container {

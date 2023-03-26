@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 import "./PaymentForm.css"
 
-const  PaymentForm = () => {
+const PaymentForm = () => {
+    const navigate = useNavigate()
+
     const publicKey = "APP_USR-ef2d6a96-162e-4549-8966-4e747386889b";
+    const [errors, setErrors] = useState(null)
 
     useEffect(() => {
         // Agrega el script de MercadoPago a la página
@@ -77,6 +82,9 @@ const  PaymentForm = () => {
                             identificationType,
                         } = cardForm.getCardFormData();
 
+                        const checkoutButton = document.querySelector("#checkout-finish");
+                        const payLink = document.querySelector("#form-checkout__link")
+
                         fetch("http://localhost:5000/generar_pago", {
                             method: "POST",
                             headers: {
@@ -101,7 +109,15 @@ const  PaymentForm = () => {
                         .then(
                             response => response.json()
                         )
-                        .then(data => window.location.href = data.link)
+                        .then(data => {
+                            if(!data.error){ 
+                                checkoutButton.removeAttribute("disabled");
+                                payLink.setAttribute("href", data.link)
+                            }
+                            else{
+                                setErrors(data.error)
+                            }
+                        })
                     },
                     onFetching: (resource) => {
                         console.log("Fetching resource: ", resource);
@@ -126,22 +142,46 @@ const  PaymentForm = () => {
     }, [publicKey]);
 
     return (
+    <div>
         <div>
-            <form id="form-checkout">
-                <div id="form-checkout__cardNumber" className="container"></div>
-                <div id="form-checkout__expirationDate" className="container"></div>
-                <div id="form-checkout__securityCode" className="container"></div>
-                <input type="text" id="form-checkout__cardholderName" />
-                <select id="form-checkout__issuer"></select>
-                <select id="form-checkout__installments"></select>
-                <select id="form-checkout__identificationType"></select>
-                <input type="text" id="form-checkout__identificationNumber" />
-                <input type="email" id="form-checkout__cardholderEmail" />
-
-                <button type="submit" id="form-checkout__submit">Pagar</button>
-                <progress value="0" className="progress-bar">Cargando...</progress>
-            </form>
+            <NavBar />
+        </div>        
+        <div id='container'>             
+            <div id='form-text'>
+                <h4>Por favor, ingrese los datos de su tarjeta para ser validados</h4>
+                <p id='info-text'>
+                    Una vez validados, tendrá acceso al botón de pago y será redireccionado a la página de pago.
+                    <br/>
+                    Completado el pago usted se convertirá en un usuario premiun de <b>BRAINLY</b>
+                </p>
+                <span>Gracias a la tecnología de Mercado Pago, podemos ofrecerle este servicio con total seguridad, y brindarle toda la protección a sus datos</span>
+            </div>
+            <div id='view-container'>
+                <form id="form-checkout">
+                    <div id="form-checkout__cardNumber" className="container"></div>
+                    <div id="form-checkout__expirationDate" className="container"></div>
+                    <div id="form-checkout__securityCode" className="container"></div>
+                    <input type="text" id="form-checkout__cardholderName" />
+                    <select id="form-checkout__issuer"></select>
+                    <select id="form-checkout__installments"></select>
+                    <select id="form-checkout__identificationType"></select>
+                    <input type="text" id="form-checkout__identificationNumber" />
+                    <input type="email" id="form-checkout__cardholderEmail" />
+                    <progress value="0" className="progress-bar">Cargando...</progress>
+                    <div id='form-buttons'>
+                        <button type="submit" id="form-checkout__submit">Validar datos</button>
+                        <button id='checkout-finish' disabled><a id='form-checkout__link' target='_blank'>Ir a Pagar</a></button>
+                    </div>
+                    {
+                        errors 
+                        && 
+                        <span style={{color: "red"}}>Error: {errors}</span>
+                        
+                    }
+                </form>
+            </div>
         </div>
+    </div>
     )
 
 };
