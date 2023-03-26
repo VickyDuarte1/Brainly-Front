@@ -1,15 +1,25 @@
 import React from 'react';
-import '../../Redux/coments.json'
+import '../../Redux/coments.json';
+import './comments.css';
 
-export default function Coment( {id, nombre, correo, comentario, tipo_usuario } ) {
+export default function Coment( {id, nombre, correo, comentario, tipo_usuario, image } ) {
  
   return (
     <div className='comments'>
-     <p>ID: {id}</p>
-      <h2 className='nombre-u'>Nombre: {nombre}</h2>
-      <h3 className='correo-u'> {correo}</h3>
-      <h4> comentario: {comentario}</h4>
-      <div>{tipo_usuario}</div>
+     
+
+     
+     <img src={image} className='img-c' whidth='110px' height="110px"/>
+    
+  
+     
+
+
+    <div className='columna2-com'>
+    <h2 className='nombre-u'> {nombre}</h2>
+      <h4>  {comentario}</h4>
+      <div>⭐⭐⭐⭐⭐</div>
+      </div>
     </div>
   );
 }
