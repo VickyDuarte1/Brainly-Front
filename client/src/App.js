@@ -11,6 +11,7 @@ import TeamBrainly from './Components/TeamBrainly/TeamBrainly '
 import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
 import Comments from './Components/Comentarios/Coments';
+import Profile from './Components/Profile/Profile'
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
           <Route path = "/signin" element={<SignIn/>}/>
           <Route path = "/comments" element={<Comments/>}/>
+          <Route path="/profile" element ={<Profile/>}/>
         </Routes>
       </div>
     </BrowserRouter>
