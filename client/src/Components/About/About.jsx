@@ -28,7 +28,7 @@ const About = () => {
 
 <div className={style.home}>
         <Link to={`/home`}>
-     <button> Volver </button>
+     <button className={style.btn}> Volver </button>
       </Link> 
       </div>
       </div>
