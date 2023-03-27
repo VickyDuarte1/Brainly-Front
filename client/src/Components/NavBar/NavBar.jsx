@@ -93,20 +93,6 @@ const NavBar = () => {
         <div>
 
         </div>
-<<<<<<< HEAD
-        
-        
-{!activeUser && (
-  <Link to='/form'>
-    <button className={style.premium}>Log In</button>
-  </Link>
-)}
-
-   
-      <Link to='/subs'>
-       <button className={style.premium} >Se Premium⭐</button>
-       </Link>
-=======
 
 
         {!activeUser && (
@@ -125,7 +111,6 @@ const NavBar = () => {
         <Link to='/payment'>
           <button className={style.premium} >Se Premium⭐</button>
         </Link>
->>>>>>> c4f7b80d7b0cf51d9353d663f4c381c45d28214b
       </div>
 
 
