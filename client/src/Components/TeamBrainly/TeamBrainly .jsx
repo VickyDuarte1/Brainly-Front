@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
-
 import TeamMemberCard from "./TeamMemberCard";
 import Jorge from '../../Assets/Jorge.jpg'
 import Odette from '../../Assets/Odette.jpg'
 import Vicky from '../../Assets/Vicky.jpeg'
 import Caro from '../../Assets/Caro.jpeg'
 import AgusOvalle from '../../Assets/AgusOvalle.jpeg'
+import Agus from '../../Assets/Agus.jpg'
+import Alexis from '../../Assets/Alexiss.jpg'
 import style from './TeamBrainly.module.css'
-
 
 
 
@@ -34,7 +34,7 @@ const TeamBrainly = () => {
                     />
                     <TeamMemberCard
                     name= "Agustín Ojeda"
-                    imageSrc= {Vicky}
+                    imageSrc= {Agus}
                     />
                     <TeamMemberCard
                     name= "Carolina Ruvira"
@@ -42,7 +42,7 @@ const TeamBrainly = () => {
                     />
                     <TeamMemberCard
                     name= "Alexis Sanz"
-                    imageSrc= {Caro}
+                    imageSrc= {Alexis}
                     />
                     <TeamMemberCard
                     name= "Agustín Ovalle"
@@ -50,18 +50,11 @@ const TeamBrainly = () => {
                     />
                   </div>
                   
-
-         
-
-
         <Link to={`/home`}>
      <button className={style.btnBack}> Volver </button>
       </Link> 
-      </div>
 
-     
-
-     
+        </div>
     )
 }
 export default TeamBrainly;
