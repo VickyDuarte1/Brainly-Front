@@ -7,7 +7,7 @@ import Doctors from './Components/Doctors/Doctors'
 import DoctorsDetails from './Components/Doctors/DoctorsDetails';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
-import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
+import TeamBrainly from './Components/TeamBrainly/TeamBrainly '
 import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
 import Comments from './Components/Comentarios/Coments';
