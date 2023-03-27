@@ -14,7 +14,7 @@ import style from './TeamBrainly.module.css'
 
 const TeamBrainly = () => {
     return (
-        <div className={styles.fondoAb}>
+        <div>
           <NavBar/>
           <hr/>
           <hr/>
@@ -53,15 +53,15 @@ const TeamBrainly = () => {
 
          
 
-<div className={styles.buttonbk}>
+
         <Link to={`/home`}>
      <button className={style.btnBack}> Volver </button>
       </Link> 
       </div>
 
-      </div>
+     
 
-        </div>
+     
     )
 }
 export default TeamBrainly;
