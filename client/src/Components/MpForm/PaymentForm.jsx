@@ -85,7 +85,7 @@ const PaymentForm = () => {
                         const checkoutButton = document.querySelector("#checkout-finish");
                         const payLink = document.querySelector("#form-checkout__link")
 
-                        fetch("http://localhost:5000/generar_pago", {
+                        fetch("https://brainly-back.onrender.com/generar_pago", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",

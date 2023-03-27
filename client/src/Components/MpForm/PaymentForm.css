@@ -11,6 +11,9 @@
     align-self: flex-start;
     margin-top: 110px;
 }
+#form-text span{
+    font-size: x-small;
+}
 #form-checkout {
     margin: 150px;
     display: flex;
