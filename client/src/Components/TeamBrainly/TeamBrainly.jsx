@@ -6,6 +6,8 @@ import Odette from '../../Assets/Odette.jpg'
 import Vicky from '../../Assets/Vicky.jpeg'
 import Caro from '../../Assets/Caro.jpeg'
 import AgusOvalle from '../../Assets/AgusOvalle.jpeg'
+import Agus from '../../Assets/Agus.jpg'
+import Alexis from '../../Assets/Alexiss.jpg'
 import style from './TeamBrainly.module.css'
 
 
@@ -32,7 +34,7 @@ const TeamBrainly = () => {
                     />
                     <TeamMemberCard
                     name= "Agustín Ojeda"
-                    imageSrc= {Vicky}
+                    imageSrc= {Agus}
                     />
                     <TeamMemberCard
                     name= "Carolina Ruvira"
@@ -40,7 +42,7 @@ const TeamBrainly = () => {
                     />
                     <TeamMemberCard
                     name= "Alexis Sanz"
-                    imageSrc= {Caro}
+                    imageSrc= {Alexis}
                     />
                     <TeamMemberCard
                     name= "Agustín Ovalle"
