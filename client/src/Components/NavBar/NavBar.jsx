@@ -101,7 +101,14 @@ const NavBar = () => {
   </Link>
 )}
 
+<div>
    
+<Link to='https://dashboard-brainly.vercel.app/'>
+       <button className={style.premium} > Dashboard </button>
+       </Link>
+      </div>
+
+      
       <Link to='/subs'>
        <button className={style.premium} >Se Premium⭐</button>
        </Link>
