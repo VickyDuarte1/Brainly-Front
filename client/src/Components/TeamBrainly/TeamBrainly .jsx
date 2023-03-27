@@ -6,11 +6,15 @@ import Odette from '../../Assets/Odette.jpg'
 import Vicky from '../../Assets/Vicky.jpeg'
 import Caro from '../../Assets/Caro.jpeg'
 import AgusOvalle from '../../Assets/AgusOvalle.jpeg'
+import Agus from '../../Assets/Agus.jpg'
+import Alexis from '../../Assets/Alexiss.jpg'
 import style from './TeamBrainly.module.css'
+
+
 
 const TeamBrainly = () => {
     return (
-        <div className={style.fondoAb}>
+        <div>
           <NavBar/>
           <hr/>
           <hr/>
@@ -30,7 +34,7 @@ const TeamBrainly = () => {
                     />
                     <TeamMemberCard
                     name= "Agustín Ojeda"
-                    imageSrc= {Vicky}
+                    imageSrc= {Agus}
                     />
                     <TeamMemberCard
                     name= "Carolina Ruvira"
@@ -38,7 +42,7 @@ const TeamBrainly = () => {
                     />
                     <TeamMemberCard
                     name= "Alexis Sanz"
-                    imageSrc= {Caro}
+                    imageSrc= {Alexis}
                     />
                     <TeamMemberCard
                     name= "Agustín Ovalle"
@@ -46,18 +50,11 @@ const TeamBrainly = () => {
                     />
                   </div>
                   
-
-         
-
-<div className={style.buttonbk}>
         <Link to={`/home`}>
      <button className={style.btnBack}> Volver </button>
       </Link> 
-      </div>
 
-      </div>
-
-        
+        </div>
     )
 }
 export default TeamBrainly;
