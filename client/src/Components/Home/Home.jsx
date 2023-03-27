@@ -42,8 +42,10 @@ export default function Home() {
       />
       <Card
         className={style.car3}
-        title="Seguridad y privacidad de los datos"
-        text="¿Cómo lo hacemos?"
+
+        title="Seguridad"
+        text="¿Cómo garantizamos tu privacidad?"
+
         imageSrc={imagen3}
         fullText="Garantizamos la seguridad y privacidad de los datos de tus pacientes mediante la protección de datos"
       />
