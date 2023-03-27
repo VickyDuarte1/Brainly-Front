@@ -7,18 +7,16 @@ import Doctors from './Components/Doctors/Doctors'
 import DoctorsDetails from './Components/Doctors/DoctorsDetails';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
-import TeamBrainly from './Components/TeamBrainly/TeamBrainly'
+import TeamBrainly from './Components/TeamBrainly/TeamBrainly '
 import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
-import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
-import PaymentForm from './Components/MpForm/PaymentForm';
+import Comments from './Components/Comentarios/Coments';
 
 export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/payment" element={<PaymentForm/>} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/users/:id" element={<UsersDetails/>} />
@@ -29,7 +27,7 @@ export default function App() {
           <Route  path = "/form"  element={<Form/>}/>
           <Route path = "/aboutUs" element={<TeamBrainly/>}/>
           <Route path = "/signin" element={<SignIn/>}/>
-          <Route path ="/images" element ={<UserCloudinary/>}></Route>
+          <Route path = "/comments" element={<Comments/>}/>
         </Routes>
       </div>
     </BrowserRouter>
