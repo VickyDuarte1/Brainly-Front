@@ -1,4 +1,4 @@
-import { GET_USERS,  GET_DOCTORS, ADD_USER, ACTIVE_USER } from "./action-types"
+import { GET_USERS,  GET_DOCTORS, ADD_USER, ACTIVE_USER,GET_COMMENTS } from "./action-types"
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     doctores:[],
     searched:'',
     userDetails: {},
-    activeUser:[]
+    activeUser:[],
+    coments:[]
 }
 
 
@@ -31,12 +32,17 @@ const reducer = (state = initialState, action) =>{
                 ...state,
                 doctores:action.payload.doctores
             }
-
+            case GET_COMMENTS:
+                const newComments = action.payload;
+                return {
+                  ...state,
+                  comments: newComments
+                };
         case ACTIVE_USER:
             return{
                 ...state,
                 activeUser:action.payload
-            }
+            }            
                
         default:
             return {...state}

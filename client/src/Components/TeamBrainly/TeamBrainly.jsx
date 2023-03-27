@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+
 import TeamMemberCard from "./TeamMemberCard";
 import Jorge from '../../Assets/Jorge.jpg'
 import Odette from '../../Assets/Odette.jpg'
@@ -10,9 +11,10 @@ import style from './TeamBrainly.module.css'
 
 
 
+
 const TeamBrainly = () => {
     return (
-        <div>
+        <div className={styles.fondoAb}>
           <NavBar/>
           <hr/>
           <hr/>
@@ -48,9 +50,16 @@ const TeamBrainly = () => {
                     />
                   </div>
                   
+
+         
+
+<div className={styles.buttonbk}>
         <Link to={`/home`}>
      <button className={style.btnBack}> Volver </button>
       </Link> 
+      </div>
+
+      </div>
 
         </div>
     )
