@@ -8,12 +8,9 @@ import Caro from '../../Assets/Caro.jpeg'
 import AgusOvalle from '../../Assets/AgusOvalle.jpeg'
 import style from './TeamBrainly.module.css'
 
-
-
-
 const TeamBrainly = () => {
     return (
-        <div className={styles.fondoAb}>
+        <div className={style.fondoAb}>
           <NavBar/>
           <hr/>
           <hr/>
@@ -52,7 +49,7 @@ const TeamBrainly = () => {
 
          
 
-<div className={styles.buttonbk}>
+<div className={style.buttonbk}>
         <Link to={`/home`}>
      <button className={style.btnBack}> Volver </button>
       </Link> 
