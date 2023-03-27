@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
-
 import TeamMemberCard from "./TeamMemberCard";
 import Jorge from '../../Assets/Jorge.jpg'
 import Odette from '../../Assets/Odette.jpg'
@@ -61,7 +60,7 @@ const TeamBrainly = () => {
 
       </div>
 
-        </div>
+        
     )
 }
 export default TeamBrainly;
