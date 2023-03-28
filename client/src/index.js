@@ -1,19 +1,54 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import {Provider}  from 'react-redux';
-import {store} from './Redux/store'
-import { GoogleOAuthProvider } from '@react-oauth/google';
+/*!
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+=========================================================
+* BLK Design System React - v1.2.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/blk-design-system-react
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
+import "assets/css/nucleo-icons.css";
+import "assets/scss/blk-design-system-react.scss";
+import "assets/demo/demo.css";
+
+import Index from "views/Index.js";
+import LandingPage from "views/examples/LandingPage.js";
+import RegisterPage from "views/examples/RegisterPage.js";
+import ProfilePage from "views/examples/ProfilePage.js";
+import LoginPage from "views/examples/LoginPage";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
-  <Provider store ={store}>
-    <GoogleOAuthProvider clientId="560086254467-d79pb5fmh6ciud2v2qmm3b338nterco3.apps.googleusercontent.com">
-    <App />
-    </GoogleOAuthProvider>
-  </Provider>   
-
+  <BrowserRouter>
+    <Switch>
+      <Route path="/components" render={(props) => <Index {...props} />} />
+      <Route
+        path="/landing-page"
+        render={(props) => <LandingPage {...props} />}
+      />
+      <Route
+        path="/register-page"
+        render={(props) => <RegisterPage {...props} />}
+      />
+      <Route path="/login-page" render={(props) => <LoginPage {...props} />} />
+      <Route
+        path="/profile-page"
+        render={(props) => <ProfilePage {...props} />}
+      />
+      <Redirect from="/" to="/components" />
+    </Switch>
+  </BrowserRouter>
 );
-
-
