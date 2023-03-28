@@ -12,6 +12,8 @@ import Form from "./Components/Form/Form";
 import SignIn from './Components/SignIn/SignIn';
 import Comments from './Components/Comentarios/Coments';
 import PaymentForm from './Components/MpForm/PaymentForm';
+import UserCloudinary from './Components/UserCloudinary/UserCloudinary';
+
 
 export default function App() {
   return (
@@ -30,6 +32,7 @@ export default function App() {
           <Route path = "/signin" element={<SignIn/>}/>
           <Route path = "/comments" element={<Comments/>}/>
           <Route path='/payment' element={<PaymentForm />} />
+          <Route path = '/images' element={<UserCloudinary/>}/>
         </Routes>
       </div>
     </BrowserRouter>

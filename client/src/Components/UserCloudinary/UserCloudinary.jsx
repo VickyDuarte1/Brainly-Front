@@ -37,6 +37,7 @@ import { Container, FormGroup, Input } from 'reactstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './UserCloudinary.module.css';
 import brainly4 from '../../Assets/brainly4.jpg';
+import NavBar from '../NavBar/NavBar';
 
 const UserCloudinary = (props) => {
   const [image, setImage] = useState("");
@@ -76,11 +77,11 @@ const UserCloudinary = (props) => {
 
   return (
     <div>
+      <NavBar/>
+      
       <Container>
         <div className={style.logoContainer}>
-          <Link to='/home'>
-            <img src={brainly4} className={style.logo} width='100px' height='100px' />
-          </Link>
+
         </div>
         <h1 className={style.title}>
           Carga de imágenes
