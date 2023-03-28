@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { getDoctors, getUsers } from "../../Redux/actions";
-import brainly4 from '../../Assets/brainly4.jpg'
+import brainly4 from '../../Assets/brainly4.jpg';
+import { googleLogout, GoogleLogin } from '@react-oauth/google';
+import * as jose from 'jose';
 
 import "./signin.css";
 
 export default function SignIn() {
   const [activeUser, setActiveUser] = useState(JSON.parse(localStorage.getItem("activeUser")) || null);
-
   const pacientes = useSelector((state) => state.pacientes);
-
   const doctores = useSelector((state)=> state.doctores);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,10 +37,11 @@ export default function SignIn() {
         localStorage.setItem("activeUser", JSON.stringify({ ...doctor, activeUser: true, tipo_user:'doctor', contraseña:'*****' }));
         return doctor;
       }
-    }
-   
-  }
 
+    }
+    return null;
+  }
+  
   const handleSignIn = (event) => {
     event.preventDefault();
     const usuario = event.target.usuario.value;
@@ -53,13 +53,56 @@ export default function SignIn() {
     if (!usuarioact) {
       // Muestra mensaje de error si el usuario no existe
       alert("Usuario o contraseña incorrectos");
+      return;
     }
   }
+ 
+
 
   const handleLogOut = () => {
     localStorage.removeItem("activeUser");
     setActiveUser(null);
   }
+
+  function findUserGoogle(correo) {
+    const paciente = pacientes.find((user) => user.correo === correo);
+    if (paciente) {
+      setActiveUser({ ...paciente, activeUser: true });
+      localStorage.setItem(
+        "activeUser",
+        JSON.stringify({
+          ...paciente,
+          activeUser: true,
+          tipo_user: "paciente",
+          contraseña: "*****",
+        })
+      );
+    } else {
+      const doctor = doctores.find((doctor) => doctor.correo === correo);
+      if (doctor) {
+        setActiveUser({ ...doctor, activeUser: true });
+        localStorage.setItem(
+          "activeUser",
+          JSON.stringify({
+            ...doctor,
+            activeUser: true,
+            tipo_user: "doctor",
+            contraseña: "*****",
+          })
+        );
+      } else {
+        alert("Usuario no encontrado");
+      }
+    }
+  }
+  
+
+  function handleUser(user) {
+    if (user) {
+      setActiveUser(user);
+    } 
+  }
+
 
   return (
     
@@ -85,6 +128,31 @@ export default function SignIn() {
             <input type="password" name="contraseña" placeholder="Contraseña" />
           </div>
         </div>
+
+  <GoogleLogin
+  onSuccess={credentialResponse => {
+   const credential= credentialResponse
+   const token= credential.credential
+   const secretKey= credential.secretKey
+   const decodedToken = jose.decodeJwt(token, secretKey);
+   const correo=decodedToken.email
+  
+
+   console.log(decodedToken.sub); 
+   console.log(decodedToken.name); 
+   console.log(decodedToken.email); 
+   findUserGoogle(correo);
+   handleUser(findUserGoogle(correo));
+   
+
+  }}
+  onError={() => {
+    console.log('Inicio de sesión fallido');
+    
+    
+  }}
+/>
+
         {activeUser && <p className="welcomeuser">Bienvenido {activeUser.nombre}</p>}
 
         {!activeUser && <button type="submit">Iniciar sesión</button>}        
