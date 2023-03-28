@@ -14,6 +14,11 @@
 #form-text span{
     font-size: x-small;
 }
+#plan-selector{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 #form-checkout {
     margin: 150px;
     display: flex;

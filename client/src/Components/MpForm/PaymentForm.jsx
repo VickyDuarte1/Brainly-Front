@@ -8,6 +8,17 @@ const PaymentForm = () => {
 
     const publicKey = "APP_USR-ef2d6a96-162e-4549-8966-4e747386889b";
     const [errors, setErrors] = useState(null)
+    const [plan, setPlan] = useState({
+        id: ''
+    })
+
+    const planSelectorChange = (e) => {
+        console.log(e.target.value)
+        setPlan({
+            id: e.target.value
+        })      
+    }
+
 
     useEffect(() => {
         // Agrega el script de MercadoPago a la página
@@ -67,10 +78,11 @@ const PaymentForm = () => {
                         if (error)
                             return console.warn("Form Mounted handling error: ", error);
                         console.log("Form mounted");
+                        
                     },
                     onSubmit: (event) => {
                         event.preventDefault();
-
+                        console.log(plan.id)
                         const {
                             paymentMethodId: payment_method_id,
                             issuerId: issuer_id,
@@ -85,7 +97,7 @@ const PaymentForm = () => {
                         const checkoutButton = document.querySelector("#checkout-finish");
                         const payLink = document.querySelector("#form-checkout__link")
 
-                        fetch("https://brainly-back.onrender.com/generar_pago", {
+                        fetch("http://localhost:5000/generar_pago", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -104,6 +116,7 @@ const PaymentForm = () => {
                                         number: identificationNumber,
                                     },
                                 },
+                                plan: String(plan.id),
                             }),
                         })
                         .then(
@@ -158,6 +171,11 @@ const PaymentForm = () => {
             </div>
             <div id='view-container'>
                 <form id="form-checkout">
+                    <div id='plan-selector'>
+                        <input type="checkbox" className='plan-option' onChange={(e) => planSelectorChange(e)} value='2c9380848712f89601871662a59e0153'/><label>Plan 1</label>
+                        <input type="checkbox" className='plan-option' onChange={(e) => planSelectorChange(e)} value='2c9380848712f89601871662a59e0153'/><label>Plan 2</label>
+                        <input type="checkbox" className='plan-option' onChange={(e) => planSelectorChange(e)} value='2c9380848712f89601871662a59e0153'/><label>Plan 3</label>
+                    </div>
                     <div id="form-checkout__cardNumber" className="container"></div>
                     <div id="form-checkout__expirationDate" className="container"></div>
                     <div id="form-checkout__securityCode" className="container"></div>
