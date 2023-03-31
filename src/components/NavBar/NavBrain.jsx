@@ -15,7 +15,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-export default function ExamplesNavbar() {
+export default function NavBrain() {
   const location = useLocation();
   const handleClick = () => {
     const section = document.getElementById("subscribe");
@@ -26,11 +26,10 @@ export default function ExamplesNavbar() {
     localStorage.removeItem("activeUser");
     setActiveUser(null);
 
-    // Redirect to landing page if user is logging out from profile page
-    if (location.pathname === "/profile-page") {
-      window.location.href = "/landing-page";
-    } else if (location.pathname === "/register-page") {
-      window.location.href = "/landing-page";
+    if (location.pathname === "/profile-patient") {
+      window.location.href = "/home";
+    } else if (location.pathname === "/register") {
+      window.location.href = "/home";
     }
   };
 
@@ -67,9 +66,6 @@ export default function ExamplesNavbar() {
     setCollapseOut("");
   };
 
-  // const activeUser = JSON.parse(localStorage.getItem("activeUser"));
-  // console.log(activeUser)
-
   const [activeUser, setActiveUser] = useState(
     JSON.parse(localStorage.getItem("activeUser")) || null
   );
@@ -78,7 +74,7 @@ export default function ExamplesNavbar() {
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand tag={Link} to="/landing-page" id="navbar-brand">
+          <NavbarBrand tag={Link} to="/home" id="navbar-brand">
             <span>Brainly • </span>
             Fast and Safe!
           </NavbarBrand>
@@ -134,12 +130,12 @@ export default function ExamplesNavbar() {
             {!activeUser ? (
               <>
                 <NavItem>
-                  <NavLink tag={Link} to="/register-page">
+                  <NavLink tag={Link} to="/register">
                     Registrate
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to="/login-page">
+                  <NavLink tag={Link} to="/login">
                     {" "}
                     Inicia Sesión
                   </NavLink>

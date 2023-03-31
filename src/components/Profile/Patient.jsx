@@ -29,22 +29,22 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
+import NavBrain from "../NavBar/NavBrain";
+import Footer from "../Footer/Footer";
 
 const carouselItems = [
   {
-    src: require("assets/img/brain-three.jpg"),
+    src: require("../../assets/img/brain-three.jpg"),
     altText: "Slide 1",
     caption: "Selecciona tu Imágen",
   },
   {
-    src: require("assets/img/brain-two.jpg"),
+    src: require("../../assets/img/brain-two.jpg"),
     altText: "Slide 2",
     caption: "Carga tu Imágen",
   },
   {
-    src: require("assets/img/brain-one.jpg"),
+    src: require("../../assets/img/brain-one.jpg"),
     altText: "Slide 3",
     caption: "Deja que la IA se encarge del resto",
   },
@@ -52,7 +52,7 @@ const carouselItems = [
 
 let ps = null;
 
-export default function ProfilePage() {
+export default function Patient() {
   const activeUser = JSON.parse(localStorage.getItem("activeUser"));
   const [demoModal, setDemoModal] = React.useState(false);
 
@@ -154,18 +154,18 @@ export default function ProfilePage() {
   }, []);
   return (
     <>
-      <ExamplesNavbar />
+      <NavBrain />
       <div className="wrapper">
         <div className="page-header">
           <img
             alt="..."
             className="dots"
-            src={require("assets/img/dots.png")}
+            src={require("../../assets/img/dots.png")}
           />
           <img
             alt="..."
             className="path"
-            src={require("assets/img/path4.png")}
+            src={require("../../assets/img/path4.png")}
           />
           <Container className="align-items-center">
             <Row>

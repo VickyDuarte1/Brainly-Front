@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDoctors, getUsers } from "../../Redux/actions";
-import { googleLogout, GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import * as jose from "jose";
 import classnames from "classnames";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
@@ -30,14 +30,13 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
+import NavBrain from "../NavBar/NavBrain";
+import Footer from "../Footer/Footer";
 
-export default function LoginPage() {
+export default function Login() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
-  const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
   const [activeUser, setActiveUser] = useState(
     JSON.parse(localStorage.getItem("activeUser")) || null
@@ -199,7 +198,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <ExamplesNavbar />
+      <NavBrain />
       <div className="wrapper">
         <div className="page-header">
           <div className="page-header-image" />
@@ -222,7 +221,7 @@ export default function LoginPage() {
                     <CardHeader>
                       <CardImg
                         alt="..."
-                        src={require("assets/img/square-purple-1.png")}
+                        src={require("../../assets/img/square-purple-1.png")}
                       />
                       <CardTitle tag="h4">Ingresa</CardTitle>
                     </CardHeader>
@@ -302,6 +301,7 @@ export default function LoginPage() {
                                     <img
                                       src={activeUser.imagen}
                                       style={{ borderRadius: "80%" }}
+                                      alt="profile"
                                     />
                                   </div>
                                 </div>
@@ -339,7 +339,7 @@ export default function LoginPage() {
                                 (window.location.href =
                                   "https://dashboard-brainly.vercel.app")
                               ) : (
-                                <Redirect to="/profile-page" />
+                                <Navigate to="/profile-patient" />
                               )}
                             </div>
                           )}
@@ -392,7 +392,7 @@ export default function LoginPage() {
                             <br></br>
                             <span className="form-check-sign" />
                             Primera vez como usuario{" "}
-                            <a href="/register-page">Registrate</a>
+                            <a href="/register">Registrate</a>
                           </Label>
                         </FormGroup>
                       </Form>

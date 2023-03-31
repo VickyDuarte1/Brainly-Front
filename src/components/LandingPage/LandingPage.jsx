@@ -1,16 +1,16 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // reactstrap components
 import { Container } from "reactstrap";
 import { Button } from "reactstrap";
 
-export default function PageHeader() {
-  const history = useHistory();
+export default function LandingPage() {
+  const history = useNavigate();
 
   const handleButtonClick = () => {
     // Aquí puedes redirigir a la ruta deseada
-    history.push("/landing-page");
+    history("/home");
   };
 
   return (

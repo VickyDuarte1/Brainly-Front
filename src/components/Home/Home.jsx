@@ -1,6 +1,5 @@
 import React from "react";
 
-// reactstrap components
 import {
   Button,
   Card,
@@ -15,11 +14,10 @@ import {
   Col,
 } from "reactstrap";
 
-// core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
+import NavBrain from "../NavBar/NavBrain";
+import Footer from "../Footer/Footer";
 
-export default function LandingPage() {
+export default function Home() {
   const handleClick = () => {
     const section = document.getElementById("about");
 
@@ -43,38 +41,38 @@ export default function LandingPage() {
 
   return (
     <>
-      <ExamplesNavbar />
+      <NavBrain />
       <div className="wrapper" id="home">
         <div className="page-header">
           <img
             alt="..."
             className="path"
-            src={require("assets/img/blob.png")}
+            src={require("../../assets/img/blob.png")}
           />
           <img
             alt="..."
             className="path2"
-            src={require("assets/img/path2.png")}
+            src={require("../../assets/img/path2.png")}
           />
           <img
             alt="..."
             className="shapes triangle"
-            src={require("assets/img/triunghiuri.png")}
+            src={require("../../assets/img/triunghiuri.png")}
           />
           <img
             alt="..."
             className="shapes wave"
-            src={require("assets/img/waves.png")}
+            src={require("../../assets/img/waves.png")}
           />
           <img
             alt="..."
             className="shapes squares"
-            src={require("assets/img/patrat.png")}
+            src={require("../../assets/img/patrat.png")}
           />
           <img
             alt="..."
             className="shapes circle"
-            src={require("assets/img/cercuri.png")}
+            src={require("../../assets/img/cercuri.png")}
           />
           <div className="content-center">
             <Row className="row-grid justify-content-between align-items-center text-left">
@@ -133,7 +131,7 @@ export default function LandingPage() {
                 <img
                   alt="..."
                   className="img-fluid"
-                  src={require("assets/img/home-brain.png")}
+                  src={require("../../assets/img/home-brain.png")}
                 />
               </Col>
             </Row>
@@ -144,7 +142,7 @@ export default function LandingPage() {
             <img
               alt="..."
               className="path"
-              src={require("assets/img/path4.png")}
+              src={require("../../assets/img/path4.png")}
             />
             <Container>
               <Row className="row-grid justify-content-between">
@@ -290,17 +288,17 @@ export default function LandingPage() {
           <img
             alt="..."
             className="path"
-            src={require("assets/img/path4.png")}
+            src={require("../../assets/img/path4.png")}
           />
           <img
             alt="..."
             className="path2"
-            src={require("assets/img/path5.png")}
+            src={require("../../assets/img/path5.png")}
           />
           <img
             alt="..."
             className="path3"
-            src={require("assets/img/path2.png")}
+            src={require("../../assets/img/path2.png")}
           />
           <Container>
             <Row className="justify-content-center">
@@ -365,7 +363,7 @@ export default function LandingPage() {
           <img
             alt="..."
             className="path"
-            src={require("assets/img/path5.png")}
+            src={require("../../assets/img/path5.png")}
           />
           <Container>
             <Row className="row-grid justify-content-between">
@@ -373,7 +371,7 @@ export default function LandingPage() {
                 <img
                   alt="..."
                   className="img-fluid floating"
-                  src={require("assets/img/features.jpg")}
+                  src={require("../../assets/img/features.jpg")}
                 />
                 <Card className="card-stats bg-danger">
                   <CardBody>
@@ -473,7 +471,7 @@ export default function LandingPage() {
                   <img
                     alt="..."
                     className="img-fluid rounded shadow"
-                    src={require("assets/img/ryan.jpg")}
+                    src={require("../../assets/img/ryan.jpg")}
                     style={{ width: "150px" }}
                   />
                 </Col>
@@ -484,7 +482,7 @@ export default function LandingPage() {
                   <img
                     alt="..."
                     className="img-fluid rounded-circle shadow"
-                    src={require("assets/img/james.jpg")}
+                    src={require("../../assets/img/james.jpg")}
                     style={{ width: "150px" }}
                   />
                 </Col>
@@ -495,7 +493,7 @@ export default function LandingPage() {
                   <img
                     alt="..."
                     className="img-fluid rounded shadow-lg"
-                    src={require("assets/img/lora.jpg")}
+                    src={require("../../assets/img/lora.jpg")}
                     style={{ width: "150px" }}
                   />
                 </Col>
@@ -506,7 +504,7 @@ export default function LandingPage() {
                   <img
                     alt="..."
                     className="img-fluid rounded-circle shadow-lg"
-                    src={require("assets/img/mike.jpg")}
+                    src={require("../../assets/img/mike.jpg")}
                     style={{ width: "150px" }}
                   />
                 </Col>
@@ -519,7 +517,7 @@ export default function LandingPage() {
           <img
             alt="..."
             className="path"
-            src={require("assets/img/path3.png")}
+            src={require("../../assets/img/path3.png")}
           />
           <Container>
             <Row>
@@ -538,7 +536,7 @@ export default function LandingPage() {
                     <img
                       alt="..."
                       className="img-center img-fluid"
-                      src={require("assets/img/semanal.png")}
+                      src={require("../../assets/img/semanal.png")}
                     />
                   </CardHeader>
                   <CardBody>
@@ -582,7 +580,7 @@ export default function LandingPage() {
                     <img
                       alt="..."
                       className="img-center img-fluid"
-                      src={require("assets/img/mensual.png")}
+                      src={require("../../assets/img/mensual.png")}
                     />
                   </CardHeader>
                   <CardBody>
@@ -626,7 +624,7 @@ export default function LandingPage() {
                     <img
                       alt="..."
                       className="img-center img-fluid"
-                      src={require("assets/img/anual.png")}
+                      src={require("../../assets/img/anual.png")}
                     />
                   </CardHeader>
                   <CardBody>
