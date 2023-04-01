@@ -25,6 +25,7 @@ import Footer from "../Footer/Footer";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/actions";
+import { useNavigate } from "react-router-dom";
 
 //VALIDACIONES :)
 
@@ -54,6 +55,7 @@ const validate = (form) => {
 };
 
 export default function Register() {
+   const history = useNavigate();
   const dispatch = useDispatch();
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
@@ -186,7 +188,7 @@ export default function Register() {
       resultado: "",
     });
     localStorage.setItem("activeUser", JSON.stringify(form));
-    // navigate('/home');
+    history('/profile-patient');
   };
   return (
     <>
