@@ -1,16 +1,13 @@
-/*!
-=========================================================
-* BLK Design System React - v1.2.1
-=========================================================
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-* Coded by Creative Tim
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getDoctors, getUsers } from "../../Redux/actions";
+import { GoogleLogin } from '@react-oauth/google';
+import * as jose from 'jose';
 import classnames from "classnames";
+import { Redirect } from 'react-router-dom';
+
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+
 // reactstrap components
 import {
   Button,
@@ -37,11 +34,22 @@ import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
 
 export default function LoginPage() {
+
+
+
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
-  const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
+  const [activeUser, setActiveUser] = useState(JSON.parse(localStorage.getItem("activeUser")) || null);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [modal, setModal] = useState(false);
+  const pacientes = useSelector((state) => state.pacientes);
+  const doctores = useSelector((state) => state.doctores);
+  const [miniModal, setMiniModal] = React.useState(true);
+
+
+
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -56,19 +64,135 @@ export default function LoginPage() {
     let posY = event.clientY - window.innerWidth / 6;
     setSquares1to6(
       "perspective(500px) rotateY(" +
-        posX * 0.05 +
-        "deg) rotateX(" +
-        posY * -0.05 +
-        "deg)"
+      posX * 0.05 +
+      "deg) rotateX(" +
+      posY * -0.05 +
+      "deg)"
     );
     setSquares7and8(
       "perspective(500px) rotateY(" +
-        posX * 0.02 +
-        "deg) rotateX(" +
-        posY * -0.02 +
-        "deg)"
+      posX * 0.02 +
+      "deg) rotateX(" +
+      posY * -0.02 +
+      "deg)"
     );
   };
+
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    usuario: '',
+    contraseña: ''
+  })
+
+  const toggleModal = () => {
+    setModal(!modal);
+  }
+  const toggleModal2 = () => {
+    setMiniModal(!miniModal);
+  }
+
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getDoctors());
+  }, [dispatch]);
+
+
+  function findUser(username, password) {
+    const user = pacientes.find(
+      (user) => user.usuario === username && user.contraseña === password
+    )
+    if (user) {
+      setActiveUser({ ...user, activeUser: true });
+      localStorage.setItem("activeUser", JSON.stringify({ ...user, activeUser: true, tipo_user: 'paciente', contraseña: '*****' }));
+      return user;
+    } else {
+      const doctor = doctores.find(
+        (doctor) => doctor.usuario === username && doctor.contraseña === password
+      )
+      if (doctor) {
+        setActiveUser({ ...doctor, activeUser: true });
+        localStorage.setItem("activeUser", JSON.stringify({ ...doctor, activeUser: true, tipo_user: 'doctor', contraseña: '*****' }));
+        return doctor;
+      }
+
+    }
+    return null;
+  }
+  const onChange = (event) => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const usuarioact = findUser(user.usuario, user.contraseña);
+    //EN USUARIOACT ESTA LA INFO DEL USUARIO COMPLETA DEL USUARIO
+    console.log(event.target);
+    setIsLoggedIn(true);
+
+
+    if (!usuarioact) {
+      // Muestra mensaje de error si el usuario no existe
+      console.log("Usuario o contraseña incorrectos");
+      toggleModal()
+
+      return;
+    }
+  }
+
+
+
+  const handleLogOut = () => {
+    localStorage.removeItem("activeUser");
+    setActiveUser(null);
+  }
+
+
+
+  function findUserGoogle(correo) {
+    const paciente = pacientes.find((user) => user.correo === correo);
+    if (paciente) {
+      setActiveUser({ ...paciente, activeUser: true });
+
+      localStorage.setItem(
+        "activeUser",
+        JSON.stringify({
+          ...paciente,
+          activeUser: true,
+          tipo_user: "paciente",
+          contraseña: "*****",
+        })
+      );
+
+    } else {
+      const doctor = doctores.find((doctor) => doctor.correo === correo);
+      if (doctor) {
+        setActiveUser({ ...doctor, activeUser: true });
+        localStorage.setItem(
+          "activeUser",
+          JSON.stringify({
+            ...doctor,
+            activeUser: true,
+            tipo_user: "doctor",
+            contraseña: "*****",
+          })
+        );
+      } else {
+        toggleModal();
+      }
+    }
+  }
+
+  function handleUser(user) {
+    if (user) {
+      setActiveUser(user);
+      toggleModal2()
+    }
+  }
+
+
   return (
     <>
       <ExamplesNavbar />
@@ -76,6 +200,7 @@ export default function LoginPage() {
         <div className="page-header">
           <div className="page-header-image" />
           <div className="content">
+
             <Container>
               <Row>
                 <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
@@ -89,48 +214,44 @@ export default function LoginPage() {
                     id="square8"
                     style={{ transform: squares7and8 }}
                   />
+
                   <Card className="card-register">
                     <CardHeader>
                       <CardImg
                         alt="..."
                         src={require("assets/img/square-purple-1.png")}
                       />
-                      <CardTitle tag="h4">ingresa</CardTitle>
+                      <CardTitle tag="h4">Ingresa</CardTitle>
+
                     </CardHeader>
                     <CardBody>
-                      <Form className="form">
+                      <Form className="form" onSubmit={(e) => handleSignIn(e)}>
+
+                        Ingresa con tu usuario y contraseña:
+
                         <InputGroup
                           className={classnames({
                             "input-group-focus": fullNameFocus,
                           })}
                         >
+
+
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
                               <i className="tim-icons icon-single-02" />
                             </InputGroupText>
                           </InputGroupAddon>
+
                           <Input
-                            placeholder="Full Name"
+                            placeholder="Usuario"
                             type="text"
+                            //aca iria el handllesubmit?
+                            name="usuario"
+                            value={user.usuario}
+                            onChange={(e) => onChange(e)}
+                            id="usuario"
                             onFocus={(e) => setFullNameFocus(true)}
                             onBlur={(e) => setFullNameFocus(false)}
-                          />
-                        </InputGroup>
-                        <InputGroup
-                          className={classnames({
-                            "input-group-focus": emailFocus,
-                          })}
-                        >
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="tim-icons icon-email-85" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder="Email"
-                            type="text"
-                            onFocus={(e) => setEmailFocus(true)}
-                            onBlur={(e) => setEmailFocus(false)}
                           />
                         </InputGroup>
                         <InputGroup
@@ -144,31 +265,156 @@ export default function LoginPage() {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            placeholder="Password"
-                            type="text"
+                            placeholder="Contraseña"
+                            name="contraseña"
+                            id='contraseña'
+                            value={user.contraseña}
+                            onChange={(e) => onChange(e)}
+                            type="password"
                             onFocus={(e) => setPasswordFocus(true)}
                             onBlur={(e) => setPasswordFocus(false)}
                           />
                         </InputGroup>
-                        <FormGroup check className="text-left">
-                          <Label check>
-                            <Input type="checkbox" />
-                            <span className="form-check-sign" />I agree to the{" "}
+
+                        <div>
+
+
+                          <Modal isOpen={modal} toggle={toggleModal}>
+                            <ModalHeader toggle={toggleModal}>Error </ModalHeader>
+                            <ModalBody>
+
+                              Usuario o contraseña no encontrados.
+
+                            </ModalBody>
+                          </Modal>
+
+
+
+                          {console.log(activeUser)}
+
+                          {activeUser && isLoggedIn &&
+
+                            <div>
+                              <Modal
+                                modalClassName="modal-mini modal-primary modal-mini"
+                                isOpen={miniModal}
+                                toggle={toggleModal}
+                              >
+                                <div className="modal-header justify-content-center">
+                                  <button className="close" onClick={() => setMiniModal(false)}>
+                                    <i className="tim-icons icon-simple-remove text-white" />
+                                  </button>
+
+                                  <div className="modal-profile">
+                                    <img src={activeUser.imagen} style={{ borderRadius: '80%' }} alt='img-user' />
+                                  </div>
+
+                                </div>
+                                <div className="modal-body">
+                                  <p>Bienvenido a Brainly {activeUser.nombre} </p>
+                                </div>
+                                <div className="modal-footer">
+                                  <Button className="btn-neutral" color="link" type="button">
+                                    Back
+                                  </Button>
+                                  <Button
+                                    className="btn-neutral"
+                                    color="link"
+                                    onClick={() => {
+                                      setMiniModal(false);
+
+                                    }}
+                                    type="button"
+                                  >
+                                    Close
+                                  </Button>
+                                </div>
+                              </Modal>
+
+{//ACA ES LA PARTE DONDE PONDRIAS EL MAIL DEL ADMIN
+}
+                              {miniModal ? null : (
+                                activeUser.correo === "victoria.durte@gmail.com" ? (
+                                  window.location.href = 'https://dashboard-brainly.vercel.app'
+                                ) : (
+                                  <Redirect to="/profile-page" />
+                                )
+                              )}
+
+                            </div>
+                          }
+
+
+                          {!activeUser &&
+                            <div>
+                              <Button className="btn-round" color="primary" size="lg" onClick={handleSignIn} type='submit' >
+                                Get Started
+                              </Button>
+                              <br></br>
+                              <br></br>
+                              O tambien:
+                              <br></br>
+                              <br></br>
+
+                              <GoogleLogin
+                                onSuccess={credentialResponse => {
+                                  const credential = credentialResponse
+                                  const token = credential.credential
+                                  const secretKey = credential.secretKey
+                                  const decodedToken = jose.decodeJwt(token, secretKey);
+                                  const correo = decodedToken.email
+                                  console.log(credentialResponse);
+
+                                  console.log(decodedToken.sub);
+                                  console.log(decodedToken.name);
+                                  console.log(decodedToken.email);
+
+                                  findUserGoogle(correo);
+                                  handleUser(findUserGoogle(correo));
+                                  setIsLoggedIn(true)
+                                }}
+                                onError={() => {
+                                  console.log('Inicio de sesión fallido');
+                                }}
+                              />
+
+                            </div>
+                          }
+
+
+
+                          {activeUser && (
+                            <Button onClick={handleLogOut}>Cerrar sesión</Button>
+                          )}
+
+
+
+                        </div>
+                        <br></br>
+
+
+
+                        <FormGroup className="text-left">
+                          <Label >
+
+                            <br></br>
+                            <br></br>
+                            <span className="form-check-sign" />Primera vez como usuario {" "}
+
                             <a
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              href="/register-page"
                             >
-                              terms and conditions
+                              Registrate
                             </a>
-                            .
+
                           </Label>
                         </FormGroup>
                       </Form>
                     </CardBody>
                     <CardFooter>
-                      <Button className="btn-round" color="primary" size="lg">
+                      {/* <Button className="btn-round" color="primary" size="lg">
                         Get Started
-                      </Button>
+                      </Button> */}
                     </CardFooter>
                   </Card>
                 </Col>

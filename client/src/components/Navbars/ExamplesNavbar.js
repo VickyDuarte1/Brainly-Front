@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -16,14 +16,29 @@ import {
 } from "reactstrap";
 
 export default function ExamplesNavbar() {
+  const location = useLocation()
+  
   const handleClick = () => {
-    const section = document.getElementById("subscribe");
-    section.scrollIntoView({ behavior: "smooth" });
+    if(location.pathname === '/landing-page'){
+      const section = document.getElementById("subscribe");
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    else{
+      window.location.href = '/landing-page'
+    }
   };
+  
   const handleHomeClick = () => {
+    
+    if(location.pathname === '/landing-page'){
     const section = document.getElementById("home");
     section.scrollIntoView({ behavior: "smooth" });
+    }
+    else{
+      window.location.href = '/landing-page'
+    }
   };
+
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
@@ -56,11 +71,25 @@ export default function ExamplesNavbar() {
   const onCollapseExited = () => {
     setCollapseOut("");
   };
+
+  const [activeUser, setActiveUser] = useState(JSON.parse(localStorage.getItem("activeUser")) || null);
+
+  const handleLogOut = () => {
+    localStorage.removeItem("activeUser");
+    setActiveUser(null);
+
+     // Redirect to landing page if user is logging out from profile page
+     if (location.pathname === "/profile-page") {
+      window.location.href = "/landing-page";
+    }
+  }
+
+
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand onClick={handleHomeClick} id="navbar-brand" tag={Link}>
+          <NavbarBrand onClick={handleHomeClick} id="navbar-brand">
             <span>Brainly • </span>
             Fast and Safe!
           </NavbarBrand>
@@ -113,19 +142,26 @@ export default function ExamplesNavbar() {
                 <i className="tim-icons icon-spaceship" /> Cambiate a PRO
               </Button>
             </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/register-page">
-                Regristrate
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/login-page">
-                Inicia Sesión
-              </NavLink>
-            </NavItem>
+            {
+              !activeUser
+                ?
+                (
+                  <>
+                    <NavItem>
+                      <NavLink tag={Link} to="/register-page">
+                        Regristrate
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} to="/login-page">{" "} Inicia Sesión</ NavLink>
+                    </NavItem>
+                  </>
+                )
+                : <Button className="nav-link d-none d-lg-block" onClick={handleLogOut}>Cerrar sesión</Button>
+            }
           </Nav>
         </Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }

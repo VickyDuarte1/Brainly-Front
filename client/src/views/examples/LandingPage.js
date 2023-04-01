@@ -38,6 +38,9 @@ export default function LandingPage() {
       document.body.classList.toggle("landing-page");
     };
   }, []);
+
+  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+
   return (
     <>
       <ExamplesNavbar />
@@ -548,16 +551,22 @@ export default function LandingPage() {
                     </Row>
                     <Row>
                       <ListGroup>
-                        <ListGroupItem>10$/semana</ListGroupItem>
+                        <ListGroupItem>10ARS/semana</ListGroupItem>
                         <ListGroupItem>50 imágenes</ListGroupItem>
                         <ListGroupItem>Soporte 24/7</ListGroupItem>
                       </ListGroup>
                     </Row>
                   </CardBody>
                   <CardFooter className="text-center">
-                    <Button className="btn-simple" color="primary">
-                      Get plan
-                    </Button>
+                    {
+                      activeUser
+                        ? <Button className="btn-simple" color="primary">
+                          <a mp-mode="dftl" href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c93808487275dcd01872a5fdebe0160" name="MP-payButton">Suscribirme Semanal</a>
+                        </Button>
+                        : <Button className="btn-simple" color="primary">
+                          <a href="/login-page">Debes Iniciar Sesión</a>
+                        </Button>
+                    }
                   </CardFooter>
                 </Card>
               </Col>
@@ -580,16 +589,22 @@ export default function LandingPage() {
                     </Row>
                     <Row>
                       <ListGroup>
-                        <ListGroupItem>30$/mes</ListGroupItem>
+                        <ListGroupItem>250ARS/mes</ListGroupItem>
                         <ListGroupItem>50 imágenes</ListGroupItem>
                         <ListGroupItem>Soporte 24/7</ListGroupItem>
                       </ListGroup>
                     </Row>
                   </CardBody>
                   <CardFooter className="text-center">
-                    <Button className="btn-simple" color="success">
-                      Get plan
-                    </Button>
+                    {
+                      activeUser
+                        ? <Button className="btn-simple" color="success">
+                          <a mp-mode="dftl" href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c9380848712f89601871662a59e0153" name="MP-payButton">Suscribirme Mensual</a>
+                        </Button>
+                        : <Button className="btn-simple" color="primary">
+                          <a href="/login-page">Debes Iniciar Sesión</a>
+                        </Button>
+                    }
                   </CardFooter>
                 </Card>
               </Col>
@@ -612,16 +627,22 @@ export default function LandingPage() {
                     </Row>
                     <Row>
                       <ListGroup>
-                        <ListGroupItem>350$/año</ListGroupItem>
+                        <ListGroupItem>500ARS/año</ListGroupItem>
                         <ListGroupItem>50 imágenes</ListGroupItem>
                         <ListGroupItem>Soporte 24/7</ListGroupItem>
                       </ListGroup>
                     </Row>
                   </CardBody>
                   <CardFooter className="text-center">
-                    <Button className="btn-simple" color="info">
-                      Get plan
-                    </Button>
+                    {
+                      activeUser
+                        ? <Button className="btn-simple" color="info">
+                          <a mp-mode="dftl" href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c93808487275e6401872880f10c0057" name="MP-payButton">Suscribirme anual</a>
+                        </Button>
+                        : <Button className="btn-simple" color="primary">
+                          <a href="/login-page">Debes Iniciar Sesión</a>
+                        </Button>
+                    }
                   </CardFooter>
                 </Card>
               </Col>
