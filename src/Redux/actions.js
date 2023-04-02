@@ -51,7 +51,6 @@ export const createUser = (payload) => {
    
     }
   }
-
   export const getComments = () =>{
     return function(dispatch){
       axios.get(`https://brainly-back.onrender.com/get_comments`)
