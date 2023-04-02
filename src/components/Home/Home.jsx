@@ -1,5 +1,8 @@
-import React from "react";
-
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import Comment from "../Comments/Comment";
+import { getComments } from "../../Redux/actions";
+import './comments.css';
 import {
   Button,
   Card,
@@ -13,7 +16,8 @@ import {
   Row,
   Col,
 } from "reactstrap";
-
+import { useDispatch } from "react-redux";
+import Paged from '../Paged';
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
 
@@ -23,6 +27,28 @@ export default function Home() {
 
     section.scrollIntoView({ behavior: "smooth" });
   };
+
+
+
+
+  const  comments  = useSelector((state) => state.comments)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getComments());
+  }, [dispatch]);
+
+  
+  const [toShow, setToShow] = useState(6);
+ 
+
+
+  const handleLoadMore = () => {
+    setToShow(toShow + 6);
+  };
+
+
+
 
   const handleMoreClick = () => {
     const sectionMore = document.getElementById("beneficios");
@@ -154,7 +180,7 @@ export default function Home() {
                           <Row>
                             <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-single-02 text-warning" />
+                                <i className="tim-icons icon-paper text-white" />
                               </div>
                             </Col>
                             <Col md="8" xs="7">
@@ -176,15 +202,14 @@ export default function Home() {
                           <Row>
                             <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-trash-simple text-white" />
-                              </div>
+                              <i className="tim-icons icon-zoom-split text-info"></i>                              </div>
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">251,329</CardTitle>
+                                <CardTitle tag="p">308,102</CardTitle>
                                 <p />
                                 <p className="card-category">
-                                  Muertes por Cáncer
+                                  Diagnósticos en 2020
                                 </p>
                               </div>
                             </Col>
@@ -200,15 +225,15 @@ export default function Home() {
                           <Row>
                             <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-square-pin text-info" />
+                                <i className="tim-icons icon-atom text-success" />
                               </div>
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">308,102</CardTitle>
+                                <CardTitle tag="p">+70%</CardTitle>
                                 <p />
                                 <p className="card-category">
-                                  Diagnósticos en 2020
+                                  De los diangosticos tempranos son resueltos con exito
                                 </p>
                               </div>
                             </Col>
@@ -222,15 +247,15 @@ export default function Home() {
                           <Row>
                             <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
-                                <i className="tim-icons icon-atom text-success" />
+                                <i className="tim-icons icon-alert-circle-exc text-warning" />
                               </div>
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">36%</CardTitle>
+                                <CardTitle tag="p">10%</CardTitle>
                                 <p />
                                 <p className="card-category">
-                                  Supervivencia de 5 años
+                                  Es la taza a la que desciende si no se detecta a tiempo
                                 </p>
                               </div>
                             </Col>
@@ -283,6 +308,9 @@ export default function Home() {
               </Row>
             </Container>
           </section>
+
+
+
         </section>
         <section className="section section-lg" id="beneficios">
           <img
@@ -359,12 +387,17 @@ export default function Home() {
             </Row>
           </Container>
         </section>
+
+
+
+
         <section className="section section-lg section-safe">
           <img
             alt="..."
             className="path"
             src={require("../../assets/img/path5.png")}
           />
+
           <Container>
             <Row className="row-grid justify-content-between">
               <Col md="5">
@@ -373,6 +406,7 @@ export default function Home() {
                   className="img-fluid floating"
                   src={require("../../assets/img/features.jpg")}
                 />
+
                 <Card className="card-stats bg-danger">
                   <CardBody>
                     <div className="justify-content-center">
@@ -457,6 +491,39 @@ export default function Home() {
             </Row>
           </Container>
         </section>
+
+
+<section className="commentarios-usuarios">
+<div className='grilla'>
+  {console.log('COMMENTS sin parsear'+comments.comentarios)}
+ { console.log('COMMENTS'+JSON.stringify(comments.comentarios))}
+ 
+ 
+ {comments.comentarios && Array.isArray(comments.comentarios) && comments.comentarios.length > 0 ? (
+    comments.comentarios.slice(0, toShow).map((comment) => (
+     
+     <div className='comentario-card'>
+      <Comment
+      key={comment.id}
+     
+        usuario_paciente={comment.usuario_paciente}
+        comentario={comment.comentario}
+        puntuacion={comment.puntuacion}
+      />
+
+      </div>
+    ))
+  ) : (
+    <p>No hay comentarios para mostrar</p>
+  )}
+</div>
+
+<Paged onClick={handleLoadMore} total={comments.comentarios && comments.comentarios.length} shown={toShow} />
+</section>
+
+
+
+
 
         <div className="section section-typo">
           <Container>
@@ -670,3 +737,4 @@ export default function Home() {
     </>
   );
 }
+
