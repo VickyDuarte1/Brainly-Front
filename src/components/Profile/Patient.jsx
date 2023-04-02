@@ -3,10 +3,17 @@ import axios from "axios";
 import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+import { useSelector } from 'react-redux';
+import { createPost } from '../../Redux/actions';
+import { useDispatch } from "react-redux";
+import Estrellas from "../Comments/Estrellas";
+import './estrellas.css'
+
 // reactstrap components
 import {
   Button,
   Card,
+  FormFeedback,
   CardHeader,
   CardBody,
   Label,
@@ -50,10 +57,60 @@ const carouselItems = [
   },
 ];
 
+
 let ps = null;
 
 export default function Patient() {
-  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+
+
+
+  //parte commentar funciones y constantes ----------------------------------------------
+
+
+  const comments = useSelector((state) => state.comments)
+  const [activeUser, setActiveUser] = useState(localStorage.getItem('activeUser'));
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [comment, setComment] = useState('');
+  const dispatch = useDispatch();
+  const [newComment, setNewComment] = useState(null);
+  
+
+
+{//------------------------------------------------------------------------------------------------------------
+
+}
+
+
+
+  const handleSaveRating = (rating) => {
+    setRating(rating);
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleCommentSubmit = (event) => {
+
+    event.preventDefault();
+    console.log(comment);
+    console.log(rating);
+    const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+    dispatch(createPost({ texto: comment, puntuacion: rating, usuario: activeUser.usuario, id: activeUser.id }));
+    setNewComment({
+      usuario_paciente: activeUser.usuario,
+      comentario: comment,
+      puntuacion: rating
+    });
+
+    setComment('')
+    setRating('')
+    console.log(activeUser.usuario);
+  };
+
+  //------------------------------------------------------------------------------------------------------------------------
+
   const [demoModal, setDemoModal] = React.useState(false);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -220,6 +277,7 @@ export default function Patient() {
                 </div>
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
+                
                 <Card className="card-coin card-plain">
                   <CardHeader>
                     <img
@@ -465,53 +523,56 @@ export default function Patient() {
                   <CardHeader>
                     <h1 className="profile-title text-left">
                       Dejanos un Feedback
+{//--------------------ESCRIBIR COMENTARIO--------------------------------------------------------------------------------------------------------------------------
+}
                     </h1>
                     <h5 className="text-on-back">03</h5>
                   </CardHeader>
                   <CardBody>
-                    <Form>
-                      <Row>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Your Name</label>
-                            <Input defaultValue="Mike" type="text" />
-                          </FormGroup>
-                        </Col>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Email address</label>
-                            <Input placeholder="mike@email.com" type="email" />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Phone</label>
-                            <Input defaultValue="001-12321345" type="text" />
-                          </FormGroup>
-                        </Col>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Company</label>
-                            <Input defaultValue="CreativeTim" type="text" />
-                          </FormGroup>
-                        </Col>
-                      </Row>
+                    <Form onSubmit={handleCommentSubmit} >
                       <Row>
                         <Col md="12">
                           <FormGroup>
-                            <label>Message</label>
-                            <Input placeholder="Hello there!" type="text" />
+                            <label>Comentanos tu experencia!</label>
+                            <Input maxLength="100"  invalid={comment.length > 99}  placeholder="Escribir comentario" value={comment} onChange={handleCommentChange} />
+                            <FormFeedback>Alcanzaste el número maximo de caracteres </FormFeedback>
+                            <label>Dejanos una calificación: </label>
+                            <div className="estrellas-row" >
+                              <Estrellas rating={rating} setSavedRating={handleSaveRating} hoverRating={hoverRating} setHoverRating={setHoverRating} />
+                            </div>          
                           </FormGroup>
                         </Col>
-                      </Row>
+                      </Row>          
+
+{//------------------------MODAL----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+}
+
+{/* 
+
+<Modal isOpen={showModal} toggle={() => setShowModal(false)}>
+  <ModalHeader toggle={() => setShowModal(false)}>Error</ModalHeader>
+  <ModalBody>Por favor, seleccione una calificación antes de enviar el formulario.</ModalBody>
+  <ModalFooter>
+    <Button color="primary" onClick={() => setShowModal(false)}>
+      Aceptar
+    </Button>
+  </ModalFooter>
+</Modal> */}
+
+
+
+
+
+
+
                       <Button
                         className="btn-round float-right"
                         color="primary"
                         data-placement="right"
                         id="tooltip341148792"
-                        type="button"
+                        type="submit"
+                        onClick={handleCommentSubmit}
                       >
                         Send text
                       </Button>
@@ -520,6 +581,9 @@ export default function Patient() {
                         placement="right"
                         target="tooltip341148792"
                       >
+{//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+}
                         Can't wait for your message
                       </UncontrolledTooltip>
                     </Form>
@@ -548,7 +612,9 @@ export default function Patient() {
                     <h4 className="info-title">Give us a ring</h4>
                     <p>
                       Michael Jordan <br />
-                      +40 762 321 762 <br />
+                      <a href="tel:+54-9-11-4418-0197">
+                        +54-9-11-4418-0197
+                      </a><br />
                       Mon - Fri, 8:00-22:00
                     </p>
                   </div>
