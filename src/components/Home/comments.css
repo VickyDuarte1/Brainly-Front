@@ -1,0 +1,85 @@
+.comentario-card{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    margin: 15px;
+    background-color: rgba(240, 248, 255, 0.188);
+    border-radius: 5px;
+    margin-left: -45px;
+}
+
+.grilla{
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: repeat(3, 20%);
+    margin-top: 50px;
+    margin-bottom: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.comments{
+    margin: 10px;
+}
+
+.usuario-user{
+    color: aliceblue;
+}
+
+.usuario-text{
+    color: aliceblue;
+}
+
+.estrellas-row{
+    font-weight: 600;
+    color: rgba(240, 248, 255, 0.684);
+    cursor: pointer;
+}
+
+
+@media(max-width:1350px){
+    .grilla{
+        display: grid;
+        justify-content: space-around;
+        grid-template-columns: repeat(2, 50%);
+        margin-top: 50px;
+        margin-bottom: 20px;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .comentario-card{
+        display: flex;
+        flex-direction: row;
+        width: 400px;
+        margin: 15px;
+        background-color: rgba(240, 248, 255, 0.188);
+        border-radius: 5px;
+        justify-self: center;
+       
+    }
+  }
+
+  
+@media(max-width:850px){
+    .grilla{
+        display: grid;
+        justify-content: space-around;
+        grid-template-columns: repeat(1, 100%);
+        margin-top: 50px;
+        margin-bottom: 20px;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .comentario-card{
+        display: flex;
+        flex-direction: row;
+        width: 400px;
+        margin: 15px;
+        background-color: rgba(240, 248, 255, 0.188);
+        border-radius: 5px;  
+        justify-self: center;
+       
+    }
+  }

@@ -1,0 +1,153 @@
+.doctors-list {
+  flex-direction: row;
+  font-size: medium;
+  display: grid;
+  border-bottom:  3px solid rgb(44, 66, 104);
+  color: aliceblue;
+  
+}
+
+/* .tabla-flow{
+  overflow-x: auto;
+} */
+
+.column-search{
+  display: grid;
+  grid-template-columns: 1;
+}
+
+.buttons-search{
+  display: flex;
+  flex-direction: row;
+}
+
+.btn1{
+  margin-right: 50px;
+}
+
+
+
+
+.row-search-1{
+  display: grid;
+grid-template-rows: 1;}
+
+.row-search-2{
+  display: grid;
+grid-template-rows: 1;
+}
+
+.cartilla{
+border-top: 3px solid rgb(44, 66, 104);
+font-size: 20px;
+justify-content: start;
+color: aliceblue;
+
+}
+
+.input-style{
+  background-color: rgb(29, 29, 73);
+  border-radius: 8px;
+  color: aliceblue;
+}
+
+
+.columnas, .columna-e{
+  border-left:  3px solid rgb(44, 66, 104);
+  display: flex;
+}
+
+.d-phone, .d-speciality, .d-address, .d-email{
+  border-left:  3px solid rgb(44, 66, 104);
+  height: 100%;
+  
+}
+
+.d-email{
+  display: block;
+}
+
+@media(max-width:1000px){
+  .d-email, .columna-e{
+    display: none;
+  }
+  .buttons-search{
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* 
+@media(max-width:600px){
+  .d-phone{
+    display: none;
+  }
+} */
+
+
+
+.doctor, .cartilla{
+  display:grid;
+  border-top: 3px solid rgb(44, 66, 104);
+  color: rgb(216, 214, 226); 
+  flex-direction: row;
+  width: 100%;
+  grid-template-columns: repeat(5, 23%);
+}
+
+.doctor-item{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  grid-template-columns: repeat(5,20%);
+  cursor: pointer;
+}
+
+.doctor-item:hover{
+  background-color: rgba(95, 40, 99, 0.934); 
+}
+
+.profesionals{
+  font-size: 30px;
+  color: aliceblue;
+}
+
+.search-nav{
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+}
+
+.colorsito{
+  margin-top: 100px;
+  display: grid;
+  background: linear-gradient(0deg, rgba(31,26,134,0.07055322128851538) 0%, rgba(198,51,197,0.8520658263305322) 100%);
+  color: aliceblue;
+  padding-bottom: 15px;
+}
+
+.cargar-mas{
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+
+
+.doctores-pag{
+  overflow-x: hidden;
+}
+
+.fixed-bottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  text-align: center;
+  height: 50px; /* ajusta la altura del footer según tus necesidades */
+}
