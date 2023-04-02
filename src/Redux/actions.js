@@ -1,6 +1,6 @@
 import { GET_USERS, GET_DOCTORS,ADD_USER , GET_COMMENTS } from "./action-types";
 import axios from 'axios';
-import commentsData from './coments.json';
+
 
 export const getDoctors = () =>{
   return function(dispatch){
@@ -14,6 +14,20 @@ export const getDoctors = () =>{
     )
   }
 }
+
+
+export const getComments = () =>{
+  return function(dispatch){
+    axios.get(`https://brainly-back.onrender.com/get_comments`)
+    .then((response) => {
+        console.log(response.data); // Imprime el resultado de la respuesta en la consola
+        return dispatch({type: GET_COMMENTS, payload: response.data})
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+  }
+
 
 export function getUsers() {
   return function(dispatch) {
@@ -40,12 +54,7 @@ export const createUser = (payload) => {
     }
   }
 
-  export const getComments = () => {
-    return dispatch => {
-      const comments = commentsData.comentarios;
-      dispatch({
-        type: GET_COMMENTS,
-        payload: comments
-      });
-    };
-  };
+
+
+
+

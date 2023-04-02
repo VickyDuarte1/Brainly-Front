@@ -33,11 +33,11 @@ const reducer = (state = initialState, action) =>{
                 doctores:action.payload.doctores
             }
             case GET_COMMENTS:
-                const newComments = action.payload;
                 return {
-                  ...state,
-                  comments: newComments
-                };
+                    ...state,
+                    comments: action.payload
+                  };
+                  
         case ACTIVE_USER:
             return{
                 ...state,
