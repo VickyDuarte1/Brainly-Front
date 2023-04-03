@@ -58,7 +58,7 @@ const carouselItems = [
 
 let ps = null;
 
-export default function Patient() {
+export default function Doctor() {
   const activeUser = JSON.parse(localStorage.getItem("activeUser"));
   const activeResult = JSON.parse(localStorage.getItem("activeResult"));
   // const [activeResult] = useState(localStorage.getItem("activeResult"));
