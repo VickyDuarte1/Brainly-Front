@@ -548,7 +548,10 @@ export default function ProfilePage() {
                     <h4 className="info-title">Give us a ring</h4>
                     <p>
                       Michael Jordan <br />
-                      +40 762 321 762 <br />
+                      <a href="tel:+54-9-11-4418-0197">
+                        +54-9-11-4418-0197
+                      </a>
+                      <br />
                       Mon - Fri, 8:00-22:00
                     </p>
                   </div>

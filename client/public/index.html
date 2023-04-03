@@ -34,9 +34,9 @@
   <script src="https://kit.fontawesome.com/dbce5e707c.js" crossorigin="anonymous"></script>
   <!--Script MercadoPago-->
   <script type="text/javascript">
-    (function() {
-       function $MPC_load() {
-          window.$MPC_loaded !== true && (function() {
+    (function () {
+      function $MPC_load() {
+        window.$MPC_loaded !== true && (function () {
           var s = document.createElement("script");
           s.type = "text/javascript";
           s.async = true;
@@ -44,19 +44,39 @@
           var x = document.getElementsByTagName('script')[0];
           x.parentNode.insertBefore(s, x);
           window.$MPC_loaded = true;
-       })();
-    }
-    window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+        })();
+      }
+      window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
     })();
-   /*
-         // to receive event with message when closing modal from congrants back to site
-         function $MPC_message(event) {
-           // onclose modal ->CALLBACK FUNCTION
-          // !!!!!!!!FUNCTION_CALLBACK HERE Received message: {event.data} preapproval_id !!!!!!!!
-         }
-         window.$MPC_loaded !== true ? (window.addEventListener("message", $MPC_message)) : null; 
-         */
- </script>
+    // to receive event with message when closing modal from congrants back to site
+    function $MPC_message(event) {
+      // Verificar que el mensaje proviene de Mercado Pago y tiene el formato correcto
+      if (event.origin === 'https://www.mercadopago.com' && typeof event.data === 'string') {
+        // Extraer el ID de preaprobación del mensaje
+        var preapproval_id = event.data;
+
+        // Realizar una petición POST al servidor con el ID de preaprobación
+        fetch('https://brainly-back.onrender.com/pago_exitoso', {
+          method: 'POST',
+          body: JSON.stringify({ preapproval_id: preapproval_id }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(function (response) {
+          // Manejar la respuesta del servidor
+          if (response.ok) {
+            console.log('Notificación enviada con éxito');
+          } else {
+            console.error('Ocurrió un error al enviar la notificación:', response.statusText);
+          }
+        }).catch(function (error) {
+          console.error('Ocurrió un error al enviar la notificación:', error);
+        });
+      }
+    }
+    window.$MPC_loaded !== true ? (window.addEventListener("message", $MPC_message)) : null;
+
+  </script>
 </body>
 
 </html>

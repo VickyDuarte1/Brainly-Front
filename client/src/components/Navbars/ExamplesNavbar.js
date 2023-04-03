@@ -17,24 +17,24 @@ import {
 
 export default function ExamplesNavbar() {
   const location = useLocation()
-  
+
   const handleClick = () => {
-    if(location.pathname === '/landing-page'){
+    if (location.pathname === '/landing-page') {
       const section = document.getElementById("subscribe");
       section.scrollIntoView({ behavior: "smooth" });
     }
-    else{
+    else {
       window.location.href = '/landing-page'
     }
   };
-  
+
   const handleHomeClick = () => {
-    
-    if(location.pathname === '/landing-page'){
-    const section = document.getElementById("home");
-    section.scrollIntoView({ behavior: "smooth" });
+
+    if (location.pathname === '/landing-page') {
+      const section = document.getElementById("home");
+      section.scrollIntoView({ behavior: "smooth" });
     }
-    else{
+    else {
       window.location.href = '/landing-page'
     }
   };
@@ -78,8 +78,8 @@ export default function ExamplesNavbar() {
     localStorage.removeItem("activeUser");
     setActiveUser(null);
 
-     // Redirect to landing page if user is logging out from profile page
-     if (location.pathname === "/profile-page") {
+    // Redirect to landing page if user is logging out from profile page
+    if (location.pathname === "/profile-page") {
       window.location.href = "/landing-page";
     }
   }
@@ -157,7 +157,12 @@ export default function ExamplesNavbar() {
                     </NavItem>
                   </>
                 )
-                : <Button className="nav-link d-none d-lg-block" onClick={handleLogOut}>Cerrar sesión</Button>
+                : <>
+                  <Button className="nav-link d-none d-lg-block" onClick={handleLogOut}>Cerrar sesión</Button>
+                  <NavItem>
+                    <NavLink tag={Link} to="/profile-page"><i className="tim-icons icon-single-02"/></NavLink>
+                  </NavItem>
+                </>
             }
           </Nav>
         </Collapse>

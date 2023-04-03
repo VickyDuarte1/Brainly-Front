@@ -20,11 +20,12 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import Footer from "components/Footer/Footer.js";
+// import NavBrain from "../NavBar/NavBrain";
+// import Footer from "../Footer/Footer";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/actions";
+// import { useNavigate } from "react-router-dom";
 
 //VALIDACIONES :)
 
@@ -37,9 +38,7 @@ const validate = (form) => {
     errors.usuario = "Por favor genere un nombre de usuario";
   } else if (!form.correo) {
     errors.correo = "Por favor ingresa un email";
-  } else if (
-    !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.correo)
-  ) {
+  } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(form.correo)) {
     errors.correo = "Ingresa un email válido";
   } else if (!form.contraseña) {
     errors.contraseña = "Por favor ingresa una contraseña";
@@ -55,7 +54,8 @@ const validate = (form) => {
   return errors;
 };
 
-export default function RegisterPage() {
+export default function Register() {
+  //  const history = useNavigate();
   const dispatch = useDispatch();
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
@@ -73,9 +73,7 @@ export default function RegisterPage() {
   const [adressFocus, setAdressFocus] = React.useState(false);
   const [phoneFocus, setPhoneFocus] = React.useState(false);
   const [resultFocus, setResultFocus] = React.useState(false);
-  const [activeUser, setActiveUser] = useState(
-    localStorage.getItem("activeUser")
-  );
+  const [activeUser] = useState(localStorage.getItem("activeUser"));
   const [errors, setErrors] = React.useState({});
   // const navigate= useNavigate();
 
@@ -190,11 +188,11 @@ export default function RegisterPage() {
       resultado: "",
     });
     localStorage.setItem("activeUser", JSON.stringify(form));
-    // navigate('/home');
+    // history('/profile-patient');
   };
   return (
     <>
-      <ExamplesNavbar />
+      {/* <NavBrain /> */}
       <div className="wrapper">
         <div className="page-header">
           <div className="page-header-image" />
@@ -216,7 +214,7 @@ export default function RegisterPage() {
                     <CardHeader>
                       <CardImg
                         alt="..."
-                        src={require("assets/img/square-purple-1.png")}
+                        src={require("../../assets/img/square-purple-1.png")}
                       />
                       <CardTitle tag="h4">Register</CardTitle>
                     </CardHeader>
@@ -627,7 +625,7 @@ export default function RegisterPage() {
             </Container>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );
