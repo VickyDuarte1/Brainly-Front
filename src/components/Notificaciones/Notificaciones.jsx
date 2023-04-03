@@ -2,32 +2,22 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
-import io from "socket.io-client";
-import axios from "axios";
-
-const ENDPOINT = "https://brainly-back.onrender.com"; // Ruta del servidor SocketIO
-const socket = io(ENDPOINT, { path: "/socket.io", transports: ["websocket"] });
+import socketIOClient from "socket.io-client";
 
 const Notificaciones = () => {
-  const [notificaciones, setNotificaciones] = useState([]); // Estado de la lista de notificaciones
-  const [mostrarNotificaciones, setMostrarNotificaciones] = useState(false); // Estado de la visibilidad del menú desplegable
+  const [notificaciones, setNotificaciones] = useState([]);
+  const [mostrarNotificaciones, setMostrarNotificaciones] = useState(false);
   const [haySocket, setHaySocket] = useState(false);
 
   useEffect(() => {
-    // Escuchar eventos del servidor SocketIO
-    socket.on("notificacion", (mensaje) => {
-      axios
-        .then((response) => {
-          setNotificaciones((prev) => [...prev, mensaje]);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    const socket = socketIOClient("http://localhost:5000");
+
+    socket.on("json", (data) => {
+      setNotificaciones((prev) => [...prev, data.message]);
     });
 
     setHaySocket(true);
 
-    // Cerrar conexión del socket al desmontar el componente
     return () => {
       socket.disconnect();
     };
