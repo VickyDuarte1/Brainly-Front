@@ -56,7 +56,7 @@ const validate = (form) => {
 };
 
 export default function Register() {
-   const history = useNavigate();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
@@ -78,9 +78,9 @@ export default function Register() {
   const [errors, setErrors] = React.useState({});
   // const navigate= useNavigate();
 
-  {//----------------------------------------CLOUDINARY---------------------------------------------
-  }  const [imagen, setImagen] = useState(null);
-  const [url, setUrl] = useState(null);
+  //----------------------------------------CLOUDINARY---------------------------------------------
+  const [imagen, setImagen] = useState(null);
+  const [url, setUrl] = useState('');
 
   const handleImagenSeleccionada = (e) => {
     setImagen(e.target.files[0]);
@@ -96,11 +96,15 @@ export default function Register() {
     const respuesta = await axios.post(url, formData);
 
     setUrl(respuesta.data);
+    setForm({
+      ...form,
+      imagen: respuesta.data
+    })
     alert("imagen cargada");
   }
 
-{//-------------------------------------------------------------------------------------------------
-}
+  //-------------------------------------------------------------------------------------------------
+
 
 
   const [form, setForm] = useState({
@@ -178,17 +182,17 @@ export default function Register() {
     let posY = e.clientY - window.innerWidth / 6;
     setSquares1to6(
       "perspective(500px) rotateY(" +
-        posX * 0.05 +
-        "deg) rotateX(" +
-        posY * -0.05 +
-        "deg)"
+      posX * 0.05 +
+      "deg) rotateX(" +
+      posY * -0.05 +
+      "deg)"
     );
     setSquares7and8(
       "perspective(500px) rotateY(" +
-        posX * 0.02 +
-        "deg) rotateX(" +
-        posY * -0.02 +
-        "deg)"
+      posX * 0.02 +
+      "deg) rotateX(" +
+      posY * -0.02 +
+      "deg)"
     );
   };
 
@@ -245,25 +249,39 @@ export default function Register() {
                       <CardTitle tag="h4">Register</CardTitle>
                     </CardHeader>
                     <CardBody>
-                     
-                     
-                                   
-{//----------------------------------------------------------------------------------------------INPUT IMAGEN-------------------------------------------------
-}
 
-<form onSubmit={handleSubmit2}>
- <input type="file" onChange={handleImagenSeleccionada} />
- <button type="submit">Subir imagen</button>
- <div>{url}</div>
-</form>
-              
-                     
-                     
-                     
-                     
-                     
-                     
-                     
+                      <Form className="form" onSubmit={handleSubmit2}>
+                        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+
+                          <label
+                            htmlFor="file-upload"
+                            className="btn btn-info"
+                          >
+                            <i className="tim-icons icon-cloud-upload-94" />{" "}
+                            Subir archivo
+                          </label>
+                          <input
+                            id="file-upload"
+                            type="file"
+                            onChange={handleImagenSeleccionada}
+                            style={{ display: "none" }}
+                          />
+                          {/* <input className="" type="file" onChange={handleImagenSeleccionada} /> */}
+                          <Button
+                            type="submit"
+                            className="btn-simple"
+                            color="primary"
+
+                          >
+                            <i className="tim-icons icon-book-bookmark" />{" "}
+                            Cargar Imagen
+                          </Button>
+                          {/* <Button className="nav-link d-none d-lg-block btn btn-primary" type="submit">Subir imagen</Button> */}
+                          {/* <div>{url}</div> */}
+                        </div>
+                      </Form>
+
+
                       <Form className="form" onSubmit={handleSubmit} >
                         <div className="form-row">
                           <InputGroup
@@ -459,8 +477,8 @@ export default function Register() {
                               onFocus={(e) => setImageFocus(true)}
                               onBlur={(e) => setImageFocus(false)}
                             />
-{//----------------------------------------------------------------------------------------------------------------------------------------------
-}
+                            {//----------------------------------------------------------------------------------------------------------------------------------------------
+                            }
 
 
                           </InputGroup>
