@@ -201,6 +201,13 @@ export default function Register() {
     console.log(form);
     dispatch(createUser(form));
     alert("¡Tu usuario ha sido creado!");
+    localStorage.setItem("activeUser", JSON.stringify(form));
+    if(form.tipo_usuario === 'paciente'){
+      history('/profile-patient');
+    }
+    else{
+      history('/profile-doctor')
+    }
     setForm({
       tipo_usuario: "",
       especialidad: "",
@@ -217,8 +224,6 @@ export default function Register() {
       telefono: "",
       resultado: "",
     });
-    localStorage.setItem("activeUser", JSON.stringify(form));
-    history('/profile-patient');
   };
   return (
     <>
@@ -251,7 +256,7 @@ export default function Register() {
                     <CardBody>
 
                       <Form className="form" onSubmit={handleSubmit2}>
-                        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                        <div style={{display: 'flex', justifyContent: 'space-around', marginBottom: '.75em'}}>
 
                           <label
                             htmlFor="file-upload"
