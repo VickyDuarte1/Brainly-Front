@@ -18,6 +18,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import axios from "axios";
 
 // core components
 import NavBrain from "../NavBar/NavBrain";
@@ -76,6 +77,31 @@ export default function Register() {
   const [activeUser] = useState(localStorage.getItem("activeUser"));
   const [errors, setErrors] = React.useState({});
   // const navigate= useNavigate();
+
+  {//----------------------------------------CLOUDINARY---------------------------------------------
+  }  const [imagen, setImagen] = useState(null);
+  const [url, setUrl] = useState(null);
+
+  const handleImagenSeleccionada = (e) => {
+    setImagen(e.target.files[0]);
+  }
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+
+    const url = 'https://brainly-back.onrender.com/upload';
+    const respuesta = await axios.post(url, formData);
+
+    setUrl(respuesta.data);
+    alert("imagen cargada");
+  }
+
+{//-------------------------------------------------------------------------------------------------
+}
+
 
   const [form, setForm] = useState({
     tipo_usuario: "",
@@ -219,7 +245,26 @@ export default function Register() {
                       <CardTitle tag="h4">Register</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" onSubmit={(e) => handleSubmit(e)}>
+                     
+                     
+                                   
+{//----------------------------------------------------------------------------------------------INPUT IMAGEN-------------------------------------------------
+}
+
+<form onSubmit={handleSubmit2}>
+ <input type="file" onChange={handleImagenSeleccionada} />
+ <button type="submit">Subir imagen</button>
+ <div>{url}</div>
+</form>
+              
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                      <Form className="form" onSubmit={handleSubmit} >
                         <div className="form-row">
                           <InputGroup
                             className={classnames({
@@ -409,11 +454,15 @@ export default function Register() {
                               placeholder="URL Imágen de Perfil"
                               type="url"
                               name="imagen"
-                              value={form.imagen}
+                              value={url}
                               onChange={(e) => handleChange(e)}
                               onFocus={(e) => setImageFocus(true)}
                               onBlur={(e) => setImageFocus(false)}
                             />
+{//----------------------------------------------------------------------------------------------------------------------------------------------
+}
+
+
                           </InputGroup>
 
                           <InputGroup
