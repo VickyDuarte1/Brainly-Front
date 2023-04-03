@@ -67,8 +67,7 @@ export default function Patient() {
   //parte commentar funciones y constantes ----------------------------------------------
 
 
-  const comments = useSelector((state) => state.comments)
-  const [activeUser, setActiveUser] = useState(localStorage.getItem('activeUser'));
+  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [comment, setComment] = useState('');
