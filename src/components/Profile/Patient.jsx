@@ -90,6 +90,7 @@ export default function Patient() {
 
     setUrl(respuesta.data);
     setForm({ ...form, imagen: respuesta.data });
+    toast.success("Imagen Cargada!");
   };
 
   useEffect(() => {
@@ -128,7 +129,7 @@ export default function Patient() {
       })
       .catch((error) => {
         console.error(error);
-        alert("Hubo un error al enviar los datos");
+        toast.error("Hubo un error al enviar los datos");
       });
 
     setLoading(false);
@@ -469,6 +470,7 @@ export default function Patient() {
 
                   <div>
                     {/* Start Form Modal */}
+                    <ToastContainer />
                     <Modal
                       modalClassName="modal-black"
                       isOpen={formModal}
@@ -518,6 +520,7 @@ export default function Patient() {
                               <i className="tim-icons icon-book-bookmark" />{" "}
                               Cargar Imagen
                             </Button>
+                            <ToastContainer />
                           </form>
                         </FormGroup>
                         <Form role="form" onSubmit={(e) => handleFormSubmit(e)}>
@@ -636,7 +639,6 @@ export default function Patient() {
                             >
                               {loading ? "Enviando..." : "Enviar Datos"}
                             </Button>
-                            <ToastContainer />
                           </div>
                         </Form>
                       </div>
