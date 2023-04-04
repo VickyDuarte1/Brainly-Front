@@ -97,7 +97,7 @@ export default function Login() {
     const user = pacientes.find(
       (user) => user.usuario === username && user.contraseña === password
     );
-    if (user) {
+    if (user && user.activo) {
       setActiveUser({
         ...user,
         activeUser: true,
@@ -120,7 +120,7 @@ export default function Login() {
         (doctor) =>
           doctor.usuario === username && doctor.contraseña === password
       );
-      if (doctor) {
+      if (doctor && doctor.activo) {
         setActiveUser({ ...doctor, activeUser: true, tipo_user: "doctor" });
         localStorage.setItem(
           "activeUser",
@@ -129,6 +129,7 @@ export default function Login() {
             activeUser: true,
             tipo_user: "doctor",
             contraseña: "*****",
+            activo: doctor.activo,
           })
         );
         return doctor;

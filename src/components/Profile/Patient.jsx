@@ -4,6 +4,7 @@ import classnames from "classnames";
 import PerfectScrollbar from "perfect-scrollbar";
 import { createPost } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Estrellas from "../Comments/Estrellas";
 import "./estrellas.css";
 
@@ -63,6 +64,12 @@ export default function Patient() {
   const activeResult = JSON.parse(localStorage.getItem("activeResult"));
   // const [activeResult] = useState(localStorage.getItem("activeResult"));
   const [url, setUrl] = useState(null);
+  const history = useNavigate();
+
+  const handleButtonClick = () => {
+    // Aquí puedes redirigir a la ruta deseada
+    history("/doctor-list");
+  };
 
   const handleImagenSeleccionada = (e) => {
     setImagen(e.target.files[0]);
@@ -318,7 +325,7 @@ export default function Patient() {
                           }}
                           href="#pablo"
                         >
-                          MRI
+                          Más
                         </NavLink>
                       </NavItem>
                     </Nav>
@@ -390,23 +397,11 @@ export default function Patient() {
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
                           <thead className="text-primary">
-                            <tr>
-                              <th className="header">Imágen</th>
-                              <th className="header">Status</th>
-                            </tr>
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Imagen</td>
-                              <td>The Daily: Nexo to Pay on Stable...</td>
-                            </tr>
-                            <tr>
-                              <td>Venezuela Begins Public of Nation...</td>
-                              <td>Venezuela Begins Public of Nation...</td>
-                            </tr>
-                            <tr>
-                              <td>PR: BitCanna – Dutch Blockchain...</td>
-                              <td>PR: BitCanna – Dutch Blockchain...</td>
+                              <td>Lista de Doctores</td>
+                              <td><Button color="info" onClick={handleButtonClick}>Info</Button></td>
                             </tr>
                           </tbody>
                         </Table>
