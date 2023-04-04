@@ -119,10 +119,6 @@ export default function Register() {
     display: "none",
   };
 
-  const styleErrors = {
-    color: "red",
-  };
-
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -323,7 +319,7 @@ export default function Register() {
                               onBlur={(e) => setFullNameFocus(false)}
                             />
                           </InputGroup>
-                          <div style={styleErrors}>{errors.nombre}</div>
+                          {/* <div style={styleErrors}>{errors.nombre}</div> */}
                         </div>
 
                         <div
@@ -397,7 +393,7 @@ export default function Register() {
                             onBlur={(e) => setEmailFocus(false)}
                             id="correo"
                           />
-                          <div style={styleErrors}>{errors.correo}</div>
+                          {/* <div style={styleErrors}>{errors.correo}</div> */}
                         </InputGroup>
 
                         <div className="form-row">
@@ -421,7 +417,7 @@ export default function Register() {
                               onFocus={(e) => setUserNameFocus(true)}
                               onBlur={(e) => setUserNameFocus(false)}
                             />
-                            <div style={styleErrors}>{errors.usuario}</div>
+                            {/* <div style={styleErrors}>{errors.usuario}</div> */}
                           </InputGroup>
 
                           <InputGroup
@@ -444,7 +440,7 @@ export default function Register() {
                               onFocus={(e) => setPasswordFocus(true)}
                               onBlur={(e) => setPasswordFocus(false)}
                             />
-                            <div style={styleErrors}>{errors.contraseña}</div>
+                            {/* <div style={styleErrors}>{errors.contraseña}</div> */}
                           </InputGroup>
 
                           <InputGroup
@@ -626,7 +622,12 @@ export default function Register() {
                     </CardBody>
                     <CardFooter>
                       {" "}
-                      <Alert color="danger">{errors.nombre}{errors.correo}</Alert>
+                      <Alert color="danger">
+                        {errors.nombre}
+                        {errors.correo}
+                        {errors.usuario}
+                        {errors.contraseña}
+                      </Alert>
                     </CardFooter>
                   </Card>
                 </Col>
