@@ -5,6 +5,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Patient from "./components/Profile/Patient";
 import Doctor from "./components/Profile/Doctor";
+import DoctorList from "./components/Profile/DoctorList";
 
 import "./assets/css/nucleo-icons.css";
 import "./assets/scss/blk-design-system-react.scss";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile-patient" element={<Patient />} />
         <Route path="/profile-doctor" element={<Doctor />} />
+        <Route path="/doctor-list" element={<DoctorList />} />
       </Routes>
     </BrowserRouter>
   );
