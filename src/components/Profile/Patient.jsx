@@ -34,7 +34,8 @@ import {
   UncontrolledTooltip,
   UncontrolledCarousel,
 } from "reactstrap";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
 
@@ -92,10 +93,10 @@ export default function Patient() {
     imagen: "",
     resultado: "",
   });
-
+  const [loading, setLoading] = useState(false);
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    setLoading(true);
     fetch("https://brainly-back.onrender.com/detection", {
       method: "POST",
       headers: {
@@ -105,7 +106,12 @@ export default function Patient() {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert("¡Datos enviados!");
+      
+      
+        // alert("¡Datos enviados!");
+      
+        toast.success("¡Datos enviados!");
+      
         setForm({
           nombre: "",
           usuario: "",
@@ -119,6 +125,10 @@ export default function Patient() {
         console.error(error);
         alert("Hubo un error al enviar los datos");
       });
+
+      setLoading(false);
+      setFormModal(false); 
+      
   };
 
   const [rating, setRating] = useState(0);
@@ -191,6 +201,8 @@ export default function Patient() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
+    
+      toast.success('¡Contraseña cambiada con éxito!');
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -349,6 +361,10 @@ export default function Patient() {
                           </tbody>
                         </Table>
                       </TabPane>
+
+
+
+
                       <TabPane tabId="tab2">
                         <Row>
                           <Label sm="3">Clave actual:</Label>
@@ -387,6 +403,10 @@ export default function Patient() {
                           <i className="tim-icons icon-send" />
                         </Button>
                       </TabPane>
+
+                          <ToastContainer />
+
+
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
                           <thead className="text-primary">
@@ -457,7 +477,13 @@ export default function Patient() {
                     </Button>
                   </form>
 
+
+
+
                   <div>
+                   
+                  <ToastContainer />
+                   
                     {/* Start Form Modal */}
                     <Modal
                       modalClassName="modal-black"
@@ -510,6 +536,9 @@ export default function Patient() {
                             </Button>
                           </form>
                         </FormGroup>
+
+
+
                         <Form role="form" onSubmit={(e) => handleFormSubmit(e)}>
                           <FormGroup>
                             <InputGroup
@@ -572,6 +601,9 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <FormGroup>
+
+
+
                             <InputGroup
                               className={classnames("input-group-alternative", {
                                 "input-group-focus": imgFocus,
@@ -618,18 +650,20 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <div className="text-center">
-                            <Button
-                              className="my-4"
-                              color="primary"
-                              type="submit"
-                            >
-                              Enviar Datos
-                            </Button>
+                          <Button className="my-4" color="primary" type="submit" disabled={loading}>
+  {loading ? 'Enviando...' : 'Enviar Datos'}
+</Button>
                           </div>
                         </Form>
                       </div>
                     </Modal>
                     {/* End Form Modal */}
+
+
+
+
+
+
                   </div>
                 </div>
               </Col>
