@@ -1,55 +1,208 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import classnames from "classnames";
 import PerfectScrollbar from "perfect-scrollbar";
+import { createPost } from "../../Redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+
+import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   Button,
   Card,
-  CardHeader,
-  CardBody,
   Label,
   FormGroup,
   Form,
   Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
   FormText,
   NavItem,
   NavLink,
   Nav,
+  CardHeader,
+  CardBody,
   Table,
   TabContent,
   TabPane,
   Container,
   Row,
   Col,
-  UncontrolledTooltip,
-  UncontrolledCarousel,
+  CardImg,
+  CardTitle,
+  CardText,
+  Modal,
 } from "reactstrap";
-
 
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
-
-const carouselItems = [
-  {
-    src: require("../../assets/img/brain-three.jpg"),
-    altText: "Slide 1",
-    caption: "Selecciona tu Imágen",
-  },
-  {
-    src: require("../../assets/img/brain-two.jpg"),
-    altText: "Slide 2",
-    caption: "Carga tu Imágen",
-  },
-  {
-    src: require("../../assets/img/brain-one.jpg"),
-    altText: "Slide 3",
-    caption: "Deja que la IA se encarge del resto",
-  },
-];
+import getResults from "../../Redux/actions";
 
 let ps = null;
 
-export default function ProfilePage() {
+export default function Doctor() {
+  const resultados = useSelector((state) => state.resultados);
+  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+  const activeResult = JSON.parse(localStorage.getItem("activeResult"));
+  const [modal, setModal] = useState(false);
+  const [selectedResult, setSelectedResult] = useState({});
+  const [url, setUrl] = useState(null);
+  const [recipient, setRecipient] = useState("");
+  const [subject, setSubject] = useState("");
+  const [body, setBody] = useState("");
+
+  const handleRecipientChange = (event) => {
+    setRecipient(event.target.value);
+  };
+
+  const handleSubjectChange = (event) => {
+    setSubject(event.target.value);
+  };
+
+  const handleBodyChange = (event) => {
+    setBody(event.target.value);
+  };
+
+  const handleEmailSubmit = (event) => {
+    event.preventDefault();
+
+    emailjs
+      .send(
+        "service_srf544n",
+        "template_diqnl4q",
+        {
+          to_email: recipient,
+          message: body,
+          reply_to: activeUser.correo,
+        },
+        "63VQQ6yalcuEmr1gC"
+      )
+      .then(
+        (result) => {
+          toast.success("¡Correo enviado con éxito!");
+        },
+        (error) => {
+          toast.error(
+            "Hubo un error al enviar el correo electrónico. Inténtelo de nuevo más tarde."
+          );
+          console.error(error);
+        }
+      );
+  };
+
+  const handleImagenSeleccionada = (e) => {
+    setImagen(e.target.files[0]);
+  };
+
+  const handleImageSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("imagen", imagen);
+
+    const url = "https://brainly-back.onrender.com/upload";
+    const respuesta = await axios.post(url, formData);
+
+    setUrl(respuesta.data);
+    setForm({ ...form, imagen: respuesta.data });
+  };
+
+  useEffect(() => {
+    localStorage.getItem("activeResult", JSON.stringify(activeResult));
+  }, [activeResult]);
+
+  const [form, setForm] = useState({
+    nombre: activeUser.nombre,
+    usuario: activeUser.usuario,
+    correo: activeUser.correo,
+    imagen: "",
+    resultado: "",
+  });
+
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
+  const [setNewComment] = useState(null);
+
+  const [nameFocus, setNameFocus] = React.useState(false);
+  const [userFocus, setUserFocus] = React.useState(false);
+  const [emailFocus, setEmailFocus] = React.useState(false);
+  const [imgFocus, setImgFocus] = React.useState(false);
+  const [resultFocus, setResultFocus] = React.useState(false);
+  const [imagen, setImagen] = useState(null);
+
+  const handleSaveRating = (rating) => {
+    setRating(rating);
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    console.log(comment);
+    console.log(rating);
+    const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+    dispatch(
+      createPost({
+        texto: comment,
+        puntuacion: rating,
+        usuario: activeUser.usuario,
+        id: activeUser.id,
+      })
+    );
+    setNewComment({
+      usuario_paciente: activeUser.usuario,
+      comentario: comment,
+      puntuacion: rating,
+    });
+
+    setComment("");
+    setRating("");
+    console.log(activeUser.usuario);
+  };
+
+  const [formModal, setFormModal] = React.useState(false);
+  //Para el modal
+  const toggleModal = (resultado) => {
+    setSelectedResult(resultado);
+    setModal(!modal);
+  };
+
+  useEffect(() => {
+    dispatch(getResults());
+  }, [dispatch]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Obtener los valores de entrada del usuario
+    const usuario = activeUser.usuario; // este valor debe estar disponible en tus props
+    const current_password = document.getElementById("current-password").value;
+    const new_password = document.getElementById("new-password").value;
+
+    // Enviar una solicitud HTTP POST al servidor Python
+    axios
+      .post("http://localhost:5000/password", {
+        usuario: usuario,
+        current_password: current_password,
+        new_password: new_password,
+      })
+      .then((response) => {
+        // Manejar la respuesta del servidor Python si la solicitud se completa correctamente
+        console.log(response);
+      })
+      .catch((error) => {
+        // Manejar cualquier error si la solicitud no se completa correctamente
+        console.log(error);
+      });
+  };
+
   const [tabs, setTabs] = React.useState(1);
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -89,51 +242,35 @@ export default function ProfilePage() {
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
-                <h1 className="profile-title text-left">Mike Scheinder</h1>
+                <h1 className="profile-title text-left">
+                  Te Damos la Bienvenida!
+                </h1>
                 <h5 className="text-on-back">01</h5>
                 <p className="profile-description">
-                  Offices parties lasting outward nothing age few resolve.
-                  Impression to discretion understood to we interested he
-                  excellence. Him remarkably use projection collecting. Going
-                  about eat forty world has round miles.
+                  Para comenzar a utilizar la aplicación, simplemente ten a la
+                  mano la imágen que deseas analizar. Una vez que hayas subido
+                  la imágen, la aplicación la procesará utilizando nuestra
+                  tecnología de detección de tumores cerebrales.
                 </p>
                 <div className="btn-wrapper profile pt-3">
                   <Button
                     className="btn-icon btn-round"
                     color="twitter"
-                    href="https://twitter.com/creativetim"
                     id="tooltip639225725"
                     target="_blank"
-                  >
-                    <i className="fab fa-twitter" />
-                  </Button>
-                  <UncontrolledTooltip delay={0} target="tooltip639225725">
-                    Follow us
-                  </UncontrolledTooltip>
+                  ></Button>
                   <Button
                     className="btn-icon btn-round"
                     color="facebook"
-                    href="https://www.facebook.com/creativetim"
                     id="tooltip982846143"
                     target="_blank"
-                  >
-                    <i className="fab fa-facebook-square" />
-                  </Button>
-                  <UncontrolledTooltip delay={0} target="tooltip982846143">
-                    Like us
-                  </UncontrolledTooltip>
+                  ></Button>
                   <Button
                     className="btn-icon btn-round"
                     color="dribbble"
-                    href="https://dribbble.com/creativetim"
                     id="tooltip951161185"
                     target="_blank"
-                  >
-                    <i className="fab fa-dribbble" />
-                  </Button>
-                  <UncontrolledTooltip delay={0} target="tooltip951161185">
-                    Follow us
-                  </UncontrolledTooltip>
+                  ></Button>
                 </div>
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
@@ -142,9 +279,10 @@ export default function ProfilePage() {
                     <img
                       alt="..."
                       className="img-center img-fluid rounded-circle"
-                      src={require("../../assets/img/mike.jpg")}
+                      src={activeUser.imagen}
                     />
-                    <h4 className="title">Transactions</h4>
+                    <h3 className="title">Bienvenido/a!</h3>
+                    <h4 className="title">{activeUser.nombre}</h4>
                   </CardHeader>
                   <CardBody>
                     <Nav
@@ -162,7 +300,7 @@ export default function ProfilePage() {
                           }}
                           href="#pablo"
                         >
-                          Wallet
+                          Info
                         </NavLink>
                       </NavItem>
                       <NavItem>
@@ -176,7 +314,7 @@ export default function ProfilePage() {
                           }}
                           href="#pablo"
                         >
-                          Send
+                          Seguridad
                         </NavLink>
                       </NavItem>
                       <NavItem>
@@ -190,7 +328,7 @@ export default function ProfilePage() {
                           }}
                           href="#pablo"
                         >
-                          News
+                          MRI
                         </NavLink>
                       </NavItem>
                     </Nav>
@@ -200,59 +338,61 @@ export default function ProfilePage() {
                     >
                       <TabPane tabId="tab1">
                         <Table className="tablesorter" responsive>
-                          <thead className="text-primary">
-                            <tr>
-                              <th className="header">COIN</th>
-                              <th className="header">AMOUNT</th>
-                              <th className="header">VALUE</th>
-                            </tr>
-                          </thead>
+                          <thead className="text-primary"></thead>
                           <tbody>
                             <tr>
-                              <td>BTC</td>
-                              <td>7.342</td>
-                              <td>48,870.75 USD</td>
+                              <td>Usuario</td>
+                              <td>{activeUser.usuario}</td>
                             </tr>
                             <tr>
-                              <td>ETH</td>
-                              <td>30.737</td>
-                              <td>64,53.30 USD</td>
+                              <td>Email</td>
+                              <td>{activeUser.correo}</td>
                             </tr>
                             <tr>
-                              <td>XRP</td>
-                              <td>19.242</td>
-                              <td>18,354.96 USD</td>
+                              <td>Dirección</td>
+                              <td>{activeUser.direccion}</td>
+                            </tr>
+                            <tr>
+                              <td>Teléfono</td>
+                              <td>{activeUser.telefono}</td>
                             </tr>
                           </tbody>
                         </Table>
                       </TabPane>
                       <TabPane tabId="tab2">
                         <Row>
-                          <Label sm="3">Pay to</Label>
+                          <Label sm="3">Clave actual:</Label>
                           <Col sm="9">
                             <FormGroup>
                               <Input
-                                placeholder="e.g. 1Nasd92348hU984353hfid"
-                                type="text"
+                                id="current-password"
+                                placeholder="Contraseña Actual"
+                                type="password"
                               />
                               <FormText color="default" tag="span">
-                                Please enter a valid address.
+                                Ingrese su contraseña actual.
                               </FormText>
                             </FormGroup>
                           </Col>
                         </Row>
                         <Row>
-                          <Label sm="3">Amount</Label>
+                          <Label sm="3">Clave nueva:</Label>
                           <Col sm="9">
                             <FormGroup>
-                              <Input placeholder="1.587" type="text" />
+                              <Input
+                                id="new-password"
+                                placeholder="Contraseña Nueva"
+                                type="password"
+                              />
                             </FormGroup>
                           </Col>
                         </Row>
                         <Button
+                          id="change-password-btn"
                           className="btn-simple btn-icon btn-round float-right"
                           color="primary"
                           type="submit"
+                          onClick={handleSubmit}
                         >
                           <i className="tim-icons icon-send" />
                         </Button>
@@ -261,17 +401,21 @@ export default function ProfilePage() {
                         <Table className="tablesorter" responsive>
                           <thead className="text-primary">
                             <tr>
-                              <th className="header">Latest Crypto News</th>
+                              <th className="header">Imágen</th>
+                              <th className="header">Status</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
+                              <td>Imagen</td>
                               <td>The Daily: Nexo to Pay on Stable...</td>
                             </tr>
                             <tr>
                               <td>Venezuela Begins Public of Nation...</td>
+                              <td>Venezuela Begins Public of Nation...</td>
                             </tr>
                             <tr>
+                              <td>PR: BitCanna – Dutch Blockchain...</td>
                               <td>PR: BitCanna – Dutch Blockchain...</td>
                             </tr>
                           </tbody>
@@ -284,144 +428,163 @@ export default function ProfilePage() {
             </Row>
           </Container>
         </div>
-        <div className="section">
-          <Container>
-            <Row className="justify-content-between">
-              <Col md="6">
-                <Row className="justify-content-between align-items-center">
-                  <UncontrolledCarousel items={carouselItems} />
-                </Row>
-              </Col>
-              <Col md="5">
-                <h1 className="profile-title text-left">Projects</h1>
-                <h5 className="text-on-back">02</h5>
-                <p className="profile-description text-left">
-                  An artist of considerable range, Ryan — the name taken by
-                  Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                  performs and records all of his own music, giving it a warm,
-                  intimate feel with a solid groove structure. An artist of
-                  considerable range.
-                </p>
-                <div className="btn-wrapper pt-3">
-                  <Button
-                    className="btn-simple"
-                    color="primary"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="tim-icons icon-book-bookmark" /> Bookmark
-                  </Button>
-                  <Button
-                    className="btn-simple"
-                    color="info"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="tim-icons icon-bulb-63" /> Check it!
-                  </Button>
-                </div>
-              </Col>
-            </Row>
-          </Container>
+        <div className="wrapper">
+          <div className="page-header">
+            <img
+              alt="..."
+              className="dots"
+              src={require("../../assets/img/dots.png")}
+            />
+            <img
+              alt="..."
+              className="path"
+              src={require("../../assets/img/path4.png")}
+            />
+            <Container className="align-items-center">
+              <Row>
+                <Col lg="6" md="6">
+                  <h1 className="profile-title text-left">Resultados</h1>
+                  <h5 className="text-on-back">Resultados</h5>
+                  <p className="profile-description">
+                    En esta sección puedes consultar los resultados que la IA
+                    arroja después de analizar detalladamente las imágenes que
+                    son proporcionadas por los ususarios.
+                  </p>
+                </Col>
+
+                <Col className="ml-auto mr-auto" lg="4" md="6">
+                  <Card className="card-coin card-plain">
+                    <CardHeader></CardHeader>
+                    <CardBody>
+                      <TabContent
+                        className="tab-subcategories"
+                        activeTab={"tab" + tabs}
+                      >
+                        <TabPane tabId="tab1">
+                          <Table className="tablesorter" responsive></Table>
+                        </TabPane>
+                      </TabContent>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+          <div className="section">
+            <Container>
+              <Row>
+                {resultados &&
+                  resultados.map((resultado, index) => (
+                    <Col key={index}>
+                      <Card style={{ width: "20rem" }}>
+                        <CardImg
+                          top
+                          src={resultado.imagen}
+                          alt={resultado.nombre}
+                        />
+                        <CardBody>
+                          <CardTitle>{resultado.nombre}</CardTitle>
+                          <CardText>
+                            <strong>Usuario: </strong> {resultado.usuario}
+                            <br />
+                            <strong>Correo: </strong> {resultado.correo}
+                            <br />
+                            <strong>Resultado: </strong> {resultado.resultado}
+                            <br />
+                          </CardText>
+                          <Button
+                            color="primary"
+                            onClick={() => toggleModal(resultado)}
+                          >
+                            Ver
+                          </Button>
+                          <Modal
+                            modalClassName="modal-black"
+                            isOpen={modal}
+                            toggle={toggleModal}
+                          >
+                            <div className="modal-body">
+                              <div className="btn-wrapper text-center"></div>
+                              <div className="text-center text-muted mb-4 mt-3">
+                                <small>
+                                  Llene el formulario solo con la información
+                                  correcta
+                                </small>
+                              </div>
+
+                              <Form
+                                role="form"
+                                onSubmit={(e) => handleEmailSubmit(e)}
+                              >
+                                <FormGroup>
+                                  <InputGroup
+                                    className={classnames(
+                                      "input-group-alternative",
+                                      {
+                                        "input-group-focus": emailFocus,
+                                      }
+                                    )}
+                                  >
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="tim-icons icon-email-85" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Correo Electrónico"
+                                      type="text"
+                                      value={recipient}
+                                      onFocus={(e) => setEmailFocus(true)}
+                                      onBlur={(e) => setEmailFocus(false)}
+                                      onChange={handleRecipientChange}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                  <InputGroup
+                                    className={classnames(
+                                      "input-group-alternative",
+                                      {
+                                        "input-group-focus": resultFocus,
+                                      }
+                                    )}
+                                  >
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="tim-icons icon-notes" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Mensaje a Enviar"
+                                      type="text"
+                                      value={body}
+                                      onFocus={(e) => setResultFocus(true)}
+                                      onBlur={(e) => setResultFocus(false)}
+                                      onChange={handleBodyChange}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <div className="text-center">
+                                  <Button
+                                    className="my-4"
+                                    color="primary"
+                                    type="submit"
+                                  >
+                                    Enviar Mensaje
+                                  </Button>
+                                  <ToastContainer />
+                                </div>
+                              </Form>
+                            </div>
+                          </Modal>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                  ))}
+              </Row>
+            </Container>
+          </div>
         </div>
-        <section className="section">
-          <Container>
-            <Row>
-              <Col md="6">
-                <Card className="card-plain">
-                  <CardHeader>
-                    <h1 className="profile-title text-left">Contact</h1>
-                    <h5 className="text-on-back">03</h5>
-                  </CardHeader>
-                  <CardBody>
-                    <Form>
-                      <Row>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Your Name</label>
-                            <Input defaultValue="Mike" type="text" />
-                          </FormGroup>
-                        </Col>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Email address</label>
-                            <Input placeholder="mike@email.com" type="email" />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Phone</label>
-                            <Input defaultValue="001-12321345" type="text" />
-                          </FormGroup>
-                        </Col>
-                        <Col md="6">
-                          <FormGroup>
-                            <label>Company</label>
-                            <Input defaultValue="CreativeTim" type="text" />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label>Message</label>
-                            <Input placeholder="Hello there!" type="text" />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Button
-                        className="btn-round float-right"
-                        color="primary"
-                        data-placement="right"
-                        id="tooltip341148792"
-                        type="button"
-                      >
-                        Send text
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        placement="right"
-                        target="tooltip341148792"
-                      >
-                        Can't wait for your message
-                      </UncontrolledTooltip>
-                    </Form>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col className="ml-auto" md="4">
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-square-pin" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Find us at the office</h4>
-                    <p>
-                      Bld Mihail Kogalniceanu, nr. 8, <br />
-                      7652 Bucharest, <br />
-                      Romania
-                    </p>
-                  </div>
-                </div>
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-mobile" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Give us a ring</h4>
-                    <p>
-                      Michael Jordan <br />
-                      +40 762 321 762 <br />
-                      Mon - Fri, 8:00-22:00
-                    </p>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </section>
         <Footer />
       </div>
     </>
