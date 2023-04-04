@@ -4,13 +4,14 @@ import classnames from "classnames";
 import PerfectScrollbar from "perfect-scrollbar";
 import { createPost } from "../../Redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-import Estrellas from "../Comments/Estrellas";
-import "./estrellas.css";
+
+import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   Button,
   Card,
-  FormFeedback,
   Label,
   FormGroup,
   Form,
@@ -22,7 +23,6 @@ import {
   NavItem,
   NavLink,
   Nav,
-  UncontrolledCarousel,
   CardHeader,
   CardBody,
   Table,
@@ -33,13 +33,8 @@ import {
   Col,
   CardImg,
   CardTitle,
-  CardSubtitle,
   CardText,
-  UncontrolledTooltip,
   Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 } from "reactstrap";
 
 import NavBrain from "../NavBar/NavBrain";
@@ -55,6 +50,48 @@ export default function Doctor() {
   const [modal, setModal] = useState(false);
   const [selectedResult, setSelectedResult] = useState({});
   const [url, setUrl] = useState(null);
+  const [recipient, setRecipient] = useState("");
+  const [subject, setSubject] = useState("");
+  const [body, setBody] = useState("");
+
+  const handleRecipientChange = (event) => {
+    setRecipient(event.target.value);
+  };
+
+  const handleSubjectChange = (event) => {
+    setSubject(event.target.value);
+  };
+
+  const handleBodyChange = (event) => {
+    setBody(event.target.value);
+  };
+
+  const handleEmailSubmit = (event) => {
+    event.preventDefault();
+
+    emailjs
+      .send(
+        "service_srf544n",
+        "template_diqnl4q",
+        {
+          to_email: recipient,
+          message: body,
+          reply_to: activeUser.correo,
+        },
+        "63VQQ6yalcuEmr1gC"
+      )
+      .then(
+        (result) => {
+          toast.success("¡Correo enviado con éxito!");
+        },
+        (error) => {
+          toast.error(
+            "Hubo un error al enviar el correo electrónico. Inténtelo de nuevo más tarde."
+          );
+          console.error(error);
+        }
+      );
+  };
 
   const handleImagenSeleccionada = (e) => {
     setImagen(e.target.files[0]);
@@ -84,34 +121,6 @@ export default function Doctor() {
     imagen: "",
     resultado: "",
   });
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    fetch("https://brainly-back.onrender.com/detection", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        alert("¡Datos enviados!");
-        setForm({
-          nombre: "",
-          usuario: "",
-          correo: "",
-          imagen: "",
-          resultado: "",
-        });
-        localStorage.setItem("activeResult", JSON.stringify(form));
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("Hubo un error al enviar los datos");
-      });
-  };
 
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -489,159 +498,84 @@ export default function Doctor() {
                           >
                             Ver
                           </Button>
-                          <Modal isOpen={modal} toggle={toggleModal}>
-                          <div className="modal-body">
-                        <div className="btn-wrapper text-center"></div>
-                        <div className="text-center text-muted mb-4 mt-3">
-                          <small>
-                            Llene el formulario solo con la información correcta
-                          </small>
-                        </div>
+                          <Modal
+                            modalClassName="modal-black"
+                            isOpen={modal}
+                            toggle={toggleModal}
+                          >
+                            <div className="modal-body">
+                              <div className="btn-wrapper text-center"></div>
+                              <div className="text-center text-muted mb-4 mt-3">
+                                <small>
+                                  Llene el formulario solo con la información
+                                  correcta
+                                </small>
+                              </div>
 
-                        <FormGroup className="mb-3">
-                          <form onSubmit={handleImageSubmit}>
-                            <label
-                              htmlFor="file-upload"
-                              className="btn btn-info"
-                            >
-                              <i className="tim-icons icon-cloud-upload-94" />{" "}
-                              Subir archivo
-                            </label>
-                            <input
-                              id="file-upload"
-                              type="file"
-                              onChange={handleImagenSeleccionada}
-                              style={{ display: "none" }}
-                            />
-                            <Button
-                              type="submit"
-                              className="btn-simple"
-                              color="primary"
-                              style={{ marginLeft: "6.2em" }}
-                            >
-                              <i className="tim-icons icon-book-bookmark" />{" "}
-                              Cargar Imagen
-                            </Button>
-                          </form>
-                        </FormGroup>
-                        <Form role="form" onSubmit={(e) => handleFormSubmit(e)}>
-                          <FormGroup>
-                            <InputGroup
-                              className={classnames("input-group-alternative", {
-                                "input-group-focus": nameFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-caps-small" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Nombre y Apellido"
-                                type="text"
-                                value={form.nombre}
-                                onFocus={(e) => setNameFocus(true)}
-                                onBlur={(e) => setNameFocus(false)}
-                              />
-                            </InputGroup>
-                          </FormGroup>
-                          <FormGroup>
-                            <InputGroup
-                              className={classnames("input-group-alternative", {
-                                "input-group-focus": userFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Usuario"
-                                type="text"
-                                value={form.usuario}
-                                onFocus={(e) => setUserFocus(true)}
-                                onBlur={(e) => setUserFocus(false)}
-                              />
-                            </InputGroup>
-                          </FormGroup>
-                          <FormGroup>
-                            <InputGroup
-                              className={classnames("input-group-alternative", {
-                                "input-group-focus": emailFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-email-85" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Correo Electrónico"
-                                type="text"
-                                value={form.correo}
-                                onFocus={(e) => setEmailFocus(true)}
-                                onBlur={(e) => setEmailFocus(false)}
-                              />
-                            </InputGroup>
-                          </FormGroup>
-                          <FormGroup>
-                            <InputGroup
-                              className={classnames("input-group-alternative", {
-                                "input-group-focus": imgFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-camera-18" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Url de la Imagen"
-                                type="text"
-                                value={form.imagen}
-                                onFocus={(e) => setImgFocus(true)}
-                                onBlur={(e) => setImgFocus(false)}
-                              />
-                            </InputGroup>
-                          </FormGroup>
-                          <FormGroup>
-                            <InputGroup
-                              className={classnames("input-group-alternative", {
-                                "input-group-focus": resultFocus,
-                              })}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="tim-icons icon-notes" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Resultado detectado por la IA"
-                                type="text"
-                                value={form.resultado}
-                                onFocus={(e) => setResultFocus(true)}
-                                onBlur={(e) => setResultFocus(false)}
-                                onChange={(e) => {
-                                  setForm({
-                                    ...form,
-                                    resultado: e.target.value,
-                                  });
-                                }}
-                              />
-                            </InputGroup>
-                          </FormGroup>
-                          <div className="text-center">
-                            <Button
-                              className="my-4"
-                              color="primary"
-                              type="submit"
-                            >
-                              Enviar Datos
-                            </Button>
-                          </div>
-                        </Form>
-                      </div>
+                              <Form
+                                role="form"
+                                onSubmit={(e) => handleEmailSubmit(e)}
+                              >
+                                <FormGroup>
+                                  <InputGroup
+                                    className={classnames(
+                                      "input-group-alternative",
+                                      {
+                                        "input-group-focus": emailFocus,
+                                      }
+                                    )}
+                                  >
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="tim-icons icon-email-85" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Correo Electrónico"
+                                      type="text"
+                                      value={recipient}
+                                      onFocus={(e) => setEmailFocus(true)}
+                                      onBlur={(e) => setEmailFocus(false)}
+                                      onChange={handleRecipientChange}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                  <InputGroup
+                                    className={classnames(
+                                      "input-group-alternative",
+                                      {
+                                        "input-group-focus": resultFocus,
+                                      }
+                                    )}
+                                  >
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="tim-icons icon-notes" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Mensaje a Enviar"
+                                      type="text"
+                                      value={body}
+                                      onFocus={(e) => setResultFocus(true)}
+                                      onBlur={(e) => setResultFocus(false)}
+                                      onChange={handleBodyChange}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <div className="text-center">
+                                  <Button
+                                    className="my-4"
+                                    color="primary"
+                                    type="submit"
+                                  >
+                                    Enviar Mensaje
+                                  </Button>
+                                  <ToastContainer />
+                                </div>
+                              </Form>
+                            </div>
                           </Modal>
                         </CardBody>
                       </Card>
