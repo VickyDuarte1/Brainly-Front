@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Brainly App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+"Descubre cómo la IA puede ayudar a salvar vidas detectando tumores cerebrales: ¡Conoce Brainly!"
+https://main-brainly.vercel.app
 
-## Available Scripts
+## Fácil, rápido, preciso y seguro
 
-In the project directory, you can run:
+Brainly es la solución definitiva para la detección temprana de tumores cerebrales. Ingresa a nuestra aplicación hoy mismo y da el primer paso para proteger tu salud cerebral.
 
-### `npm start`
+### Acerca de Nosotros
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Brainly es una plataforma de diagnóstico asistido por computadora en la que las personas pueden diagnosticar sus enfermedades con un solo clic. Utilizamos técnicas de aprendizaje profundo y aprendizaje automático para detectar el patrón de varias enfermedades con los registros electrónicos de salud del paciente y proporcionar información sobre diversas anomalías.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+En nuestra plataforma, abordamos el diagnóstico y la detección de tumores cerebrales utilizando U-Net, y lo clasificamos mediante tomografía computarizada. Hemos aplicado diferentes modelos de vanguardia para lograr una buena precisión en nuestros modelos.
 
-### `npm test`
+### ¿Qué beneficios puedes encontrar en Brainly?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Modelos actualizados: Brainly utiliza la última tecnología de inteligencia artificial para detectar tumores cerebrales a través de imágenes de resonancia magnética. Con una precisión del 95%, Brainly es capaz de identificar tumores en etapas tempranas.
 
-### `npm run build`
+Mejor precisión: Nuestro algoritmo está diseñado para analizar y detectar incluso las más pequeñas anomalías en las imágenes, lo que significa que podemos detectar tumores que podrían pasar desapercibidos para los radiólogos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Fácil usabilidad: Además, nuestra aplicación es fácil de usar y accesible para todos, lo que significa que puede ayudar a miles de personas en todo el mundo a obtener un diagnóstico temprano y a tomar medidas preventivas para combatir esta enfermedad.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Últimas características
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Brainly es una aplicación única que combina tecnología de inteligencia artificial de vanguardia con un enfoque en la detección temprana de tumores cerebrales.
 
-### `npm run eject`
+INTERFAZ FÁCIL DE USAR
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+OBTEN INFORMES INSTANTÁNEOS DEL DIAGNÓSTICO UTILIZAMOS MODELOS DE APRENDIZAJE AUTOMÁTICO Y APRENDIZAJE PROFUNDO DE BAJO PESO
