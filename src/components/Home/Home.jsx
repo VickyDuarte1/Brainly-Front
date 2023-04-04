@@ -406,14 +406,6 @@ export default function Home() {
                         esta enfermedad.
                       </p>
                     </div>
-                    <a
-                      className="font-weight-bold text-info mt-5"
-                      href="#pablo"
-                      onClick={handleMoreClick}
-                    >
-                      Leer Más{" "}
-                      <i className="tim-icons icon-minimal-right text-info" />
-                    </a>
                   </Col>
                 </Row>
               </Col>
