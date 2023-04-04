@@ -166,36 +166,46 @@ export default function Login() {
   function findUserGoogle(correo) {
     const paciente = pacientes.find((user) => user.correo === correo);
     if (paciente) {
-      setActiveUser({
-        ...paciente,
-        activeUser: true,
-        tipo_user: "paciente",
-        activo: paciente.activo,
-      });
-
-      localStorage.setItem(
-        "activeUser",
-        JSON.stringify({
+      if (paciente.activo) {
+        setActiveUser({
           ...paciente,
           activeUser: true,
           tipo_user: "paciente",
-          contraseña: "*****",
           activo: paciente.activo,
-        })
-      );
-    } else {
-      const doctor = doctores.find((doctor) => doctor.correo === correo);
-      if (doctor) {
-        setActiveUser({ ...doctor, activeUser: true, tipo_user: "doctor" });
+        });
+
         localStorage.setItem(
           "activeUser",
           JSON.stringify({
-            ...doctor,
+            ...paciente,
             activeUser: true,
-            tipo_user: "doctor",
+            tipo_user: "paciente",
             contraseña: "*****",
+            activo: paciente.activo,
           })
         );
+      } else {
+        // el usuario no está activo, no se establece como usuario activo ni se guarda en el almacenamiento local
+        console.log("El usuario no está activo");
+      }
+    } else {
+      const doctor = doctores.find((doctor) => doctor.correo === correo);
+      if (doctor) {
+        if (doctor.activo) {
+          setActiveUser({ ...doctor, activeUser: true, tipo_user: "doctor" });
+          localStorage.setItem(
+            "activeUser",
+            JSON.stringify({
+              ...doctor,
+              activeUser: true,
+              tipo_user: "doctor",
+              contraseña: "*****",
+            })
+          );
+        } else {
+          // el usuario no está activo, no se establece como usuario activo ni se guarda en el almacenamiento local
+          console.log("El usuario no está activo");
+        }
       } else {
         toggleModal();
       }
