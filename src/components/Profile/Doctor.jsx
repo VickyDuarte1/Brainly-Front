@@ -58,7 +58,7 @@ const carouselItems = [
 
 let ps = null;
 
-export default function Doctor() {
+export default function Patient() {
   const activeUser = JSON.parse(localStorage.getItem("activeUser"));
   const activeResult = JSON.parse(localStorage.getItem("activeResult"));
   // const [activeResult] = useState(localStorage.getItem("activeResult"));
@@ -416,11 +416,11 @@ export default function Doctor() {
         <div className="section">
           <Container>
             <Row className="justify-content-between">
-              <Col md="6">
+              {/* <Col md="6">
                 <Row className="justify-content-between align-items-center">
                   <UncontrolledCarousel items={carouselItems} />
                 </Row>
-              </Col>
+              </Col> */}
               <Col md="5">
                 <h1 className="profile-title text-left">Sube tu Imágen</h1>
                 <h5 className="text-on-back">02</h5>
@@ -590,121 +590,6 @@ export default function Doctor() {
             </Row>
           </Container>
         </div>
-        <section className="section">
-          <Container>
-            <Row>
-              <Col md="6">
-                <Card className="card-plain">
-                  <CardHeader>
-                    <h1 className="profile-title text-left">
-                      Dejanos un Feedback
-                      {
-                        //--------------------ESCRIBIR COMENTARIO--------------------------------------------------------------------------------------------------------------------------
-                      }
-                    </h1>
-                    <h5 className="text-on-back">03</h5>
-                  </CardHeader>
-                  <CardBody>
-                    <Form onSubmit={handleCommentSubmit}>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label>Comentanos tu experencia!</label>
-                            <Input
-                              maxLength="100"
-                              invalid={comment.length > 99}
-                              placeholder="Escribir comentario"
-                              value={comment}
-                              onChange={handleCommentChange}
-                            />
-                            <FormFeedback>
-                              Alcanzaste el número maximo de caracteres{" "}
-                            </FormFeedback>
-                            <label>Dejanos una calificación: </label>
-                            <div className="estrellas-row">
-                              <Estrellas
-                                rating={rating}
-                                setSavedRating={handleSaveRating}
-                                hoverRating={hoverRating}
-                                setHoverRating={setHoverRating}
-                              />
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
-
-                      {
-                        //------------------------MODAL----------------------------------------------------------------------------------------------------------------------------------------------------------------
-                      }
-
-                      {/* 
-
-<Modal isOpen={showModal} toggle={() => setShowModal(false)}>
-  <ModalHeader toggle={() => setShowModal(false)}>Error</ModalHeader>
-  <ModalBody>Por favor, seleccione una calificación antes de enviar el formulario.</ModalBody>
-  <ModalFooter>
-    <Button color="primary" onClick={() => setShowModal(false)}>
-      Aceptar
-    </Button>
-  </ModalFooter>
-</Modal> */}
-
-                      <Button
-                        className="btn-round float-right"
-                        color="primary"
-                        data-placement="right"
-                        id="tooltip341148792"
-                        type="submit"
-                        onClick={handleCommentSubmit}
-                      >
-                        Send text
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        placement="right"
-                        target="tooltip341148792"
-                      >
-                        {
-                          //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        }
-                        Can't wait for your message
-                      </UncontrolledTooltip>
-                    </Form>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col className="ml-auto" md="4">
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-square-pin" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Find us at the office</h4>
-                    <p>
-                      Bld Mihail Kogalniceanu, nr. 8, <br />
-                      7652 Bucharest, <br />
-                      Romania
-                    </p>
-                  </div>
-                </div>
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-mobile" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Give us a ring</h4>
-                    <p>
-                      Michael Jordan <br />
-                      <a href="tel:+54-9-11-4418-0197">+54-9-11-4418-0197</a>
-                      <br />
-                      Mon - Fri, 8:00-22:00
-                    </p>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </section>
         <Footer />
       </div>
     </>

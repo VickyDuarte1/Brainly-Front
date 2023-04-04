@@ -25,7 +25,7 @@ export default function LandingPage() {
       <Container>
         <div className="content-center brand">
           <h1 className="h1-seo">¡Bienvenido!</h1>
-          <h3 className="d-none d-sm-block">
+          <h3 className="d-none d-sm-block" style={{ textTransform: "none" }}>
             "Descubre cómo la IA puede ayudar a salvar vidas detectando tumores
             cerebrales: ¡Conoce Brainly!"
           </h3>
@@ -34,6 +34,6 @@ export default function LandingPage() {
           </Button>
         </div>
       </Container>
-    </div>
-  );
+    </div>
+  );
 }

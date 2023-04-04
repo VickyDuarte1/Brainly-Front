@@ -86,7 +86,9 @@ export default function Patient() {
   }, [activeResult]);
 
   const [form, setForm] = useState({
+    nombre: activeUser.nombre,
     usuario: activeUser.usuario,
+    correo: activeUser.correo,
     imagen: "",
     resultado: "",
   });
@@ -105,7 +107,9 @@ export default function Patient() {
       .then((data) => {
         alert("¡Datos enviados!");
         setForm({
+          nombre: "",
           usuario: "",
+          correo: "",
           imagen: "",
           resultado: "",
         });
@@ -123,7 +127,9 @@ export default function Patient() {
   const dispatch = useDispatch();
   const [setNewComment] = useState(null);
 
+  const [nameFocus, setNameFocus] = React.useState(false);
   const [userFocus, setUserFocus] = React.useState(false);
+  const [emailFocus, setEmailFocus] = React.useState(false);
   const [imgFocus, setImgFocus] = React.useState(false);
   const [resultFocus, setResultFocus] = React.useState(false);
   const [imagen, setImagen] = useState(null);
@@ -508,6 +514,26 @@ export default function Patient() {
                           <FormGroup>
                             <InputGroup
                               className={classnames("input-group-alternative", {
+                                "input-group-focus": nameFocus,
+                              })}
+                            >
+                              <InputGroupAddon addonType="prepend">
+                                <InputGroupText>
+                                  <i className="tim-icons icon-caps-small" />
+                                </InputGroupText>
+                              </InputGroupAddon>
+                              <Input
+                                placeholder="Nombre y Apellido"
+                                type="text"
+                                value={form.nombre}
+                                onFocus={(e) => setNameFocus(true)}
+                                onBlur={(e) => setNameFocus(false)}
+                              />
+                            </InputGroup>
+                          </FormGroup>
+                          <FormGroup>
+                            <InputGroup
+                              className={classnames("input-group-alternative", {
                                 "input-group-focus": userFocus,
                               })}
                             >
@@ -522,6 +548,26 @@ export default function Patient() {
                                 value={form.usuario}
                                 onFocus={(e) => setUserFocus(true)}
                                 onBlur={(e) => setUserFocus(false)}
+                              />
+                            </InputGroup>
+                          </FormGroup>
+                          <FormGroup>
+                            <InputGroup
+                              className={classnames("input-group-alternative", {
+                                "input-group-focus": emailFocus,
+                              })}
+                            >
+                              <InputGroupAddon addonType="prepend">
+                                <InputGroupText>
+                                  <i className="tim-icons icon-email-85" />
+                                </InputGroupText>
+                              </InputGroupAddon>
+                              <Input
+                                placeholder="Correo Electrónico"
+                                type="text"
+                                value={form.correo}
+                                onFocus={(e) => setEmailFocus(true)}
+                                onBlur={(e) => setEmailFocus(false)}
                               />
                             </InputGroup>
                           </FormGroup>
@@ -707,6 +753,7 @@ export default function Patient() {
         </section>
         <Footer />
       </div>
-    </>
-  );
+          
+    </>
+  );
 }
