@@ -94,6 +94,15 @@ export default function Patient() {
     toast.success("Imagen Cargada!");
   };
 
+  React.useEffect(() => {
+    if (activeUser.premium === 1) {
+      const buttonDetection = document.querySelector("#detection-btn");
+      const buttonForm = document.querySelector("#form-detection");
+      buttonDetection.removeAttribute("disabled");
+      buttonForm.removeAttribute("disabled");
+    }
+  }, [activeUser]);
+
   useEffect(() => {
     localStorage.getItem("activeResult", JSON.stringify(activeResult));
   }, [activeResult]);
@@ -488,11 +497,18 @@ export default function Patient() {
                         (window.location.href =
                           "https://detection-brainly.streamlit.app/")
                       }
+                      id="detection-btn"
+                      disabled
                     >
-                      <i className="tim-icons icon-cloud-upload-94" /> Subir
-                      archivo
+                      <i className="tim-icons icon-cloud-upload-94" /> Prueba la
+                      IA
                     </label>
-                    <Button color="success" onClick={() => setFormModal(true)}>
+                    <Button
+                      color="success"
+                      onClick={() => setFormModal(true)}
+                      id="form-detection"
+                      disabled
+                    >
                       Llenar Formulario
                     </Button>
                   </form>
