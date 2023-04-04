@@ -70,6 +70,28 @@ export default function Patient() {
   const [loading, setLoading] = useState(false);
   const history = useNavigate();
 
+  React.useEffect(() => {
+    const url = document.referrer;
+    const baseUrl = url.split("?")[0];
+    if (
+      baseUrl ===
+      "https://www.mercadopago.com.ar/subscriptions/checkout/congrats"
+    ) {
+      const sendData = async () => {
+        try {
+          const res = (
+            await axios.post("https://brainly-back.onrender.com/pago_exitoso", {
+              correo: activeUser.correo,
+            })
+          ).data;
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }, [document.referrer]);
+
   const handleButtonClick = () => {
     // Aquí puedes redirigir a la ruta deseada
     history("/doctor-list");
@@ -147,7 +169,8 @@ export default function Patient() {
   const [hoverRating, setHoverRating] = useState(0);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
-  const [setNewComment] = useState(null);
+  const [newComment, setNewComment] = useState(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [nameFocus, setNameFocus] = React.useState(false);
   const [userFocus, setUserFocus] = React.useState(false);
@@ -168,21 +191,24 @@ export default function Patient() {
     event.preventDefault();
     console.log(comment);
     console.log(rating);
+
     const activeUser = JSON.parse(localStorage.getItem("activeUser"));
     dispatch(
       createPost({
         texto: comment,
         puntuacion: rating,
         usuario: activeUser.usuario,
-        id: activeUser.id,
+        id: activeUser.id || 1,
       })
     );
     setNewComment({
       usuario_paciente: activeUser.usuario,
       comentario: comment,
       puntuacion: rating,
+      id: activeUser.id || 1,
     });
 
+    toast.success("Comentario enviado!");
     setComment("");
     setRating("");
     console.log(activeUser.usuario);
@@ -373,9 +399,6 @@ export default function Patient() {
                         </Table>
                       </TabPane>
 
-
-
-
                       <TabPane tabId="tab2">
                         <Row>
                           <Label sm="3">Clave actual:</Label>
@@ -416,8 +439,7 @@ export default function Patient() {
                         <ToastContainer />
                       </TabPane>
 
-                          <ToastContainer />
-
+                      <ToastContainer />
 
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
@@ -490,13 +512,9 @@ export default function Patient() {
                     </Button>
                   </form>
 
-
-
-
                   <div>
-                   
-                  <ToastContainer />
-                   
+                    <ToastContainer />
+
                     {/* Start Form Modal */}
                     <ToastContainer />
                     <Modal
@@ -551,8 +569,6 @@ export default function Patient() {
                             <ToastContainer />
                           </form>
                         </FormGroup>
-
-
 
                         <Form role="form" onSubmit={(e) => handleFormSubmit(e)}>
                           <FormGroup>
@@ -616,9 +632,6 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <FormGroup>
-
-
-
                             <InputGroup
                               className={classnames("input-group-alternative", {
                                 "input-group-focus": imgFocus,
@@ -678,12 +691,6 @@ export default function Patient() {
                       </div>
                     </Modal>
                     {/* End Form Modal */}
-
-
-
-
-
-
                   </div>
                 </div>
               </Col>
@@ -693,102 +700,74 @@ export default function Patient() {
         <section className="section">
           <Container>
             <Row>
-              <Col md="6">
-                <Card className="card-plain">
-                  <CardHeader>
-                    <h1 className="profile-title text-left">
-                      Dejanos un Feedback
-                      {
-                        //--------------------ESCRIBIR COMENTARIO--------------------------------------------------------------------------------------------------------------------------
-                      }
-                    </h1>
-                    <h5 className="text-on-back">03</h5>
-                  </CardHeader>
-                  <CardBody>
-                    <Form onSubmit={handleCommentSubmit}>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label>Comentanos tu experencia!</label>
-                            <Input
-                              maxLength="100"
-                              invalid={comment.length > 99}
-                              placeholder="Escribir comentario"
-                              value={comment}
-                              onChange={handleCommentChange}
-                            />
-                            <FormFeedback>
-                              Alcanzaste el número maximo de caracteres{" "}
-                            </FormFeedback>
-                            <label>Dejanos una calificación: </label>
-                            <div className="estrellas-row">
-                              <Estrellas
-                                rating={rating}
-                                setSavedRating={handleSaveRating}
-                                hoverRating={hoverRating}
-                                setHoverRating={setHoverRating}
+              {console.log(activeUser.resultado)}
+              {formSubmitted && (
+                <Col md="6">
+                  <ToastContainer />
+                  <Card className="card-plain">
+                    <CardHeader>
+                      <h1 className="profile-title text-left">
+                        Dejanos un Feedback
+                      </h1>
+                      <h5 className="text-on-back">03</h5>
+                    </CardHeader>
+                    <CardBody>
+                      <Form onSubmit={handleCommentSubmit}>
+                        <Row>
+                          <Col md="12">
+                            <FormGroup>
+                              <label>Comentanos tu experencia!</label>
+                              <Input
+                                maxLength="100"
+                                invalid={comment.length > 99}
+                                placeholder="Escribir comentario"
+                                value={comment}
+                                onChange={handleCommentChange}
                               />
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
+                              <FormFeedback>
+                                Alcanzaste el número maximo de caracteres{" "}
+                              </FormFeedback>
+                              <label>Dejanos una calificación: </label>
+                              <div className="estrellas-row">
+                                <Estrellas
+                                  rating={rating}
+                                  setSavedRating={handleSaveRating}
+                                  hoverRating={hoverRating}
+                                  setHoverRating={setHoverRating}
+                                />
+                              </div>
+                            </FormGroup>
+                          </Col>
+                        </Row>
 
-                      <Button
-                        className="btn-round float-right"
-                        color="primary"
-                        data-placement="right"
-                        id="tooltip341148792"
-                        type="submit"
-                        onClick={handleCommentSubmit}
-                      >
-                        Send text
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        placement="right"
-                        target="tooltip341148792"
-                      >
-                        Can't wait for your message
-                      </UncontrolledTooltip>
-                    </Form>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col className="ml-auto" md="4">
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-square-pin" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Find us at the office</h4>
-                    <p>
-                      Bld Mihail Kogalniceanu, nr. 8, <br />
-                      7652 Bucharest, <br />
-                      Romania
-                    </p>
-                  </div>
-                </div>
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-mobile" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Give us a ring</h4>
-                    <p>
-                      Michael Jordan <br />
-                      <a href="tel:+54-9-11-4418-0197">+54-9-11-4418-0197</a>
-                      <br />
-                      Mon - Fri, 8:00-22:00
-                    </p>
-                  </div>
-                </div>
-              </Col>
+                        <Button
+                          className="btn-round float-right"
+                          color="primary"
+                          data-placement="right"
+                          id="tooltip341148792"
+                          type="submit"
+                          onClick={handleCommentSubmit}
+                        >
+                          Send text
+                        </Button>
+
+                        <UncontrolledTooltip
+                          delay={0}
+                          placement="right"
+                          target="tooltip341148792"
+                        >
+                          Can't wait for your message
+                        </UncontrolledTooltip>
+                      </Form>
+                    </CardBody>
+                  </Card>
+                </Col>
+              )}
             </Row>
           </Container>
         </section>
-        <Footer />
       </div>
-          
+      <Footer />
     </>
   );
 }
