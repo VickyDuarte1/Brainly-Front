@@ -195,7 +195,7 @@ export default function Doctor() {
 
     // Enviar una solicitud HTTP POST al servidor Python
     axios
-      .post("http://localhost:5000/password", {
+      .post("https://brainly-back.onrender.com/password", {
         usuario: usuario,
         current_password: current_password,
         new_password: new_password,
@@ -208,6 +208,7 @@ export default function Doctor() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
+    toast.success("¡Contraseña cambiada con éxito!");
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -403,6 +404,7 @@ export default function Doctor() {
                         >
                           <i className="tim-icons icon-send" />
                         </Button>
+                        <ToastContainer />
                       </TabPane>
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
