@@ -16,26 +16,23 @@ import {
 } from "reactstrap";
 
 export default function ExamplesNavbar() {
-  const location = useLocation()
+  const location = useLocation();
 
   const handleClick = () => {
-    if (location.pathname === '/home') {
+    if (location.pathname === "/home") {
       const section = document.getElementById("subscribe");
       section.scrollIntoView({ behavior: "smooth" });
-    }
-    else {
-      window.location.href = '/home'
+    } else {
+      window.location.href = "/home";
     }
   };
 
   const handleHomeClick = () => {
-
-    if (location.pathname === '/home') {
+    if (location.pathname === "/home") {
       const section = document.getElementById("home");
       section.scrollIntoView({ behavior: "smooth" });
-    }
-    else {
-      window.location.href = '/home'
+    } else {
+      window.location.href = "/home";
     }
   };
 
@@ -72,18 +69,22 @@ export default function ExamplesNavbar() {
     setCollapseOut("");
   };
 
-  const [activeUser, setActiveUser] = useState(JSON.parse(localStorage.getItem("activeUser")) || null);
+  const [activeUser, setActiveUser] = useState(
+    JSON.parse(localStorage.getItem("activeUser")) || null
+  );
 
   const handleLogOut = () => {
     localStorage.removeItem("activeUser");
     setActiveUser(null);
 
     // Redirect to landing page if user is logging out from profile page
-    if (location.pathname === "/profile-patient" || location.pathname === "/profile-doctor") {
+    if (
+      location.pathname === "/profile-patient" ||
+      location.pathname === "/profile-doctor"
+    ) {
       window.location.href = "/home";
     }
-  }
-
+  };
 
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
@@ -142,31 +143,38 @@ export default function ExamplesNavbar() {
                 <i className="tim-icons icon-spaceship" /> Cambiate a PRO
               </Button>
             </NavItem>
-            {
-              !activeUser
-                ?
-                (
-                  <>
-                    <NavItem>
-                      <NavLink tag={Link} to="/register">
-                        Regristrate
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink tag={Link} to="/login">{" "} Inicia Sesión</ NavLink>
-                    </NavItem>
-                  </>
-                )
-                : <>
-                  <Button className="nav-link d-none d-lg-block" onClick={handleLogOut}>Cerrar sesión</Button>
-                  <NavItem>
-                    <NavLink tag={Link} to="/profile-page"><i className="tim-icons icon-single-02"/></NavLink>
-                  </NavItem>
-                </>
-            }
+            {!activeUser ? (
+              <>
+                <NavItem>
+                  <NavLink tag={Link} to="/register">
+                    Regristrate
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} to="/login">
+                    {" "}
+                    Inicia Sesión
+                  </NavLink>
+                </NavItem>
+              </>
+            ) : (
+              <>
+                <Button
+                  className="nav-link d-none d-lg-block"
+                  onClick={handleLogOut}
+                >
+                  Cerrar sesión
+                </Button>
+                <NavItem>
+                  <NavLink tag={Link} to="/profile-page">
+                    <i className="tim-icons icon-single-02" />
+                  </NavLink>
+                </NavItem>
+              </>
+            )}
           </Nav>
         </Collapse>
       </Container>
-    </Navbar >
+    </Navbar>
   );
 }
