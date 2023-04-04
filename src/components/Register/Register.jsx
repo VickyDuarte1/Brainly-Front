@@ -27,6 +27,9 @@ import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/actions";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const validate = (form) => {
   let errors = {};
 
@@ -41,7 +44,7 @@ const validate = (form) => {
   } else if (!form.contraseña) {
     errors.contraseña = "Por favor ingresa una contraseña";
   } else if (
-    !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(
+    !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*.]).{8,}$/.test(
       form.contraseña
     )
   ) {
@@ -88,14 +91,23 @@ export default function Register() {
     formData.append("imagen", imagen);
 
     const url = "https://brainly-back.onrender.com/upload";
-    const respuesta = await axios.post(url, formData);
 
-    setUrl(respuesta.data);
-    setForm({
-      ...form,
-      imagen: respuesta.data,
-    });
-    alert("imagen cargada");
+    try {
+      const respuesta = await axios.post(url, formData);
+      setUrl(respuesta.data);
+      setForm({
+        ...form,
+        imagen: respuesta.data,
+      });
+      toast.success("Imagen cargada con exito!", { autoClose: 4000 });
+      setTimeout(() => {
+        toast.info("Que linda foto tienes!", { autoClose: 4000 });
+      }, 6000);
+    } catch (error) {
+      toast.error("Error al cargar la imagen. Por favor, intenta nuevamente.", {
+        autoClose: 4000,
+      });
+    }
   };
 
   const [form, setForm] = useState({
@@ -188,6 +200,7 @@ export default function Register() {
     console.log(form);
     dispatch(createUser(form));
     alert("¡Tu usuario ha sido creado!");
+    toast.success("¡Tu usuario ha sido creado!");
     localStorage.setItem("activeUser", JSON.stringify(form));
     if (form.tipo_usuario === "paciente") {
       history("/profile-patient");
@@ -266,6 +279,7 @@ export default function Register() {
                             <i className="tim-icons icon-book-bookmark" />{" "}
                             Cargar Imagen
                           </Button>
+                          <ToastContainer />
                         </div>
                       </Form>
                       <Form className="form" onSubmit={handleSubmit}>
@@ -618,6 +632,7 @@ export default function Register() {
                         >
                           Crear Usuario
                         </Button>
+                        <ToastContainer />
                       </Form>
                     </CardBody>
                     <CardFooter>
