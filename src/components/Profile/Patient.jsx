@@ -105,7 +105,7 @@ export default function Patient() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    setLoading(true);
     fetch("https://brainly-back.onrender.com/detection", {
       method: "POST",
       headers: {
@@ -127,8 +127,11 @@ export default function Patient() {
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Hubo un error al enviar los datos");
+        alert("Hubo un error al enviar los datos");
       });
+
+    setLoading(false);
+    setFormModal(false);
   };
 
   const [rating, setRating] = useState(0);
@@ -628,8 +631,9 @@ export default function Patient() {
                               className="my-4"
                               color="primary"
                               type="submit"
+                              disabled={loading}
                             >
-                              Enviar Datos
+                              {loading ? "Enviando..." : "Enviar Datos"}
                             </Button>
                             <ToastContainer />
                           </div>
