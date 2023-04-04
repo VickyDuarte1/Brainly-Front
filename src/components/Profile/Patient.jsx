@@ -201,7 +201,7 @@ export default function Patient() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
-      toast.success('¡Contraseña cambiada con éxito!');
+    toast.success("¡Contraseña cambiada con éxito!");
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -397,15 +397,22 @@ export default function Patient() {
                         >
                           <i className="tim-icons icon-send" />
                         </Button>
+                        <ToastContainer />
                       </TabPane>
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
-                          <thead className="text-primary">
-                          </thead>
+                          <thead className="text-primary"></thead>
                           <tbody>
                             <tr>
                               <td>Lista de Doctores</td>
-                              <td><Button color="info" onClick={handleButtonClick}>Info</Button></td>
+                              <td>
+                                <Button
+                                  color="info"
+                                  onClick={handleButtonClick}
+                                >
+                                  Info
+                                </Button>
+                              </td>
                             </tr>
                           </tbody>
                         </Table>
@@ -624,6 +631,7 @@ export default function Patient() {
                             >
                               Enviar Datos
                             </Button>
+                            <ToastContainer />
                           </div>
                         </Form>
                       </div>
