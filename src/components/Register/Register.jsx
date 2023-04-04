@@ -1,5 +1,5 @@
 import classnames from "classnames";
-// reactstrap components
+
 import {
   Alert,
   Button,
@@ -18,16 +18,14 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import axios from "axios";
 
-// core components
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/actions";
 import { useNavigate } from "react-router-dom";
-
-//VALIDACIONES :)
 
 const validate = (form) => {
   let errors = {};
@@ -55,7 +53,7 @@ const validate = (form) => {
 };
 
 export default function Register() {
-   const history = useNavigate();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
@@ -75,7 +73,30 @@ export default function Register() {
   const [resultFocus, setResultFocus] = React.useState(false);
   const [activeUser] = useState(localStorage.getItem("activeUser"));
   const [errors, setErrors] = React.useState({});
-  // const navigate= useNavigate();
+
+  const [imagen, setImagen] = useState(null);
+  const [url, setUrl] = useState("");
+
+  const handleImagenSeleccionada = (e) => {
+    setImagen(e.target.files[0]);
+  };
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("imagen", imagen);
+
+    const url = "https://brainly-back.onrender.com/upload";
+    const respuesta = await axios.post(url, formData);
+
+    setUrl(respuesta.data);
+    setForm({
+      ...form,
+      imagen: respuesta.data,
+    });
+    alert("imagen cargada");
+  };
 
   const [form, setForm] = useState({
     tipo_usuario: "",
@@ -171,6 +192,12 @@ export default function Register() {
     console.log(form);
     dispatch(createUser(form));
     alert("¡Tu usuario ha sido creado!");
+    localStorage.setItem("activeUser", JSON.stringify(form));
+    if (form.tipo_usuario === "paciente") {
+      history("/profile-patient");
+    } else {
+      history("/profile-doctor");
+    }
     setForm({
       tipo_usuario: "",
       especialidad: "",
@@ -187,8 +214,6 @@ export default function Register() {
       telefono: "",
       resultado: "",
     });
-    localStorage.setItem("activeUser", JSON.stringify(form));
-    history('/profile-patient');
   };
   return (
     <>
@@ -219,12 +244,40 @@ export default function Register() {
                       <CardTitle tag="h4">Register</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" onSubmit={(e) => handleSubmit(e)}>
+                      <Form className="form" onSubmit={handleSubmit2}>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-around",
+                            marginBottom: ".75em",
+                          }}
+                        >
+                          <label htmlFor="file-upload" className="btn btn-info">
+                            <i className="tim-icons icon-cloud-upload-94" />{" "}
+                            Subir archivo
+                          </label>
+                          <input
+                            id="file-upload"
+                            type="file"
+                            onChange={handleImagenSeleccionada}
+                            style={{ display: "none" }}
+                          />
+                          <Button
+                            type="submit"
+                            className="btn-simple"
+                            color="primary"
+                          >
+                            <i className="tim-icons icon-book-bookmark" />{" "}
+                            Cargar Imagen
+                          </Button>
+                        </div>
+                      </Form>
+                      <Form className="form" onSubmit={handleSubmit}>
                         <div className="form-row">
                           <InputGroup
                             className={classnames({
                               "input-group-focus": userFocus,
-                              "col-md-6": true, // Agrega aquí la clase adicional
+                              "col-md-6": true,
                             })}
                           >
                             <InputGroupAddon addonType="prepend">
@@ -251,7 +304,7 @@ export default function Register() {
                           <InputGroup
                             className={classnames({
                               "input-group-focus": fullNameFocus,
-                              "col-md-6": true, // Agrega aquí la clase adicional
+                              "col-md-6": true,
                             })}
                           >
                             <InputGroupAddon addonType="prepend">
@@ -281,7 +334,7 @@ export default function Register() {
                           <InputGroup
                             className={classnames({
                               "input-group-focus": specialityFocus,
-                              "col-md-6": true, // Agrega aquí la clase adicional
+                              "col-md-6": true,
                             })}
                           >
                             <InputGroupAddon addonType="prepend">
@@ -303,7 +356,7 @@ export default function Register() {
                           <InputGroup
                             className={classnames({
                               "input-group-focus": credentialsFocus,
-                              "col-md-6": true, // Agrega aquí la clase adicional
+                              "col-md-6": true,
                             })}
                           >
                             <InputGroupAddon addonType="prepend">
@@ -409,7 +462,7 @@ export default function Register() {
                               placeholder="URL Imágen de Perfil"
                               type="url"
                               name="imagen"
-                              value={form.imagen}
+                              value={url}
                               onChange={(e) => handleChange(e)}
                               onFocus={(e) => setImageFocus(true)}
                               onBlur={(e) => setImageFocus(false)}
@@ -560,19 +613,6 @@ export default function Register() {
                             />
                           </InputGroup>
                         </div>
-                        {/* <FormGroup check className="text-left">
-                          <Label check>
-                            <Input type="checkbox" />
-                            <span className="form-check-sign" />I agree to the{" "}
-                            <a
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              terms and conditions
-                            </a>
-                            .
-                          </Label>
-                        </FormGroup> */}
                         <Button
                           type="submit"
                           className="btn-round"
@@ -586,7 +626,7 @@ export default function Register() {
                     </CardBody>
                     <CardFooter>
                       {" "}
-                      <Alert color="danger">{errors.nombre}</Alert>
+                      <Alert color="danger">{errors.nombre}{errors.correo}</Alert>
                     </CardFooter>
                   </Card>
                 </Col>
