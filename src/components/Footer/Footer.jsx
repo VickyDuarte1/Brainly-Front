@@ -18,7 +18,7 @@ export default function Footer() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/landing-page" tag={Link}>
+              <NavLink to="/home" tag={Link}>
                 Home
               </NavLink>
             </NavItem>

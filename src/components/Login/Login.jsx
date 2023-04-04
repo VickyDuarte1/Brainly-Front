@@ -5,7 +5,6 @@ import { GoogleLogin } from "@react-oauth/google";
 import * as jose from "jose";
 import classnames from "classnames";
 import { Navigate } from "react-router-dom";
-import { redirect } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 // reactstrap components
