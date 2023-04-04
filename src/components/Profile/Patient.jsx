@@ -38,8 +38,7 @@ import {
   UncontrolledTooltip,
   UncontrolledCarousel,
 } from "reactstrap";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
 
@@ -114,7 +113,6 @@ export default function Patient() {
     imagen: "",
     resultado: "",
   });
-  const [loading, setLoading] = useState(false);
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -127,16 +125,7 @@ export default function Patient() {
     })
       .then((response) => response.json())
       .then((data) => {
-<<<<<<< HEAD
-      
-      
-        // alert("¡Datos enviados!");
-      
         toast.success("¡Datos enviados!");
-      
-=======
-        toast.success("¡Datos enviados!");
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
         setForm({
           nombre: "",
           usuario: "",
@@ -150,15 +139,8 @@ export default function Patient() {
         console.error(error);
         toast.error("Hubo un error al enviar los datos");
       });
-
-<<<<<<< HEAD
-      setLoading(false);
-      setFormModal(false); 
-      
-=======
     setLoading(false);
     setFormModal(false);
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
   };
 
   const [rating, setRating] = useState(0);
@@ -231,12 +213,7 @@ export default function Patient() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
-<<<<<<< HEAD
-    
-      toast.success('¡Contraseña cambiada con éxito!');
-=======
     toast.success("¡Contraseña cambiada con éxito!");
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -688,11 +665,6 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <div className="text-center">
-<<<<<<< HEAD
-                          <Button className="my-4" color="primary" type="submit" disabled={loading}>
-  {loading ? 'Enviando...' : 'Enviar Datos'}
-</Button>
-=======
                             <Button
                               className="my-4"
                               color="primary"
@@ -701,7 +673,6 @@ export default function Patient() {
                             >
                               {loading ? "Enviando..." : "Enviar Datos"}
                             </Button>
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
                           </div>
                         </Form>
                       </div>
@@ -762,22 +733,6 @@ export default function Patient() {
                         </Col>
                       </Row>
 
-                      {
-                        //------------------------MODAL----------------------------------------------------------------------------------------------------------------------------------------------------------------
-                      }
-
-                      {/* 
-
-<Modal isOpen={showModal} toggle={() => setShowModal(false)}>
-  <ModalHeader toggle={() => setShowModal(false)}>Error</ModalHeader>
-  <ModalBody>Por favor, seleccione una calificación antes de enviar el formulario.</ModalBody>
-  <ModalFooter>
-    <Button color="primary" onClick={() => setShowModal(false)}>
-      Aceptar
-    </Button>
-  </ModalFooter>
-</Modal> */}
-
                       <Button
                         className="btn-round float-right"
                         color="primary"
@@ -793,9 +748,6 @@ export default function Patient() {
                         placement="right"
                         target="tooltip341148792"
                       >
-                        {
-                          //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        }
                         Can't wait for your message
                       </UncontrolledTooltip>
                     </Form>
