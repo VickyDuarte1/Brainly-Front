@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import Estrellas from "../Comments/Estrellas";
 import "./estrellas.css";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   Button,
   Card,
@@ -35,7 +38,8 @@ import {
   UncontrolledTooltip,
   UncontrolledCarousel,
 } from "reactstrap";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
 
@@ -64,6 +68,7 @@ export default function Patient() {
   const activeResult = JSON.parse(localStorage.getItem("activeResult"));
   // const [activeResult] = useState(localStorage.getItem("activeResult"));
   const [url, setUrl] = useState(null);
+  const [loading, setLoading] = useState(false);
   const history = useNavigate();
 
   const handleButtonClick = () => {
@@ -86,6 +91,7 @@ export default function Patient() {
 
     setUrl(respuesta.data);
     setForm({ ...form, imagen: respuesta.data });
+    toast.success("Imagen Cargada!");
   };
 
   useEffect(() => {
@@ -99,10 +105,10 @@ export default function Patient() {
     imagen: "",
     resultado: "",
   });
-
+  const [loading, setLoading] = useState(false);
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    setLoading(true);
     fetch("https://brainly-back.onrender.com/detection", {
       method: "POST",
       headers: {
@@ -112,7 +118,16 @@ export default function Patient() {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert("¡Datos enviados!");
+<<<<<<< HEAD
+      
+      
+        // alert("¡Datos enviados!");
+      
+        toast.success("¡Datos enviados!");
+      
+=======
+        toast.success("¡Datos enviados!");
+>>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
         setForm({
           nombre: "",
           usuario: "",
@@ -124,8 +139,17 @@ export default function Patient() {
       })
       .catch((error) => {
         console.error(error);
-        alert("Hubo un error al enviar los datos");
+        toast.error("Hubo un error al enviar los datos");
       });
+
+<<<<<<< HEAD
+      setLoading(false);
+      setFormModal(false); 
+      
+=======
+    setLoading(false);
+    setFormModal(false);
+>>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
   };
 
   const [rating, setRating] = useState(0);
@@ -198,6 +222,12 @@ export default function Patient() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
+<<<<<<< HEAD
+    
+      toast.success('¡Contraseña cambiada con éxito!');
+=======
+    toast.success("¡Contraseña cambiada con éxito!");
+>>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -356,6 +386,10 @@ export default function Patient() {
                           </tbody>
                         </Table>
                       </TabPane>
+
+
+
+
                       <TabPane tabId="tab2">
                         <Row>
                           <Label sm="3">Clave actual:</Label>
@@ -393,15 +427,26 @@ export default function Patient() {
                         >
                           <i className="tim-icons icon-send" />
                         </Button>
+                        <ToastContainer />
                       </TabPane>
+
+                          <ToastContainer />
+
+
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
-                          <thead className="text-primary">
-                          </thead>
+                          <thead className="text-primary"></thead>
                           <tbody>
                             <tr>
                               <td>Lista de Doctores</td>
-                              <td><Button color="info" onClick={handleButtonClick}>Info</Button></td>
+                              <td>
+                                <Button
+                                  color="info"
+                                  onClick={handleButtonClick}
+                                >
+                                  Info
+                                </Button>
+                              </td>
                             </tr>
                           </tbody>
                         </Table>
@@ -452,8 +497,15 @@ export default function Patient() {
                     </Button>
                   </form>
 
+
+
+
                   <div>
+                   
+                  <ToastContainer />
+                   
                     {/* Start Form Modal */}
+                    <ToastContainer />
                     <Modal
                       modalClassName="modal-black"
                       isOpen={formModal}
@@ -503,8 +555,12 @@ export default function Patient() {
                               <i className="tim-icons icon-book-bookmark" />{" "}
                               Cargar Imagen
                             </Button>
+                            <ToastContainer />
                           </form>
                         </FormGroup>
+
+
+
                         <Form role="form" onSubmit={(e) => handleFormSubmit(e)}>
                           <FormGroup>
                             <InputGroup
@@ -567,6 +623,9 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <FormGroup>
+
+
+
                             <InputGroup
                               className={classnames("input-group-alternative", {
                                 "input-group-focus": imgFocus,
@@ -613,18 +672,31 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <div className="text-center">
+<<<<<<< HEAD
+                          <Button className="my-4" color="primary" type="submit" disabled={loading}>
+  {loading ? 'Enviando...' : 'Enviar Datos'}
+</Button>
+=======
                             <Button
                               className="my-4"
                               color="primary"
                               type="submit"
+                              disabled={loading}
                             >
-                              Enviar Datos
+                              {loading ? "Enviando..." : "Enviar Datos"}
                             </Button>
+>>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
                           </div>
                         </Form>
                       </div>
                     </Modal>
                     {/* End Form Modal */}
+
+
+
+
+
+
                   </div>
                 </div>
               </Col>

@@ -4,6 +4,7 @@ import classnames from "classnames";
 import PerfectScrollbar from "perfect-scrollbar";
 import { createPost } from "../../Redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
@@ -53,6 +54,12 @@ export default function Doctor() {
   const [recipient, setRecipient] = useState("");
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
+  const history = useNavigate();
+
+  const handleButtonClick = () => {
+    // Aquí puedes redirigir a la ruta deseada
+    history("/patient-list");
+  };
 
   const handleRecipientChange = (event) => {
     setRecipient(event.target.value);
@@ -188,7 +195,7 @@ export default function Doctor() {
 
     // Enviar una solicitud HTTP POST al servidor Python
     axios
-      .post("http://localhost:5000/password", {
+      .post("https://brainly-back.onrender.com/password", {
         usuario: usuario,
         current_password: current_password,
         new_password: new_password,
@@ -201,6 +208,7 @@ export default function Doctor() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
+    toast.success("¡Contraseña cambiada con éxito!");
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -396,27 +404,22 @@ export default function Doctor() {
                         >
                           <i className="tim-icons icon-send" />
                         </Button>
+                        <ToastContainer />
                       </TabPane>
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
-                          <thead className="text-primary">
-                            <tr>
-                              <th className="header">Imágen</th>
-                              <th className="header">Status</th>
-                            </tr>
-                          </thead>
+                          <thead className="text-primary"></thead>
                           <tbody>
                             <tr>
-                              <td>Imagen</td>
-                              <td>The Daily: Nexo to Pay on Stable...</td>
-                            </tr>
-                            <tr>
-                              <td>Venezuela Begins Public of Nation...</td>
-                              <td>Venezuela Begins Public of Nation...</td>
-                            </tr>
-                            <tr>
-                              <td>PR: BitCanna – Dutch Blockchain...</td>
-                              <td>PR: BitCanna – Dutch Blockchain...</td>
+                              <td>Lista de Pacientes</td>
+                              <td>
+                                <Button
+                                  color="info"
+                                  onClick={handleButtonClick}
+                                >
+                                  Info
+                                </Button>
+                              </td>
                             </tr>
                           </tbody>
                         </Table>

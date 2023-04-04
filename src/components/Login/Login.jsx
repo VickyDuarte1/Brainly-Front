@@ -120,7 +120,7 @@ export default function Login() {
         (doctor) =>
           doctor.usuario === username && doctor.contraseña === password
       );
-      if (doctor && doctor.activo) {
+      if (doctor) {
         setActiveUser({ ...doctor, activeUser: true, tipo_user: "doctor" });
         localStorage.setItem(
           "activeUser",
@@ -129,7 +129,6 @@ export default function Login() {
             activeUser: true,
             tipo_user: "doctor",
             contraseña: "*****",
-            activo: doctor.activo,
           })
         );
         return doctor;
@@ -166,23 +165,28 @@ export default function Login() {
   function findUserGoogle(correo) {
     const paciente = pacientes.find((user) => user.correo === correo);
     if (paciente) {
-      setActiveUser({
-        ...paciente,
-        activeUser: true,
-        tipo_user: "paciente",
-        activo: paciente.activo,
-      });
-
-      localStorage.setItem(
-        "activeUser",
-        JSON.stringify({
+      if (paciente.activo) {
+        setActiveUser({
           ...paciente,
           activeUser: true,
           tipo_user: "paciente",
-          contraseña: "*****",
           activo: paciente.activo,
-        })
-      );
+        });
+
+        localStorage.setItem(
+          "activeUser",
+          JSON.stringify({
+            ...paciente,
+            activeUser: true,
+            tipo_user: "paciente",
+            contraseña: "*****",
+            activo: paciente.activo,
+          })
+        );
+      } else {
+        // el usuario no está activo, no se establece como usuario activo ni se guarda en el almacenamiento local
+        console.log("El usuario no está activo");
+      }
     } else {
       const doctor = doctores.find((doctor) => doctor.correo === correo);
       if (doctor) {
