@@ -159,9 +159,21 @@ export default function ExamplesNavbar() {
                 )
                 : <>
                   <Button className="nav-link d-none d-lg-block" onClick={handleLogOut}>Cerrar sesión</Button>
-                  <NavItem>
-                    <NavLink tag={Link} to="/profile-page"><i className="tim-icons icon-single-02"/></NavLink>
-                  </NavItem>
+                  {
+                    activeUser.tipo_user === "paciente"
+                    ?
+                    (
+                      <NavItem>
+                      <NavLink tag={Link} to="/profile-patient"><i className="tim-icons icon-single-02"/></NavLink>
+                    </NavItem>
+                    )
+                    : <>
+                    <NavItem>
+                      <NavLink tag={Link} to="/profile-doctor"><i className="tim-icons icon-single-02"/></NavLink>
+                    </NavItem>
+                    </>
+                  }
+               
                 </>
             }
           </Nav>
