@@ -178,7 +178,7 @@ export default function Patient() {
 
     // Enviar una solicitud HTTP POST al servidor Python
     axios
-      .post("http://localhost:5000/password", {
+      .post("https://brainly-back.onrender.com/password", {
         usuario: usuario,
         current_password: current_password,
         new_password: new_password,
