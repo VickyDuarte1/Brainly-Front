@@ -5,7 +5,6 @@ import { GoogleLogin } from "@react-oauth/google";
 import * as jose from "jose";
 import classnames from "classnames";
 import { Navigate } from "react-router-dom";
-
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 // reactstrap components
@@ -84,6 +83,7 @@ export default function Login() {
   const toggleModal = () => {
     setModal(!modal);
   };
+
   const toggleModal2 = () => {
     setMiniModal(!miniModal);
   };
@@ -98,7 +98,12 @@ export default function Login() {
       (user) => user.usuario === username && user.contraseña === password
     );
     if (user) {
-      setActiveUser({ ...user, activeUser: true });
+      setActiveUser({
+        ...user,
+        activeUser: true,
+        tipo_user: "paciente",
+        activo: user.activo,
+      });
       localStorage.setItem(
         "activeUser",
         JSON.stringify({
@@ -106,6 +111,7 @@ export default function Login() {
           activeUser: true,
           tipo_user: "paciente",
           contraseña: "*****",
+          activo: user.activo,
         })
       );
       return user;
@@ -115,7 +121,7 @@ export default function Login() {
           doctor.usuario === username && doctor.contraseña === password
       );
       if (doctor) {
-        setActiveUser({ ...doctor, activeUser: true });
+        setActiveUser({ ...doctor, activeUser: true, tipo_user: "doctor" });
         localStorage.setItem(
           "activeUser",
           JSON.stringify({
@@ -159,7 +165,12 @@ export default function Login() {
   function findUserGoogle(correo) {
     const paciente = pacientes.find((user) => user.correo === correo);
     if (paciente) {
-      setActiveUser({ ...paciente, activeUser: true });
+      setActiveUser({
+        ...paciente,
+        activeUser: true,
+        tipo_user: "paciente",
+        activo: paciente.activo,
+      });
 
       localStorage.setItem(
         "activeUser",
@@ -168,12 +179,13 @@ export default function Login() {
           activeUser: true,
           tipo_user: "paciente",
           contraseña: "*****",
+          activo: paciente.activo,
         })
       );
     } else {
       const doctor = doctores.find((doctor) => doctor.correo === correo);
       if (doctor) {
-        setActiveUser({ ...doctor, activeUser: true });
+        setActiveUser({ ...doctor, activeUser: true, tipo_user: "doctor" });
         localStorage.setItem(
           "activeUser",
           JSON.stringify({
@@ -195,6 +207,16 @@ export default function Login() {
       toggleModal2();
     }
   }
+
+  pacientes.forEach(function (paciente) {
+    console.log(
+      "El paciente " + paciente.nombre + " está activo: " + paciente.activo
+    );
+  });
+
+  console.log("ACTIVEUSERS:" + JSON.stringify(activeUser));
+  console.log("PACIENTESARRAY" + pacientes.activo);
+  console.log("USERS:" + JSON.stringify(user));
 
   return (
     <>
@@ -308,6 +330,7 @@ export default function Login() {
                                 <div className="modal-body">
                                   <p>
                                     Bienvenido a Brainly {activeUser.nombre}{" "}
+                                    {activeUser.tipo_user}
                                   </p>
                                 </div>
                                 <div className="modal-footer">
@@ -334,12 +357,16 @@ export default function Login() {
                               {
                                 //ACA ES LA PARTE DONDE PONDRIAS EL MAIL DEL ADMIN
                               }
-                              {miniModal ? null : activeUser.correo ===
-                                "victoria.durte@gmail.com" ? (
+
+                              {miniModal ? null : activeUser &&
+                                activeUser.correo ===
+                                  "victoria.durte@gmail.com" ? (
                                 (window.location.href =
                                   "https://dashboard-brainly.vercel.app")
-                              ) : (
+                              ) : activeUser.tipo_user === "doctor" ? (
                                 <Navigate to="/profile-doctor" />
+                              ) : (
+                                <Navigate to="/profile-patient" />
                               )}
                             </div>
                           )}
@@ -397,11 +424,7 @@ export default function Login() {
                         </FormGroup>
                       </Form>
                     </CardBody>
-                    <CardFooter>
-                      {/* <Button className="btn-round" color="primary" size="lg">
-                        Get Started
-                      </Button> */}
-                    </CardFooter>
+                    <CardFooter></CardFooter>
                   </Card>
                 </Col>
               </Row>

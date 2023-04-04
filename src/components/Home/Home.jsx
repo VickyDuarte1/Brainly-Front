@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Comment from "../Comments/Comment";
 import { getComments } from "../../Redux/actions";
-import './comments.css';
+import "./comments.css";
 import {
   Button,
   Card,
@@ -17,7 +17,7 @@ import {
   Col,
 } from "reactstrap";
 import { useDispatch } from "react-redux";
-import Paged from '../Paged';
+import Paged from "../Paged";
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
 
@@ -28,33 +28,24 @@ export default function Home() {
     section.scrollIntoView({ behavior: "smooth" });
   };
 
-
-
-
-  const  comments  = useSelector((state) => state.comments)
+  const comments = useSelector((state) => state.comments);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getComments());
   }, [dispatch]);
 
-  
   const [toShow, setToShow] = useState(6);
- 
-
 
   const handleLoadMore = () => {
     setToShow(toShow + 6);
   };
 
-
-
-
   const handleMoreClick = () => {
     const sectionMore = document.getElementById("beneficios");
-
     sectionMore.scrollIntoView({ behavior: "smooth" });
   };
+
   React.useEffect(() => {
     document.body.classList.toggle("landing-page");
     // Specify how to clean up after this effect:
@@ -104,8 +95,8 @@ export default function Home() {
             <Row className="row-grid justify-content-between align-items-center text-left">
               <Col lg="6" md="6">
                 <h1 className="text-white">
-                  Fácil, Rápido, Preciso <br />
-                  <span className="text-white">y Seguro</span>
+                  Fácil, rápido, preciso <br />
+                  <span className="text-white">y seguro</span>
                 </h1>
                 <p className="text-white mb-3">
                   Brainly es la solución definitiva para la detección temprana
@@ -113,7 +104,12 @@ export default function Home() {
                   y da el primer paso para proteger tu salud cerebral.
                 </p>
                 <div className="btn-wrapper mb-3">
-                  <p className="category text-success d-inline">Leer más</p>
+                  <p
+                    className="category text-success d-inline"
+                    style={{ textTransform: "none" }}
+                  >
+                    Leer más
+                  </p>
                   <Button
                     className="btn-link"
                     color="success"
@@ -163,6 +159,7 @@ export default function Home() {
             </Row>
           </div>
         </div>
+
         <section className="section section-lg" id="about">
           <section className="section">
             <img
@@ -175,7 +172,7 @@ export default function Home() {
                 <Col className="mt-lg-5" md="5">
                   <Row>
                     <Col className="px-2 py-2" lg="6" sm="12">
-                      <Card className="card-stats">
+                      <Card className="card-stats" style={{ height: "210px" }}>
                         <CardBody>
                           <Row>
                             <Col md="4" xs="5">
@@ -185,10 +182,23 @@ export default function Home() {
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
-                                <CardTitle tag="p">85-90%</CardTitle>
-                                <p />
-                                <p className="card-category">
-                                  De todos los tumores
+                                <p
+                                  className="card-category"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  Los tumores cerebrales representan el
+                                </p>
+                                <CardTitle
+                                  tag="p"
+                                  style={{ whiteSpace: "nowrap" }}
+                                >
+                                  85 - 90%
+                                </CardTitle>
+                                <p
+                                  className="card-category"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  de todos los tumores del SNC
                                 </p>
                               </div>
                             </Col>
@@ -197,19 +207,24 @@ export default function Home() {
                       </Card>
                     </Col>
                     <Col className="px-2 py-2" lg="6" sm="12">
-                      <Card className="card-stats upper bg-default">
+                      <Card className="card-stats" style={{ height: "210px" }}>
                         <CardBody>
                           <Row>
                             <Col md="4" xs="5">
                               <div className="icon-big text-center icon-warning">
-                              <i className="tim-icons icon-zoom-split text-info"></i>                              </div>
+                                <i className="tim-icons icon-zoom-split text-success" />
+                              </div>
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
+                                <p>Suma de</p>
                                 <CardTitle tag="p">308,102</CardTitle>
                                 <p />
-                                <p className="card-category">
-                                  Diagnósticos en 2020
+                                <p
+                                  className="card-category"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  diagnósticos en 2020
                                 </p>
                               </div>
                             </Col>
@@ -220,7 +235,7 @@ export default function Home() {
                   </Row>
                   <Row>
                     <Col className="px-2 py-2" lg="6" sm="12">
-                      <Card className="card-stats">
+                      <Card className="card-stats" style={{ height: "210px" }}>
                         <CardBody>
                           <Row>
                             <Col md="4" xs="5">
@@ -232,8 +247,12 @@ export default function Home() {
                               <div className="numbers">
                                 <CardTitle tag="p">+70%</CardTitle>
                                 <p />
-                                <p className="card-category">
-                                  De los diangosticos tempranos son resueltos con exito
+                                <p
+                                  className="card-category"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  de los diagnósticos tempranos son resueltos
+                                  con éxito
                                 </p>
                               </div>
                             </Col>
@@ -242,7 +261,7 @@ export default function Home() {
                       </Card>
                     </Col>
                     <Col className="px-2 py-2" lg="6" sm="12">
-                      <Card className="card-stats">
+                      <Card className="card-stats" style={{ height: "210px" }}>
                         <CardBody>
                           <Row>
                             <Col md="4" xs="5">
@@ -252,10 +271,19 @@ export default function Home() {
                             </Col>
                             <Col md="8" xs="7">
                               <div className="numbers">
+                                <p
+                                  className="card-category"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  La esperanza de vida desciende a
+                                </p>
                                 <CardTitle tag="p">10%</CardTitle>
                                 <p />
-                                <p className="card-category">
-                                  Es la taza a la que desciende si no se detecta a tiempo
+                                <p
+                                  className="card-category"
+                                  style={{ textTransform: "none" }}
+                                >
+                                  si no se detecta a tiempo
                                 </p>
                               </div>
                             </Col>
@@ -308,9 +336,6 @@ export default function Home() {
               </Row>
             </Container>
           </section>
-
-
-
         </section>
         <section className="section section-lg" id="beneficios">
           <img
@@ -340,7 +365,7 @@ export default function Home() {
                       <div className="icon icon-primary">
                         <i className="tim-icons icon-cloud-download-93" />
                       </div>
-                      <h4 className="info-title">Modelos Actualizados</h4>
+                      <h4 className="info-title">Modelos actualizados</h4>
                       <hr className="line-primary" />
                       <p>
                         Brainly utiliza la última tecnología de inteligencia
@@ -356,7 +381,7 @@ export default function Home() {
                       <div className="icon icon-warning">
                         <i className="tim-icons icon-lock-circle" />
                       </div>
-                      <h4 className="info-title">Mejor Precisión</h4>
+                      <h4 className="info-title">Mejor precisión</h4>
                       <hr className="line-warning" />
                       <p>
                         Nuestro algoritmo está diseñado para analizar y detectar
@@ -371,7 +396,7 @@ export default function Home() {
                       <div className="icon icon-success">
                         <i className="tim-icons icon-tap-02" />
                       </div>
-                      <h4 className="info-title">Fácil Usabilidad</h4>
+                      <h4 className="info-title">Fácil usabilidad</h4>
                       <hr className="line-success" />
                       <p>
                         Además, nuestra aplicación es fácil de usar y accesible
@@ -381,6 +406,14 @@ export default function Home() {
                         esta enfermedad.
                       </p>
                     </div>
+                    <a
+                      className="font-weight-bold text-info mt-5"
+                      href="#pablo"
+                      onClick={handleMoreClick}
+                    >
+                      Leer Más{" "}
+                      <i className="tim-icons icon-minimal-right text-info" />
+                    </a>
                   </Col>
                 </Row>
               </Col>
@@ -388,10 +421,8 @@ export default function Home() {
           </Container>
         </section>
 
-
-
-
-        <section className="section section-lg section-safe">
+        <section className="section section-lg section-safe" id="beneficios">
+          <div className="space-50" />
           <img
             alt="..."
             className="path"
@@ -422,8 +453,11 @@ export default function Home() {
                     <div className="justify-content-center">
                       <div className="numbers">
                         <CardTitle tag="p">2870</CardTitle>
-                        <p className="card-category text-white">
-                          Imágenes Cerebrales
+                        <p
+                          className="card-category text-white"
+                          style={{ textTransform: "none" }}
+                        >
+                          Imágenes cerebrales
                         </p>
                       </div>
                     </div>
@@ -434,8 +468,11 @@ export default function Home() {
                     <div className="justify-content-center">
                       <div className="numbers">
                         <CardTitle tag="p">30+</CardTitle>
-                        <p className="card-category text-white">
-                          Usuarios Activos
+                        <p
+                          className="card-category text-white"
+                          style={{ textTransform: "none" }}
+                        >
+                          Usuarios activos
                         </p>
                       </div>
                     </div>
@@ -445,7 +482,7 @@ export default function Home() {
               <Col md="6">
                 <div className="px-md-5">
                   <hr className="line-success" />
-                  <h3>Últimas Características</h3>
+                  <h3>Últimas características</h3>
                   <p>
                     Brainly es una aplicación única que combina tecnología de
                     inteligencia artificial de vanguardia con un enfoque en la
@@ -491,90 +528,287 @@ export default function Home() {
             </Row>
           </Container>
         </section>
+        <br />
+        <br />
 
-
-<section className="commentarios-usuarios">
-<div className='grilla'>
-  {console.log('COMMENTS sin parsear'+comments.comentarios)}
- { console.log('COMMENTS'+JSON.stringify(comments.comentarios))}
- 
- 
- {comments.comentarios && Array.isArray(comments.comentarios) && comments.comentarios.length > 0 ? (
-    comments.comentarios.slice(0, toShow).map((comment) => (
-     
-     <div className='comentario-card'>
-      <Comment
-      key={comment.id}
-     
-        usuario_paciente={comment.usuario_paciente}
-        comentario={comment.comentario}
-        puntuacion={comment.puntuacion}
-      />
-
-      </div>
-    ))
-  ) : (
-    <p>No hay comentarios para mostrar</p>
-  )}
-</div>
-
-<Paged onClick={handleLoadMore} total={comments.comentarios && comments.comentarios.length} shown={toShow} />
-</section>
-
-
-
-
+        <section className="commentarios-usuarios">
+          <Container>
+            <h3>Comentarios de nuestros usuarios</h3>
+            <div
+              className="grilla"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
+              {console.log("COMMENTS sin parsear" + comments.comentarios)}
+              {console.log("COMMENTS" + JSON.stringify(comments.comentarios))}
+              {comments.comentarios &&
+              Array.isArray(comments.comentarios) &&
+              comments.comentarios.length > 0 ? (
+                comments.comentarios.slice(0, toShow).map((comment) => (
+                  <div
+                    className="comentario-card"
+                    style={{ marginBottom: "16px" }}
+                  >
+                    <Comment
+                      key={comment.id}
+                      usuario_paciente={
+                        <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+                          {comment.usuario_paciente}
+                        </span>
+                      }
+                      puntuacion={comment.puntuacion}
+                      comentario={`"${comment.comentario}"`}
+                    />
+                  </div>
+                ))
+              ) : (
+                <p>No hay comentarios para mostrar</p>
+              )}
+            </div>
+            <Paged
+              onClick={handleLoadMore}
+              total={comments.comentarios && comments.comentarios.length}
+              shown={toShow}
+            />
+          </Container>
+        </section>
 
         <div className="section section-typo">
+          <div className="space-50" />
           <Container>
-            <div className="space-50" />
             <div id="images">
-              <h3 className="mb-5">Conoce a Nuestro Equipo</h3>
+              <h3 className="mb-5">Conoce a nuestro equipo</h3>
               <Row>
-                <Col sm="3" xs="6">
+                <Col
+                  sm="3"
+                  xs="6"
+                  className="col-md-4"
+                  style={{ marginBottom: "30px", textAlign: "center" }}
+                >
                   <small className="d-block text-uppercase font-weight-bold mb-4">
-                    Image
-                  </small>
-                  <img
-                    alt="..."
-                    className="img-fluid rounded shadow"
-                    src={require("../../assets/img/ryan.jpg")}
-                    style={{ width: "150px" }}
-                  />
-                </Col>
-                <Col sm="3" xs="6">
-                  <small className="d-block text-uppercase font-weight-bold mb-4">
-                    Circle Image
+                    Odette Arriola
                   </small>
                   <img
                     alt="..."
                     className="img-fluid rounded-circle shadow"
-                    src={require("../../assets/img/james.jpg")}
+                    src={require("../../assets/img/Odette.jpg")}
                     style={{ width: "150px" }}
                   />
+                  <div>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://www.linkedin.com/in/odette-arriola/"
+                      target="_blank"
+                    >
+                      <i className="fab fa-linkedin" />
+                    </Button>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://github.com/OdetteArriola"
+                      target="_blank"
+                    >
+                      <i className="fab fa-github" />
+                    </Button>
+                  </div>
                 </Col>
-                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                <Col
+                  sm="3"
+                  xs="6"
+                  className="col-md-4"
+                  style={{ marginBottom: "30px", textAlign: "center" }}
+                >
                   <small className="d-block text-uppercase font-weight-bold mb-4">
-                    Raised
+                    Victoria Duarte
                   </small>
                   <img
                     alt="..."
-                    className="img-fluid rounded shadow-lg"
-                    src={require("../../assets/img/lora.jpg")}
+                    className="img-fluid rounded-circle shadow"
+                    src={require("../../assets/img/Vicky.jpg")}
                     style={{ width: "150px" }}
                   />
+                  <div>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://www.linkedin.com/in/victoria-duarte-7431a4205/"
+                      target="_blank"
+                    >
+                      <i className="fab fa-linkedin" />
+                    </Button>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://github.com/VickyDuarte1"
+                      target="_blank"
+                    >
+                      <i className="fab fa-github" />
+                    </Button>
+                  </div>
                 </Col>
-                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                <Col
+                  className="mt-5 mt-sm-0 col-md-4"
+                  sm="3"
+                  xs="6"
+                  style={{ marginBottom: "30px", textAlign: "center" }}
+                >
                   <small className="d-block text-uppercase font-weight-bold mb-4">
-                    Circle Raised
+                    Carolina Ruvira
                   </small>
                   <img
                     alt="..."
-                    className="img-fluid rounded-circle shadow-lg"
-                    src={require("../../assets/img/mike.jpg")}
+                    className="img-fluid rounded-circle shadow"
+                    src={require("../../assets/img/Caro.jpg")}
                     style={{ width: "150px" }}
                   />
+                  <div>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://www.linkedin.com/in/carolina-ruvira-1aa2b928"
+                      target="_blank"
+                    >
+                      <i className="fab fa-linkedin" />
+                    </Button>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://github.com/CaroRuvira"
+                      target="_blank"
+                    >
+                      <i className="fab fa-github" />
+                    </Button>
+                  </div>
                 </Col>
+                <Col
+                  className="mt-5 mt-sm-0 col-md-4"
+                  sm="3"
+                  xs="6"
+                  style={{ marginBottom: "30px", textAlign: "center" }}
+                >
+                  <small className="d-block text-uppercase font-weight-bold mb-4">
+                    Agustin Ojeda
+                  </small>
+                  <img
+                    alt="..."
+                    className="img-fluid rounded-circle shadow"
+                    src={require("../../assets/img/Agustin.jpg")}
+                    style={{ width: "150px" }}
+                  />
+                  <div>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://www.linkedin.com/in/agust%C3%ADn-gonzalo-ojeda-1069a6200/"
+                      target="_blank"
+                    >
+                      <i className="fab fa-linkedin" />
+                    </Button>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://github.com/Agvstin6"
+                      target="_blank"
+                    >
+                      <i className="fab fa-github" />
+                    </Button>
+                  </div>
+                </Col>
+                <Col
+                  className="mt-5 mt-sm-0 col-md-4"
+                  sm="3"
+                  xs="6"
+                  style={{ marginBottom: "30px", textAlign: "center" }}
+                >
+                  <small className="d-block text-uppercase font-weight-bold mb-4">
+                    Alexis Sanz
+                  </small>
+                  <img
+                    alt="..."
+                    className="img-fluid rounded-circle shadow"
+                    src={require("../../assets/img/Alexis.jpg")}
+                    style={{ width: "150px" }}
+                  />
+                  <div>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://www.linkedin.com/in/alexis-sanz-68b5b6263/"
+                      target="_blank"
+                    >
+                      <i className="fab fa-linkedin" />
+                    </Button>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://github.com/AlexisSanz999"
+                      target="_blank"
+                    >
+                      <i className="fab fa-github" />
+                    </Button>
+                  </div>
+                </Col>
+                <Col
+                  className="mt-5 mt-sm-0 col-md-4"
+                  sm="3"
+                  xs="6"
+                  style={{ marginBottom: "30px", textAlign: "center" }}
+                >
+                  <small className="d-block text-uppercase font-weight-bold mb-4">
+                    Jorge Torres
+                  </small>
+                  <img
+                    alt="..."
+                    className="img-fluid rounded-circle shadow"
+                    src={require("../../assets/img/Jorge.jpg")}
+                    style={{ width: "150px" }}
+                  />
+                  <div>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://www.linkedin.com/in/jorge-torres-42667b257/"
+                      target="_blank"
+                    >
+                      <i className="fab fa-linkedin" />
+                    </Button>
+                    <Button
+                      className="btn-icon btn-simple btn-round btn-neutral"
+                      color="default"
+                      href="https://github.com/jorrgett"
+                      target="_blank"
+                    >
+                      <i className="fab fa-github" />
+                    </Button>
+                  </div>
+                </Col>
+                {/* <Col className="mt-5 mt-sm-0 col-md-4" sm="3" xs="6" style={{ marginBottom: "30px", textAlign: "center" }}>
+                <small className="d-block text-uppercase font-weight-bold mb-4">
+                  Agustin Ovalle
+                </small>
+                <img
+                  alt="..."
+                  className="img-fluid rounded-circle shadow"
+                  src={require("../../assets/img/Ovalle.jpg")}
+                  style={{ width: "150px" }}
+                />
+                <div>
+                  <Button
+                    className="btn-icon btn-simple btn-round btn-neutral"
+                    color="default"
+                    href="" 
+                    target="_blank">
+                    <i className="fab fa-linkedin" />
+                  </Button>
+                  <Button
+                    className="btn-icon btn-simple btn-round btn-neutral"
+                    color="default"
+                    href="" 
+                    target="_blank"                >
+                    <i className="fab fa-github" />
+                  </Button>
+                  </div>
+              </Col> */}
               </Row>
             </div>
           </Container>
@@ -591,8 +825,10 @@ export default function Home() {
               <Col md="4">
                 <hr className="line-info" />
                 <h1>
-                  Escoge tu Plan{" "}
-                  <span className="text-info">que mejor se adapte</span>
+                  Escoge el plan que{" "}
+                  <span className="text-info">
+                    mejor se adapte a tus necesidades
+                  </span>
                 </h1>
               </Col>
             </Row>
@@ -635,7 +871,7 @@ export default function Home() {
                       </Button>
                     ) : (
                       <Button className="btn-simple" color="primary">
-                        <a href="/login-page">Debes Iniciar Sesión</a>
+                        <a href="/login">Debes Iniciar Sesión</a>
                       </Button>
                     )}
                   </CardFooter>
@@ -679,7 +915,7 @@ export default function Home() {
                       </Button>
                     ) : (
                       <Button className="btn-simple" color="primary">
-                        <a href="/login-page">Debes Iniciar Sesión</a>
+                        <a href="/login">Debes Iniciar Sesión</a>
                       </Button>
                     )}
                   </CardFooter>
@@ -723,7 +959,7 @@ export default function Home() {
                       </Button>
                     ) : (
                       <Button className="btn-simple" color="primary">
-                        <a href="/login-page">Debes Iniciar Sesión</a>
+                        <a href="/login">Debes Iniciar Sesión</a>
                       </Button>
                     )}
                   </CardFooter>
@@ -737,4 +973,3 @@ export default function Home() {
     </>
   );
 }
-
