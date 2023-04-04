@@ -15,21 +15,27 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-export default function NavBrain() {
-  const location = useLocation();
+export default function ExamplesNavbar() {
+  const location = useLocation()
+
   const handleClick = () => {
-    const section = document.getElementById("subscribe");
-    section.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname === '/home') {
+      const section = document.getElementById("subscribe");
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    else {
+      window.location.href = '/home'
+    }
   };
 
-  const handleLogOut = () => {
-    localStorage.removeItem("activeUser");
-    setActiveUser(null);
+  const handleHomeClick = () => {
 
-    if (location.pathname === "/profile-patient") {
-      window.location.href = "/home";
-    } else if (location.pathname === "/register") {
-      window.location.href = "/home";
+    if (location.pathname === '/home') {
+      const section = document.getElementById("home");
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    else {
+      window.location.href = '/home'
     }
   };
 
@@ -66,15 +72,24 @@ export default function NavBrain() {
     setCollapseOut("");
   };
 
-  const [activeUser, setActiveUser] = useState(
-    JSON.parse(localStorage.getItem("activeUser")) || null
-  );
+  const [activeUser, setActiveUser] = useState(JSON.parse(localStorage.getItem("activeUser")) || null);
+
+  const handleLogOut = () => {
+    localStorage.removeItem("activeUser");
+    setActiveUser(null);
+
+    // Redirect to landing page if user is logging out from profile page
+    if (location.pathname === "/profile-patient" || location.pathname === "/profile-doctor") {
+      window.location.href = "/home";
+    }
+  }
+
 
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand tag={Link} to="/home" id="navbar-brand">
+          <NavbarBrand onClick={handleHomeClick} id="navbar-brand">
             <span>Brainly • </span>
             Fast and Safe!
           </NavbarBrand>
@@ -127,26 +142,31 @@ export default function NavBrain() {
                 <i className="tim-icons icon-spaceship" /> Cambiate a PRO
               </Button>
             </NavItem>
-            {!activeUser ? (
-              <>
-                <NavItem>
-                  <NavLink tag={Link} to="/register">
-                    Registrate
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} to="/login">
-                    {" "}
-                    Inicia Sesión
-                  </NavLink>
-                </NavItem>
-              </>
-            ) : (
-              <Button onClick={handleLogOut}>Cerrar sesión</Button>
-            )}
+            {
+              !activeUser
+                ?
+                (
+                  <>
+                    <NavItem>
+                      <NavLink tag={Link} to="/register">
+                        Regristrate
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} to="/login">{" "} Inicia Sesión</ NavLink>
+                    </NavItem>
+                  </>
+                )
+                : <>
+                  <Button className="nav-link d-none d-lg-block" onClick={handleLogOut}>Cerrar sesión</Button>
+                  <NavItem>
+                    <NavLink tag={Link} to="/profile-page"><i className="tim-icons icon-single-02"/></NavLink>
+                  </NavItem>
+                </>
+            }
           </Nav>
         </Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }

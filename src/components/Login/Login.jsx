@@ -339,7 +339,7 @@ export default function Login() {
                                 (window.location.href =
                                   "https://dashboard-brainly.vercel.app")
                               ) : (
-                                <Navigate to="/profile-patient" />
+                                <Navigate to="/profile-doctor" />
                               )}
                             </div>
                           )}
