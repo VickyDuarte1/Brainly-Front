@@ -67,6 +67,7 @@ export default function Patient() {
   const activeResult = JSON.parse(localStorage.getItem("activeResult"));
   // const [activeResult] = useState(localStorage.getItem("activeResult"));
   const [url, setUrl] = useState(null);
+  const [loading, setLoading] = useState(false);
   const history = useNavigate();
 
   const handleButtonClick = () => {
