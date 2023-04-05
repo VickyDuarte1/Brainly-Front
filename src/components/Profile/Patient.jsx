@@ -123,7 +123,6 @@ export default function Patient() {
   React.useEffect(() => {
     if (activeUser.premium === 1) {      
       buttonDetection.removeAttribute("disabled");
-      buttonForm.removeAttribute("disabled")
     }
   }, [activeUser]);
 
@@ -509,7 +508,7 @@ export default function Patient() {
                       color="success"
                       onClick={() => setFormModal(true)}
                       id="form-detection"
-                      disabled
+                      
                     >
                       Llenar Formulario
                     </Button>
