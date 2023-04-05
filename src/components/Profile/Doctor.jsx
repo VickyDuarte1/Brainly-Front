@@ -91,6 +91,10 @@ export default function Doctor() {
         (result) => {
           toast.success("¡Correo enviado con éxito!");
         },
+        setRecipient(""),
+        setBody(""),
+        toggleModal(),
+
         (error) => {
           toast.error(
             "Hubo un error al enviar el correo electrónico. Inténtelo de nuevo más tarde."
@@ -255,10 +259,9 @@ export default function Doctor() {
                 </h1>
                 <h5 className="text-on-back">01</h5>
                 <p className="profile-description">
-                  Para comenzar a utilizar la aplicación, simplemente ten a la
-                  mano la imágen que deseas analizar. Una vez que hayas subido
-                  la imágen, la aplicación la procesará utilizando nuestra
-                  tecnología de detección de tumores cerebrales.
+                  Para comenzar a utilizar la aplicación como doctor, puedes tener 
+                  acceso a todos tus datos, así como una lista con todos los pacientes
+                  registrados en nuestra base de datos, echales un vistazo!
                 </p>
                 <div className="btn-wrapper profile pt-3">
                   <Button
@@ -451,7 +454,8 @@ export default function Doctor() {
                   <p className="profile-description">
                     En esta sección puedes consultar los resultados que la IA
                     arroja después de analizar detalladamente las imágenes que
-                    son proporcionadas por los ususarios.
+                    son proporcionadas por los ususarios, Tambien puedes enviar
+                    un correo personalizado con los detalles que la imagen proporcione.
                   </p>
                 </Col>
 
@@ -501,6 +505,7 @@ export default function Doctor() {
                           >
                             Ver
                           </Button>
+                          <ToastContainer />
                           <Modal
                             modalClassName="modal-black"
                             isOpen={modal}
