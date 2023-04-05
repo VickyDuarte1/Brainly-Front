@@ -118,11 +118,12 @@ export default function Patient() {
     toast.success("Imagen Cargada!");
   };
 
-  const buttonDetection = document.querySelector("#detection-btn");
-  const buttonForm = document.querySelector("#form-detection");
+  
   React.useEffect(() => {
-    if (activeUser.premium === 1) {      
+    if (activeUser.premium === 1) { 
+      const buttonDetection = document.querySelector("#detection-btn");
       buttonDetection.removeAttribute("disabled");
+      const buttonForm = document.querySelector("#form-detection");
     }
   }, [activeUser]);
 
