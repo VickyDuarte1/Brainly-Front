@@ -365,7 +365,7 @@ export default function Login() {
 
                               {miniModal ? null : activeUser &&
                                 activeUser.correo ===
-                                  "victoria.durte@gmail.com" ? (
+                                  "juanito@gmail.com" ? (
                                 (window.location.href =
                                   "https://dashboard-brainly.vercel.app")
                               ) : activeUser.tipo_user === "doctor" ? (

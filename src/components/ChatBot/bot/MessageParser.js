@@ -2,8 +2,14 @@ import React from 'react';
 
 const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
-    if (message.includes('hola')) {
-      actions.handleHello();
+    if (message.includes('1')) {
+      actions.option1();
+    }
+    if (message.includes('2')) {
+      actions.option2();
+    }
+    if (message.includes('3')) {
+      actions.option3();
     }
   };
 

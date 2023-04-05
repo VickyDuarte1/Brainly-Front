@@ -7,8 +7,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Estrellas from "../Comments/Estrellas";
 import "./estrellas.css";
-
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -105,7 +103,8 @@ export default function Patient() {
     imagen: "",
     resultado: "",
   });
-  const [loading, setLoading] = useState(false);
+
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -118,16 +117,14 @@ export default function Patient() {
     })
       .then((response) => response.json())
       .then((data) => {
-<<<<<<< HEAD
-      
-      
+
+
+
         // alert("¡Datos enviados!");
-      
+
         toast.success("¡Datos enviados!");
-      
-=======
-        toast.success("¡Datos enviados!");
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
+
+
         setForm({
           nombre: "",
           usuario: "",
@@ -142,22 +139,20 @@ export default function Patient() {
         toast.error("Hubo un error al enviar los datos");
       });
 
-<<<<<<< HEAD
-      setLoading(false);
-      setFormModal(false); 
-      
-=======
+
     setLoading(false);
     setFormModal(false);
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
+    setFormSubmitted(true);
+  
+
   };
 
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
-  const [setNewComment] = useState(null);
-
+  const [newComment, setNewComment] = useState(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [nameFocus, setNameFocus] = React.useState(false);
   const [userFocus, setUserFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
@@ -173,29 +168,35 @@ export default function Patient() {
     setComment(event.target.value);
   };
 
-  const handleCommentSubmit = (event) => {
-    event.preventDefault();
-    console.log(comment);
-    console.log(rating);
-    const activeUser = JSON.parse(localStorage.getItem("activeUser"));
-    dispatch(
-      createPost({
-        texto: comment,
-        puntuacion: rating,
-        usuario: activeUser.usuario,
-        id: activeUser.id,
-      })
-    );
-    setNewComment({
-      usuario_paciente: activeUser.usuario,
-      comentario: comment,
-      puntuacion: rating,
-    });
+ 
+    
+const handleCommentSubmit = (event) => {
+  event.preventDefault();
+  console.log(comment);
+  console.log(rating);
 
-    setComment("");
-    setRating("");
-    console.log(activeUser.usuario);
-  };
+  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+  dispatch(
+    createPost({
+      texto: comment,
+      puntuacion: rating,
+      usuario: activeUser.usuario,
+      id: activeUser.id||1
+
+    })
+  );
+  setNewComment({
+    usuario_paciente: activeUser.usuario,
+    comentario: comment,
+    puntuacion: rating,
+    id: activeUser.id||1
+  });
+   
+toast.success("Comentario enviado!");
+  setComment("");
+  setRating("");
+  console.log(activeUser.usuario);
+};
 
   const [formModal, setFormModal] = React.useState(false);
 
@@ -222,12 +223,9 @@ export default function Patient() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
-<<<<<<< HEAD
-    
-      toast.success('¡Contraseña cambiada con éxito!');
-=======
-    toast.success("¡Contraseña cambiada con éxito!");
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
+
+    toast.success('¡Contraseña cambiada con éxito!');
+
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -251,6 +249,61 @@ export default function Patient() {
       document.body.classList.toggle("profile-page");
     };
   }, []);
+  
+   function getActiveUser() {
+    // const activeUser = JSON.parse(localStorage.getItem('activeUser'));  // Obtener el objeto activeUser del localstorage y convertirlo a objeto de JavaScript
+    const activeUserId = activeUser.id;  // Obtener el valor de la propiedad id del objeto activeUser
+    fetch(`http://localhost:5000/pacientes/${activeUserId}`)  // Hacer la petición GET al endpoint /api/activeuser en el backend
+      .then(response => response.json())  // Convertir la respuesta a un objeto JSON
+      .then(data => {
+        // Imprimir el activeUser en la consola
+        // Hacer lo que necesites con el activeUser actualizado en el frontend
+        console.log('ACTIVEpremium ' + data.paciente.premium)
+        if (activeUser.premium !== 1) activeUser.premium = data.paciente.premium        
+      })
+      .catch(error => {
+        console.error('Error al obtener el activeUser:', error);  // Manejar errores en la consola
+      });
+  }
+  // Definir un temporizador para hacer la petición GET cada cierto tiempo
+  setInterval(getActiveUser, 5000);
+ 
+  React.useEffect(() => {
+    if (activeUser.premium === 1) {
+      const buttonDetection = document.querySelector("#detection-btn");
+      const buttonForm = document.querySelector("#form-detection");
+      buttonDetection.removeAttribute("disabled");
+      buttonForm.removeAttribute('disabled');
+    }
+  }, [activeUser.premium]);
+
+console.log(activeUser.premium);
+  
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const baseUrl = params.get('preapproval_id')
+    if (
+      baseUrl
+    ) {
+      const sendData = async () => {
+        try {
+          const res = (
+            await axios.post("https://brainly-back.onrender.com/pago_exitoso", {
+              correo: activeUser.correo,
+            })
+          ).data;
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      sendData()
+    }
+    else {
+      console.log('no esta entrando al if');
+    }
+  }, []);
+  
   return (
     <>
       <NavBrain />
@@ -430,7 +483,7 @@ export default function Patient() {
                         <ToastContainer />
                       </TabPane>
 
-                          <ToastContainer />
+                      <ToastContainer />
 
 
                       <TabPane tabId="tab3">
@@ -482,28 +535,36 @@ export default function Patient() {
                 </p>
                 <div className="btn-wrapper pt-3">
                   <form>
-                    <label
+                 <label
                       className="btn btn-info"
                       onClick={() =>
-                        (window.location.href =
-                          "https://detection-brainly.streamlit.app/")
+                      (window.location.href =
+                        "https://detection-brainly.streamlit.app/")
                       }
+                      id="detection-btn"
+                      disabled
                     >
-                      <i className="tim-icons icon-cloud-upload-94" /> Subir
-                      archivo
+                      <i className="tim-icons icon-cloud-upload-94" /> Prueba la
+                      IA
                     </label>
-                    <Button color="success" onClick={() => setFormModal(true)}>
+                    <label
+                      color="success"
+                      className="btn btn-success"
+                      onClick={() => setFormModal(true)}
+                      id="form-detection"
+                      disabled
+                    >
                       Llenar Formulario
-                    </Button>
+                    </label>
                   </form>
 
 
 
 
                   <div>
-                   
-                  <ToastContainer />
-                   
+
+                    <ToastContainer />
+
                     {/* Start Form Modal */}
                     <ToastContainer />
                     <Modal
@@ -555,7 +616,7 @@ export default function Patient() {
                               <i className="tim-icons icon-book-bookmark" />{" "}
                               Cargar Imagen
                             </Button>
-                            <ToastContainer />
+                           
                           </form>
                         </FormGroup>
 
@@ -672,31 +733,16 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <div className="text-center">
-<<<<<<< HEAD
-                          <Button className="my-4" color="primary" type="submit" disabled={loading}>
-  {loading ? 'Enviando...' : 'Enviar Datos'}
-</Button>
-=======
-                            <Button
-                              className="my-4"
-                              color="primary"
-                              type="submit"
-                              disabled={loading}
-                            >
-                              {loading ? "Enviando..." : "Enviar Datos"}
+
+                            <Button className="my-4" color="primary" type="submit" disabled={loading}>
+                              {loading ? 'Enviando...' : 'Enviar Datos'}
                             </Button>
->>>>>>> 70ca589b10255b3eb13e8daf8eda425877ae39c9
+
                           </div>
                         </Form>
                       </div>
                     </Modal>
                     {/* End Form Modal */}
-
-
-
-
-
-
                   </div>
                 </div>
               </Col>
@@ -706,121 +752,86 @@ export default function Patient() {
         <section className="section">
           <Container>
             <Row>
-              <Col md="6">
-                <Card className="card-plain">
-                  <CardHeader>
-                    <h1 className="profile-title text-left">
-                      Dejanos un Feedback
-                      {
-                        //--------------------ESCRIBIR COMENTARIO--------------------------------------------------------------------------------------------------------------------------
-                      }
-                    </h1>
-                    <h5 className="text-on-back">03</h5>
-                  </CardHeader>
-                  <CardBody>
-                    <Form onSubmit={handleCommentSubmit}>
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label>Comentanos tu experencia!</label>
-                            <Input
-                              maxLength="100"
-                              invalid={comment.length > 99}
-                              placeholder="Escribir comentario"
-                              value={comment}
-                              onChange={handleCommentChange}
-                            />
-                            <FormFeedback>
-                              Alcanzaste el número maximo de caracteres{" "}
-                            </FormFeedback>
-                            <label>Dejanos una calificación: </label>
-                            <div className="estrellas-row">
-                              <Estrellas
-                                rating={rating}
-                                setSavedRating={handleSaveRating}
-                                hoverRating={hoverRating}
-                                setHoverRating={setHoverRating}
+              {console.log(activeUser.resultado)}
+
+              {formSubmitted && (
+                
+                <Col md="6">
+                  <ToastContainer />
+                  <Card className="card-plain">
+                    <CardHeader>
+                      <h1 className="profile-title text-left">
+                        Dejanos un Feedback
+                      </h1>
+                      <h5 className="text-on-back">03</h5>
+                    </CardHeader>
+                    <CardBody>
+                      <Form onSubmit={handleCommentSubmit}>
+                        <Row>
+                          <Col md="12">
+                            <FormGroup>
+                              <label>Comentanos tu experencia!</label>
+                              <Input
+                                maxLength="100"
+                                invalid={comment.length > 99}
+                                placeholder="Escribir comentario"
+                                value={comment}
+                                onChange={handleCommentChange}
                               />
-                            </div>
-                          </FormGroup>
-                        </Col>
-                      </Row>
+                              <FormFeedback>
+                                Alcanzaste el número maximo de caracteres{" "}
+                              </FormFeedback>
+                              <label>Dejanos una calificación: </label>
+                              <div className="estrellas-row">
+                                <Estrellas
+                                  rating={rating}
+                                  setSavedRating={handleSaveRating}
+                                  hoverRating={hoverRating}
+                                  setHoverRating={setHoverRating}
+                                />
+                              </div>
+                            </FormGroup>
+                          </Col>
+                        </Row>
 
-                      {
-                        //------------------------MODAL----------------------------------------------------------------------------------------------------------------------------------------------------------------
-                      }
+                        <Button
+                          className="btn-round float-right"
+                          color="primary"
+                          data-placement="right"
+                          id="tooltip341148792"
+                          type="submit"
+                          onClick={handleCommentSubmit}
+                        >
+                          Send text
+                        </Button>
 
-                      {/* 
 
-<Modal isOpen={showModal} toggle={() => setShowModal(false)}>
-  <ModalHeader toggle={() => setShowModal(false)}>Error</ModalHeader>
-  <ModalBody>Por favor, seleccione una calificación antes de enviar el formulario.</ModalBody>
-  <ModalFooter>
-    <Button color="primary" onClick={() => setShowModal(false)}>
-      Aceptar
-    </Button>
-  </ModalFooter>
-</Modal> */}
+                        <UncontrolledTooltip
+                          delay={0}
+                          placement="right"
+                          target="tooltip341148792"
+                        >
 
-                      <Button
-                        className="btn-round float-right"
-                        color="primary"
-                        data-placement="right"
-                        id="tooltip341148792"
-                        type="submit"
-                        onClick={handleCommentSubmit}
-                      >
-                        Send text
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        placement="right"
-                        target="tooltip341148792"
-                      >
-                        {
-                          //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        }
-                        Can't wait for your message
-                      </UncontrolledTooltip>
-                    </Form>
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col className="ml-auto" md="4">
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-square-pin" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Find us at the office</h4>
-                    <p>
-                      Bld Mihail Kogalniceanu, nr. 8, <br />
-                      7652 Bucharest, <br />
-                      Romania
-                    </p>
-                  </div>
-                </div>
-                <div className="info info-horizontal">
-                  <div className="icon icon-primary">
-                    <i className="tim-icons icon-mobile" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Give us a ring</h4>
-                    <p>
-                      Michael Jordan <br />
-                      <a href="tel:+54-9-11-4418-0197">+54-9-11-4418-0197</a>
-                      <br />
-                      Mon - Fri, 8:00-22:00
-                    </p>
-                  </div>
-                </div>
-              </Col>
+                          Can't wait for your message
+                        </UncontrolledTooltip>
+                      </Form>
+                    </CardBody>
+                  </Card>
+                </Col>
+              )}
+
+             
             </Row>
           </Container>
         </section>
+
+
+
+
+
         <Footer />
       </div>
-          
+
     </>
   );
 }

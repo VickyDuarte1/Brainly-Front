@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import ChatBot from "../ChatBot/ChatBot";
 // reactstrap components
 import {
   Button,
@@ -118,7 +119,7 @@ export default function ExamplesNavbar() {
             <Row>
               <Col className="collapse-brand" xs="6">
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  BLK•React
+                  Brainly • Fast and Safe!
                 </a>
               </Col>
               <Col className="collapse-close text-right" xs="6">
@@ -135,7 +136,7 @@ export default function ExamplesNavbar() {
           <Nav navbar>
             <NavItem>
               <Button
-                className="nav-link d-none d-lg-block"
+                className="nav-link"
                 color="primary"
                 target="_blank"
                 onClick={handleClick}
@@ -147,7 +148,7 @@ export default function ExamplesNavbar() {
               <>
                 <NavItem>
                   <NavLink tag={Link} to="/register">
-                    Regristrate
+                    Registrate
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -160,7 +161,7 @@ export default function ExamplesNavbar() {
             ) : (
               <>
                 <Button
-                  className="nav-link d-none d-lg-block"
+                  className="nav-link"
                   onClick={handleLogOut}
                 >
                   Cerrar sesión
@@ -183,6 +184,7 @@ export default function ExamplesNavbar() {
               </>
             )}
           </Nav>
+          <ChatBot></ChatBot>
         </Collapse>
       </Container>
     </Navbar>
