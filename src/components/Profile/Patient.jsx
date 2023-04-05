@@ -119,7 +119,7 @@ export default function Patient() {
   };
 
   React.useEffect(() => {
-    if (activeUser.premium === true) {
+    if (activeUser.premium === 1) {
       const buttonDetection = document.querySelector("#detection-btn");
       const buttonForm = document.querySelector("#form-detection");
       buttonDetection.removeAttribute("disabled");
