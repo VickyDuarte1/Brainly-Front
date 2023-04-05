@@ -600,7 +600,6 @@ export default function Patient() {
                               <i className="tim-icons icon-book-bookmark" />{" "}
                               Cargar Imagen
                             </Button>
-                            <ToastContainer />
                           </form>
                         </FormGroup>
 
