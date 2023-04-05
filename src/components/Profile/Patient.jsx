@@ -535,19 +535,27 @@ console.log(activeUser.premium);
                 </p>
                 <div className="btn-wrapper pt-3">
                   <form>
-                    <label
+                 <label
                       className="btn btn-info"
                       onClick={() =>
                       (window.location.href =
                         "https://detection-brainly.streamlit.app/")
                       }
+                      id="detection-btn"
+                      disabled
                     >
-                      <i className="tim-icons icon-cloud-upload-94" /> Subir
-                      archivo
+                      <i className="tim-icons icon-cloud-upload-94" /> Prueba la
+                      IA
                     </label>
-                    <Button color="success" onClick={() => setFormModal(true)}>
+                    <label
+                      color="success"
+                      className="btn btn-success"
+                      onClick={() => setFormModal(true)}
+                      id="form-detection"
+                      disabled
+                    >
                       Llenar Formulario
-                    </Button>
+                    </label>
                   </form>
 
 
