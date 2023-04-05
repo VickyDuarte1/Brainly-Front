@@ -123,7 +123,7 @@ export default function Patient() {
       const buttonDetection = document.querySelector("#detection-btn");
       const buttonForm = document.querySelector("#form-detection");
       buttonDetection.removeAttribute("disabled");
-      buttonForm.removeAttribute("disabled");
+      buttonForm.disabled = false;
     }
   }, [activeUser]);
 
@@ -509,7 +509,7 @@ export default function Patient() {
                       color="success"
                       onClick={() => setFormModal(true)}
                       id="form-detection"
-                      disabled
+                      disabled={true}
                     >
                       Llenar Formulario
                     </Button>
