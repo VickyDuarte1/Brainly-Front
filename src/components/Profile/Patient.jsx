@@ -250,35 +250,59 @@ toast.success("Comentario enviado!");
     };
   }, []);
   
-  const activeUser2 = JSON.parse(localStorage.getItem("activeUser"));
-
-  console.log('ACTIVEUSER: ' + JSON.stringify(activeUser2.premium));//trae el activo
-
-
-  console.log('ACTIVEUSER-ID: ' + JSON.stringify(activeUser2.id));//trae el activo
-
-
-  function getActiveUser() {
-    const activeUser = JSON.parse(localStorage.getItem('activeUser'));  // Obtener el objeto activeUser del localstorage y convertirlo a objeto de JavaScript
+   function getActiveUser() {
+    // const activeUser = JSON.parse(localStorage.getItem('activeUser'));  // Obtener el objeto activeUser del localstorage y convertirlo a objeto de JavaScript
     const activeUserId = activeUser.id;  // Obtener el valor de la propiedad id del objeto activeUser
-
-    fetch(`https://brainly-back.onrender.com/pacientes/${activeUserId}` )  // Hacer la petición GET al endpoint /api/activeuser en el backend
+    fetch(`http://localhost:5000/pacientes/${activeUserId}`)  // Hacer la petición GET al endpoint /api/activeuser en el backend
       .then(response => response.json())  // Convertir la respuesta a un objeto JSON
-      .then(activeUser => {
-        console.log('ACTIVEUSER:', activeUser);  // Imprimir el activeUser en la consola
+      .then(data => {
+        // Imprimir el activeUser en la consola
         // Hacer lo que necesites con el activeUser actualizado en el frontend
-        console.log(activeUser.premium)
+        console.log('ACTIVEpremium ' + data.paciente.premium)
+        if (activeUser.premium !== 1) activeUser.premium = data.paciente.premium        
       })
       .catch(error => {
         console.error('Error al obtener el activeUser:', error);  // Manejar errores en la consola
       });
   }
-  
   // Definir un temporizador para hacer la petición GET cada cierto tiempo
-  setInterval(getActiveUser, 5000);  // Hacer la petición GET cada 5 segundos (5000 milisegundos)
-
+  setInterval(getActiveUser, 5000);
+ 
+  React.useEffect(() => {
+    if (activeUser.premium === 1) {
+      const buttonDetection = document.querySelector("#detection-btn");
+      const buttonForm = document.querySelector("#form-detection");
+      buttonDetection.removeAttribute("disabled");
+      buttonForm.removeAttribute('disabled');
+    }
+  }, [activeUser.premium]);
 
 console.log(activeUser.premium);
+  
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const baseUrl = params.get('preapproval_id')
+    if (
+      baseUrl
+    ) {
+      const sendData = async () => {
+        try {
+          const res = (
+            await axios.post("https://brainly-back.onrender.com/pago_exitoso", {
+              correo: activeUser.correo,
+            })
+          ).data;
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      sendData()
+    }
+    else {
+      console.log('no esta entrando al if');
+    }
+  }, []);
   
   return (
     <>
