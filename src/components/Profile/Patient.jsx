@@ -551,7 +551,6 @@ export default function Patient() {
                     <ToastContainer />
 
                     {/* Start Form Modal */}
-                    <ToastContainer />
                     <Modal
                       modalClassName="modal-black"
                       isOpen={formModal}
