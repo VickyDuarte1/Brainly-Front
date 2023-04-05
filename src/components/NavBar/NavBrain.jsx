@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import ChatBot from "../ChatBot/ChatBot";
 // reactstrap components
 import {
   Button,
@@ -183,6 +184,7 @@ export default function ExamplesNavbar() {
               </>
             )}
           </Nav>
+          <ChatBot></ChatBot>
         </Collapse>
       </Container>
     </Navbar>
