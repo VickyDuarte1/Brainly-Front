@@ -122,8 +122,10 @@ export default function Patient() {
   React.useEffect(() => {
     if (activeUser.premium === 1) { 
       const buttonDetection = document.querySelector("#detection-btn");
-      buttonDetection.removeAttribute("disabled");
       const buttonForm = document.querySelector("#form-detection");
+      buttonDetection.removeAttribute("disabled");
+      buttonForm.removeAttribute("disabled")
+      
     }
   }, [activeUser]);
 
@@ -505,14 +507,15 @@ export default function Patient() {
                       <i className="tim-icons icon-cloud-upload-94" /> Prueba la
                       IA
                     </label>
-                    <Button
+                    <label
                       color="success"
+                      className="btn btn-success"
                       onClick={() => setFormModal(true)}
                       id="form-detection"
-                      
+                      disabled
                     >
                       Llenar Formulario
-                    </Button>
+                    </label>
                   </form>
 
                   <div>
