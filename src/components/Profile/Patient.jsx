@@ -7,8 +7,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Estrellas from "../Comments/Estrellas";
 import "./estrellas.css";
-
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -38,7 +36,8 @@ import {
   UncontrolledTooltip,
   UncontrolledCarousel,
 } from "reactstrap";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import NavBrain from "../NavBar/NavBrain";
 import Footer from "../Footer/Footer";
 
@@ -70,31 +69,6 @@ export default function Patient() {
   const [loading, setLoading] = useState(false);
   const history = useNavigate();
 
-  React.useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const baseUrl = params.get('preapproval_id')
-    if (
-      baseUrl
-    ) {
-      const sendData = async () => {
-        try {
-          const res = (
-            await axios.post("https://brainly-back.onrender.com/pago_exitoso", {
-              correo: activeUser.correo,
-            })
-          ).data;
-          console.log(res);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      sendData()
-    }
-    else{
-      console.log('no esta entrando al if');
-    }
-  }, [window.location.search]);
-
   const handleButtonClick = () => {
     // Aquí puedes redirigir a la ruta deseada
     history("/doctor-list");
@@ -118,17 +92,6 @@ export default function Patient() {
     toast.success("Imagen Cargada!");
   };
 
-  
-  React.useEffect(() => {
-    if (activeUser.premium === 1) { 
-      const buttonDetection = document.querySelector("#detection-btn");
-      const buttonForm = document.querySelector("#form-detection");
-      buttonDetection.removeAttribute("disabled");
-      buttonForm.removeAttribute("disabled")
-      
-    }
-  }, [activeUser]);
-
   useEffect(() => {
     localStorage.getItem("activeResult", JSON.stringify(activeResult));
   }, [activeResult]);
@@ -140,6 +103,8 @@ export default function Patient() {
     imagen: "",
     resultado: "",
   });
+
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -152,7 +117,14 @@ export default function Patient() {
     })
       .then((response) => response.json())
       .then((data) => {
+
+
+
+        // alert("¡Datos enviados!");
+
         toast.success("¡Datos enviados!");
+
+
         setForm({
           nombre: "",
           usuario: "",
@@ -166,8 +138,13 @@ export default function Patient() {
         console.error(error);
         toast.error("Hubo un error al enviar los datos");
       });
+
+
     setLoading(false);
     setFormModal(false);
+    setFormSubmitted(true);
+  
+
   };
 
   const [rating, setRating] = useState(0);
@@ -176,7 +153,6 @@ export default function Patient() {
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
-
   const [nameFocus, setNameFocus] = React.useState(false);
   const [userFocus, setUserFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
@@ -192,32 +168,35 @@ export default function Patient() {
     setComment(event.target.value);
   };
 
-  const handleCommentSubmit = (event) => {
-    event.preventDefault();
-    console.log(comment);
-    console.log(rating);
+ 
+    
+const handleCommentSubmit = (event) => {
+  event.preventDefault();
+  console.log(comment);
+  console.log(rating);
 
-    const activeUser = JSON.parse(localStorage.getItem("activeUser"));
-    dispatch(
-      createPost({
-        texto: comment,
-        puntuacion: rating,
-        usuario: activeUser.usuario,
-        id: activeUser.id || 1,
-      })
-    );
-    setNewComment({
-      usuario_paciente: activeUser.usuario,
-      comentario: comment,
+  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+  dispatch(
+    createPost({
+      texto: comment,
       puntuacion: rating,
-      id: activeUser.id || 1,
-    });
+      usuario: activeUser.usuario,
+      id: activeUser.id||1
 
-    toast.success("Comentario enviado!");
-    setComment("");
-    setRating("");
-    console.log(activeUser.usuario);
-  };
+    })
+  );
+  setNewComment({
+    usuario_paciente: activeUser.usuario,
+    comentario: comment,
+    puntuacion: rating,
+    id: activeUser.id||1
+  });
+   
+toast.success("Comentario enviado!");
+  setComment("");
+  setRating("");
+  console.log(activeUser.usuario);
+};
 
   const [formModal, setFormModal] = React.useState(false);
 
@@ -244,7 +223,9 @@ export default function Patient() {
         // Manejar cualquier error si la solicitud no se completa correctamente
         console.log(error);
       });
-    toast.success("¡Contraseña cambiada con éxito!");
+
+    toast.success('¡Contraseña cambiada con éxito!');
+
   };
 
   const [tabs, setTabs] = React.useState(1);
@@ -269,8 +250,12 @@ export default function Patient() {
     };
   }, []);
   
-  
+  const activeUser2 = JSON.parse(localStorage.getItem("activeUser"));
 
+  console.log('ACTIVEUSER: ' + JSON.stringify(activeUser2.premium));//trae el activo
+
+
+  console.log('ACTIVEUSER-ID: ' + JSON.stringify(activeUser2.id));//trae el activo
 
 
   function getActiveUser() {
@@ -282,6 +267,7 @@ export default function Patient() {
       .then(activeUser => {
         console.log('ACTIVEUSER:', activeUser);  // Imprimir el activeUser en la consola
         // Hacer lo que necesites con el activeUser actualizado en el frontend
+        console.log(activeUser.premium)
       })
       .catch(error => {
         console.error('Error al obtener el activeUser:', error);  // Manejar errores en la consola
@@ -292,10 +278,7 @@ export default function Patient() {
   setInterval(getActiveUser, 5000);  // Hacer la petición GET cada 5 segundos (5000 milisegundos)
 
 
-
-  
-  
-  
+console.log(activeUser.premium);
   
   return (
     <>
@@ -433,6 +416,9 @@ export default function Patient() {
                         </Table>
                       </TabPane>
 
+
+
+
                       <TabPane tabId="tab2">
                         <Row>
                           <Label sm="3">Clave actual:</Label>
@@ -474,6 +460,7 @@ export default function Patient() {
                       </TabPane>
 
                       <ToastContainer />
+
 
                       <TabPane tabId="tab3">
                         <Table className="tablesorter" responsive>
@@ -527,30 +514,27 @@ export default function Patient() {
                     <label
                       className="btn btn-info"
                       onClick={() =>
-                        (window.location.href =
-                          "https://detection-brainly.streamlit.app/")
+                      (window.location.href =
+                        "https://detection-brainly.streamlit.app/")
                       }
-                      id="detection-btn"
-                      disabled
                     >
-                      <i className="tim-icons icon-cloud-upload-94" /> Prueba la
-                      IA
+                      <i className="tim-icons icon-cloud-upload-94" /> Subir
+                      archivo
                     </label>
-                    <label
-                      color="success"
-                      className="btn btn-success"
-                      onClick={() => setFormModal(true)}
-                      id="form-detection"
-                      disabled
-                    >
+                    <Button color="success" onClick={() => setFormModal(true)}>
                       Llenar Formulario
-                    </label>
+                    </Button>
                   </form>
 
+
+
+
                   <div>
+
                     <ToastContainer />
 
                     {/* Start Form Modal */}
+                    <ToastContainer />
                     <Modal
                       modalClassName="modal-black"
                       isOpen={formModal}
@@ -600,8 +584,11 @@ export default function Patient() {
                               <i className="tim-icons icon-book-bookmark" />{" "}
                               Cargar Imagen
                             </Button>
+                           
                           </form>
                         </FormGroup>
+
+
 
                         <Form role="form" onSubmit={(e) => handleFormSubmit(e)}>
                           <FormGroup>
@@ -665,6 +652,9 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <FormGroup>
+
+
+
                             <InputGroup
                               className={classnames("input-group-alternative", {
                                 "input-group-focus": imgFocus,
@@ -711,14 +701,11 @@ export default function Patient() {
                             </InputGroup>
                           </FormGroup>
                           <div className="text-center">
-                            <Button
-                              className="my-4"
-                              color="primary"
-                              type="submit"
-                              disabled={loading}
-                            >
-                              {loading ? "Enviando..." : "Enviar Datos"}
+
+                            <Button className="my-4" color="primary" type="submit" disabled={loading}>
+                              {loading ? 'Enviando...' : 'Enviar Datos'}
                             </Button>
+
                           </div>
                         </Form>
                       </div>
@@ -734,7 +721,9 @@ export default function Patient() {
           <Container>
             <Row>
               {console.log(activeUser.resultado)}
+
               {formSubmitted && (
+                
                 <Col md="6">
                   <ToastContainer />
                   <Card className="card-plain">
@@ -784,11 +773,13 @@ export default function Patient() {
                           Send text
                         </Button>
 
+
                         <UncontrolledTooltip
                           delay={0}
                           placement="right"
                           target="tooltip341148792"
                         >
+
                           Can't wait for your message
                         </UncontrolledTooltip>
                       </Form>
@@ -796,11 +787,19 @@ export default function Patient() {
                   </Card>
                 </Col>
               )}
+
+             
             </Row>
           </Container>
         </section>
+
+
+
+
+
+        <Footer />
       </div>
-      <Footer />
+
     </>
   );
 }
