@@ -71,11 +71,10 @@ export default function Patient() {
   const history = useNavigate();
 
   React.useEffect(() => {
-    const url = document.referrer;
-    const baseUrl = url.split("?")[0];
+    const params = new URLSearchParams(window.location.search);
+    const baseUrl = params.get('preapproval_id')
     if (
-      baseUrl ===
-      "https://www.mercadopago.com.ar/subscriptions/checkout/congrats"
+      baseUrl
     ) {
       const sendData = async () => {
         try {
@@ -89,8 +88,12 @@ export default function Patient() {
           console.log(error);
         }
       };
+      sendData()
     }
-  }, [document.referrer]);
+    else{
+      console.log('no esta entrando al if');
+    }
+  }, [window.location.search]);
 
   const handleButtonClick = () => {
     // Aquí puedes redirigir a la ruta deseada
@@ -116,7 +119,7 @@ export default function Patient() {
   };
 
   React.useEffect(() => {
-    if (activeUser.premium === 1) {
+    if (activeUser.premium === true) {
       const buttonDetection = document.querySelector("#detection-btn");
       const buttonForm = document.querySelector("#form-detection");
       buttonDetection.removeAttribute("disabled");
