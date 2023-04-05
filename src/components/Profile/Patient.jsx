@@ -268,6 +268,35 @@ export default function Patient() {
       document.body.classList.toggle("profile-page");
     };
   }, []);
+  
+  
+
+
+
+  function getActiveUser() {
+    const activeUser = JSON.parse(localStorage.getItem('activeUser'));  // Obtener el objeto activeUser del localstorage y convertirlo a objeto de JavaScript
+    const activeUserId = activeUser.id;  // Obtener el valor de la propiedad id del objeto activeUser
+
+    fetch(`https://brainly-back.onrender.com/pacientes/${activeUserId}` )  // Hacer la petición GET al endpoint /api/activeuser en el backend
+      .then(response => response.json())  // Convertir la respuesta a un objeto JSON
+      .then(activeUser => {
+        console.log('ACTIVEUSER:', activeUser);  // Imprimir el activeUser en la consola
+        // Hacer lo que necesites con el activeUser actualizado en el frontend
+      })
+      .catch(error => {
+        console.error('Error al obtener el activeUser:', error);  // Manejar errores en la consola
+      });
+  }
+  
+  // Definir un temporizador para hacer la petición GET cada cierto tiempo
+  setInterval(getActiveUser, 5000);  // Hacer la petición GET cada 5 segundos (5000 milisegundos)
+
+
+
+  
+  
+  
+  
   return (
     <>
       <NavBrain />
