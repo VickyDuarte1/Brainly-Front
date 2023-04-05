@@ -17,7 +17,7 @@ const Paged = ({ onClick, total, shown }) => {
        
       <div className="d-flex justify-content-center" > 
        <Button type="button" color= "primary"  onClick={onClick} >
-          Leer más comentarios
+          Cargar más
         </Button>
         </div>
       
