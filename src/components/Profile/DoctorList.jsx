@@ -201,9 +201,9 @@ export default function DoctorList() {
                     value={selectedOption}
                     onChange={handleSelectChange}
                   >
-                    <option value=""> </option>
-                    <option value="asc">A-Z</option>
-                    <option value="desc">Z-A</option>
+                    <option value="" style={{backgroundColor: '#2b3553'}}> </option>
+                    <option value="asc" style={{backgroundColor: '#2b3553'}}>A-Z</option>
+                    <option value="desc" style={{backgroundColor: '#2b3553'}}>Z-A</option>
                   </Input>
                 </FormGroup>
               </Col>
@@ -216,10 +216,10 @@ export default function DoctorList() {
                     value={selectedSpeciality}
                     onChange={handleSpecialityChange}
                   >
-                    <option value=""> </option>
-                    <option value="Cirujano">Cirujano</option>
-                    <option value="Neurólogo">Neurólogo</option>
-                    <option value="neurocirujano">Neurocirujano</option>
+                    <option value="" style={{backgroundColor: '#2b3553'}}> </option>
+                    <option value="Cirujano" style={{backgroundColor: '#2b3553'}}>Cirujano</option>
+                    <option value="Neurólogo" style={{backgroundColor: '#2b3553'}}>Neurólogo</option>
+                    <option value="neurocirujano" style={{backgroundColor: '#2b3553'}}>Neurocirujano</option>
                   </Input>
                 </FormGroup>
               </Col>
