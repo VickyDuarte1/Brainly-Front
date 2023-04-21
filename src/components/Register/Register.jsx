@@ -305,9 +305,9 @@ export default function Register() {
                               onBlur={(e) => setUserFocus(false)}
                               id="optionSelected"
                             >
-                              <option>Tipo de usuario</option>
-                              <option value="paciente">Paciente</option>
-                              <option value="doctor">Doctor</option>
+                              <option style={{backgroundColor: '#2b3553'}}>Tipo de usuario</option>
+                              <option value="paciente" style={{backgroundColor: '#2b3553'}}>Paciente</option>
+                              <option value="doctor" style={{backgroundColor: '#2b3553'}}>Doctor</option>
                             </Input>
                           </InputGroup>
 
@@ -525,9 +525,9 @@ export default function Register() {
                               onFocus={(e) => setGenderFocus(true)}
                               onBlur={(e) => setGenderFocus(false)}
                             >
-                              <option>Género</option>
-                              <option value="femenino">Femenino</option>
-                              <option value="masculino">Masculino</option>
+                              <option style={{backgroundColor: '#2b3553'}}>Género</option>
+                              <option value="femenino" style={{backgroundColor: '#2b3553'}}>Femenino</option>
+                              <option value="masculino" style={{backgroundColor: '#2b3553'}}>Masculino</option>
                             </Input>
                           </InputGroup>
 

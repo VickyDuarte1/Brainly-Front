@@ -108,6 +108,7 @@ export default function Patient() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log(form);
     fetch("https://brainly-back.onrender.com/detection", {
       method: "POST",
       headers: {
@@ -143,7 +144,7 @@ export default function Patient() {
     setLoading(false);
     setFormModal(false);
     setFormSubmitted(true);
-  
+
 
   };
 
@@ -168,35 +169,35 @@ export default function Patient() {
     setComment(event.target.value);
   };
 
- 
-    
-const handleCommentSubmit = (event) => {
-  event.preventDefault();
-  console.log(comment);
-  console.log(rating);
 
-  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
-  dispatch(
-    createPost({
-      texto: comment,
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    console.log(comment);
+    console.log(rating);
+
+    const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+    dispatch(
+      createPost({
+        texto: comment,
+        puntuacion: rating,
+        usuario: activeUser.usuario,
+        id: activeUser.id || 1
+
+      })
+    );
+    setNewComment({
+      usuario_paciente: activeUser.usuario,
+      comentario: comment,
       puntuacion: rating,
-      usuario: activeUser.usuario,
-      id: activeUser.id||1
+      id: activeUser.id || 1
+    });
 
-    })
-  );
-  setNewComment({
-    usuario_paciente: activeUser.usuario,
-    comentario: comment,
-    puntuacion: rating,
-    id: activeUser.id||1
-  });
-   
-toast.success("Comentario enviado!");
-  setComment("");
-  setRating("");
-  console.log(activeUser.usuario);
-};
+    toast.success("Comentario enviado!");
+    setComment("");
+    setRating("");
+    console.log(activeUser.usuario);
+  };
 
   const [formModal, setFormModal] = React.useState(false);
 
@@ -249,8 +250,8 @@ toast.success("Comentario enviado!");
       document.body.classList.toggle("profile-page");
     };
   }, []);
-  
-   function getActiveUser() {
+
+  function getActiveUser() {
     // const activeUser = JSON.parse(localStorage.getItem('activeUser'));  // Obtener el objeto activeUser del localstorage y convertirlo a objeto de JavaScript
     const activeUserId = activeUser.id;  // Obtener el valor de la propiedad id del objeto activeUser
     fetch(`http://localhost:5000/pacientes/${activeUserId}`)  // Hacer la petición GET al endpoint /api/activeuser en el backend
@@ -258,8 +259,8 @@ toast.success("Comentario enviado!");
       .then(data => {
         // Imprimir el activeUser en la consola
         // Hacer lo que necesites con el activeUser actualizado en el frontend
-        console.log('ACTIVEpremium ' + data.paciente.premium)
-        if (activeUser.premium !== 1) activeUser.premium = data.paciente.premium        
+        // console.log('ACTIVEpremium ' + data.paciente.premium)
+        if (activeUser.premium !== 1) activeUser.premium = data.paciente.premium
       })
       .catch(error => {
         console.error('Error al obtener el activeUser:', error);  // Manejar errores en la consola
@@ -267,7 +268,7 @@ toast.success("Comentario enviado!");
   }
   // Definir un temporizador para hacer la petición GET cada cierto tiempo
   setInterval(getActiveUser, 5000);
- 
+
   React.useEffect(() => {
     if (activeUser.premium === 1) {
       const buttonDetection = document.querySelector("#detection-btn");
@@ -277,8 +278,8 @@ toast.success("Comentario enviado!");
     }
   }, [activeUser.premium]);
 
-console.log(activeUser.premium);
-  
+  console.log(activeUser.premium);
+
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const baseUrl = params.get('preapproval_id')
@@ -303,7 +304,7 @@ console.log(activeUser.premium);
       console.log('no esta entrando al if');
     }
   }, []);
-  
+
   return (
     <>
       <NavBrain />
@@ -328,8 +329,8 @@ console.log(activeUser.premium);
                 <h5 className="text-on-back">01</h5>
                 <p className="profile-description">
                   Para comenzar a utilizar la aplicación, simplemente ten a la
-                  mano la imágen que deseas analizar. Una vez que hayas subido
-                  la imágen, la aplicación la procesará utilizando nuestra
+                  mano la imagen que deseas analizar. Una vez que hayas subido
+                  la imagen, la aplicación la procesará utilizando nuestra
                   tecnología de detección de tumores cerebrales.
                 </p>
                 <div className="btn-wrapper profile pt-3">
@@ -521,7 +522,7 @@ console.log(activeUser.premium);
                 </Row>
               </Col>
               <Col md="5">
-                <h1 className="profile-title text-left">Sube tu Imágen</h1>
+                <h1 className="profile-title text-left">Sube tu Imagen</h1>
                 <h5 className="text-on-back">02</h5>
                 <p className="profile-description text-left">
                   Después de que la imagen haya sido procesada, recibirás un
@@ -535,7 +536,7 @@ console.log(activeUser.premium);
                 </p>
                 <div className="btn-wrapper pt-3">
                   <form>
-                 <label
+                    <label
                       className="btn btn-info"
                       onClick={() =>
                       (window.location.href =
@@ -616,7 +617,7 @@ console.log(activeUser.premium);
                               <i className="tim-icons icon-book-bookmark" />{" "}
                               Cargar Imagen
                             </Button>
-                           
+
                           </form>
                         </FormGroup>
 
@@ -719,7 +720,7 @@ console.log(activeUser.premium);
                               </InputGroupAddon>
                               <Input
                                 placeholder="Resultado detectado por la IA"
-                                type="text"
+                                type="select"
                                 value={form.resultado}
                                 onFocus={(e) => setResultFocus(true)}
                                 onBlur={(e) => setResultFocus(false)}
@@ -728,8 +729,15 @@ console.log(activeUser.premium);
                                     ...form,
                                     resultado: e.target.value,
                                   });
+                                  console.log(form);
                                 }}
-                              />
+                              >
+                                <option style={{backgroundColor: '#2b3553'}}>Resultado detectado por la IA</option>
+                                <option value="no tumor" style={{backgroundColor: '#2b3553'}}>No tumor</option>
+                                <option value="glioma" style={{backgroundColor: '#2b3553'}}>Glioma</option>
+                                <option value="meningioma" style={{backgroundColor: '#2b3553'}}>Meningioma</option>
+                                <option value="pituitario" style={{backgroundColor: '#2b3553'}}>Pituitario</option>
+                              </Input>
                             </InputGroup>
                           </FormGroup>
                           <div className="text-center">
@@ -755,7 +763,7 @@ console.log(activeUser.premium);
               {console.log(activeUser.resultado)}
 
               {formSubmitted && (
-                
+
                 <Col md="6">
                   <ToastContainer />
                   <Card className="card-plain">
@@ -820,7 +828,7 @@ console.log(activeUser.premium);
                 </Col>
               )}
 
-             
+
             </Row>
           </Container>
         </section>

@@ -20,6 +20,7 @@ export default function CitySearch(props) {
         type="text"
         id="campo_de_ciudad"
         onChange={handleInputCity}
+        placeholder="Ingrese el nombre de la ciudad..."
       />
     </form>
   );
